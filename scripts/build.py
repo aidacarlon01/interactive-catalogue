@@ -1,15 +1,12 @@
 #!/usr/bin/env python3
-"""Regenerate the catalogue: index.html, the per-pattern detail pages and thumbnails\nfrom interactives/<slug>/{index.html, brief.md, meta.json, shot.jpg} + data/patterns.json.\nRun: python3 scripts/build.py  (needs Pillow)."""
+"""Regenerate the catalogue: index.html, the per-pattern detail pages and thumbnails\nfrom interactives/<slug>/{index.html, brief.md, meta.json, shot.jpg}.\nRun: python3 scripts/build.py  (needs Pillow)."""
 import json, os, re, html, shutil
 from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IDIR = os.path.join(ROOT, "interactives")
-patterns_info = json.load(open(os.path.join(ROOT, "data", "patterns.json")))
 
-# map placeholder slug -> patterns.json key (for "seen in the courses" lists)
-KEYMAP = {"drag-drop-classifier": "drag-drop"}
-ORDER = ["card-grid-selector","tile-explorer","tabs-stepper","accordion-walkthrough",
+ORDER =["card-grid-selector","tile-explorer","tabs-stepper","accordion-walkthrough",
          "scene-stepper","before-after","parameter-explorer","drag-drop-classifier",
          "predict-reveal","code-lab","labelled-diagram"]
 
@@ -95,9 +92,6 @@ cards = []
 for slug in ORDER:
     meta = json.load(open(f"{IDIR}/{slug}/meta.json"))
     brief_md = open(f"{IDIR}/{slug}/brief.md").read()
-    pk = KEYMAP.get(slug, slug)
-    seen = patterns_info.get(pk, {})
-    n = len(seen.get("files", []))
     # thumbnail
     os.makedirs(f"{ROOT}/assets/thumbs", exist_ok=True)
     im = Image.open(f"{IDIR}/{slug}/shot.jpg"); im.thumbnail((640, 9999))
@@ -108,12 +102,10 @@ for slug in ORDER:
       f'<a class="card" href="{slug}/">'
       f'<img src="assets/thumbs/{slug}.jpg" alt="Preview of the {html.escape(meta["title"])} placeholder interactive">'
       f'<div class="pad"><h2>{html.escape(meta["title"])}</h2>'
-      f'<p>{html.escape(meta.get("oneliner",""))}</p>'
-      f'<span class="badge">Seen {n}&times; in the courses</span></div></a>')
+      f'<p>{html.escape(meta.get("oneliner",""))}</p></div></a>')
 
     # detail page
     os.makedirs(f"{ROOT}/{slug}", exist_ok=True)
-    examples = html.escape(seen.get("examples", ""))
     page = HEAD.format(title=f'{meta["title"]} — Interactive pattern catalogue', css=CSS)
     page += f"""<div class="wrap">
 <a class="back" href="../">&larr; All patterns</a>
@@ -127,7 +119,6 @@ for slug in ORDER:
       <a href="../interactives/{slug}/index.html" target="_blank" rel="noopener">Open full page</a></div>
       <iframe src="../interactives/{slug}/index.html" title="{html.escape(meta["title"])} placeholder interactive" height="{meta.get("h1019", 700)}" loading="lazy"></iframe>
     </div>
-    <div class="seen"><b>Seen in the courses as:</b> {examples}.</div>
   </div>
   <div class="brief">
     <h2>The brief</h2>
@@ -152,14 +143,12 @@ for slug in ORDER:
 # index page
 idx = HEAD.format(title="Interactive pattern catalogue", css=CSS)
 idx += f"""<div class="wrap">
-<div class="eyebrow">Monash courses &middot; FourthRev</div>
 <h1>Interactive pattern catalogue</h1>
-<p class="intro">Every interaction pattern used across the MON_DA courses, as a placeholder you can try. Pick the pattern that fits your learning goal, open it, and copy its brief.</p>
-<div class="howto"><b>How to use this:</b> <b>1.</b> Click a card and play with the placeholder. <b>2.</b> Copy its brief. <b>3.</b> Replace the placeholder content with yours &mdash; keep the seven headings, don&rsquo;t specify colours, fonts or layout mechanics (the house style supplies those). Hand the finished brief to the build process.</div>
+<p class="intro">Each placeholder is a single self-contained HTML file using a specific programme branding style. The brief beside it is the complete specification to request the creation of one.</p>
+<div class="howto"><b>How to use this:</b> <b>1.</b> Click a card and play with the placeholder. <b>2.</b> Copy its brief. <b>3.</b> Replace the placeholder content with yours &mdash; keep the seven headings, don&rsquo;t specify colours, fonts or layout mechanics. <b>4.</b> Hand the finished brief to the build process along with the name of your programme, so the relevant brand style guide is applied.</div>
 <div class="grid">
 {"".join(cards)}
 </div>
-<footer>All eleven patterns were catalogued from the interactives in MON_DA_101 and MON_DA_201. Each placeholder is a single self-contained HTML file built to the Monash interactive rules; the brief beside it is the complete specification a colleague needs to request one.</footer>
 </div></body></html>"""
 open(f"{ROOT}/index.html", "w").write(idx)
 print("site built:", len(cards), "cards")
