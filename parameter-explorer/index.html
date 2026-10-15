@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parameter explorer — Interactive pattern catalogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#fff;color:#000;font-family:'Roboto',Arial,sans-serif;font-size:16px;line-height:1.55}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 48px}
+h1,h2,h3{font-family:'Roboto Condensed',Arial,sans-serif;font-weight:700}
+h1{color:#006DAE;font-size:34px;margin:0 0 8px}
+a{color:#006DAE}
+:focus-visible{outline:3px solid #005FCC;outline-offset:2px}
+.eyebrow{font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:700;color:#006DAE;margin-bottom:10px}
+.intro{color:#3F4041;max-width:72ch;margin:0 0 10px}
+.howto{border:1px solid #E2E2E2;border-left:4px solid #006DAE;border-radius:6px;background:#F9F9F9;padding:14px 18px;margin:18px 0 30px;max-width:860px}
+.howto b{color:#006DAE}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.card{border:1px solid #E2E2E2;border-radius:6px;overflow:hidden;background:#fff;display:flex;flex-direction:column;text-decoration:none;color:#000;transition:box-shadow .15s ease,transform .15s ease}
+.card:hover{box-shadow:0 6px 20px rgba(0,0,0,.10);transform:translateY(-2px)}
+.card img{width:100%;height:auto;display:block;border-bottom:1px solid #ECECEC;background:#F9F9F9}
+.card .pad{padding:14px 16px 16px}
+.card h2{font-size:18px;margin:0 0 6px;color:#006DAE}
+.card p{margin:0 0 10px;font-size:14px;color:#3F4041}
+.badge{display:inline-block;font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:11.5px;font-weight:700;color:#3F4041;border:1px solid #E2E2E2;border-radius:20px;padding:3px 10px}
+.back{display:inline-block;margin-bottom:14px;font-size:14px;text-decoration:none}
+.cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;align-items:start}
+@media(max-width:900px){.cols{grid-template-columns:1fr}}
+.frame{border:1px solid #E2E2E2;border-radius:6px;overflow:hidden}
+.frame iframe{display:block;border:0;width:100%}
+.framebar{display:flex;justify-content:space-between;align-items:center;background:#F5F5F5;border-bottom:1px solid #E2E2E2;padding:8px 12px;font-size:13px;color:#3F4041}
+.brief{border:1px solid #E2E2E2;border-top:4px solid #006DAE;border-radius:6px;padding:18px 20px;background:#fff}
+.brief h2{font-size:20px;margin:0 0 4px}
+.brief .note{font-size:13px;color:#3F4041;margin:0 0 14px}
+.brief p{font-size:14.5px;margin:0 0 12px}
+.brief ul{margin:0 0 12px;padding-left:20px;font-size:14.5px}
+.brief b.lead{color:#006DAE}
+.copybtn{font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:13px;font-weight:700;color:#006DAE;background:#fff;border:1.5px solid #006DAE;border-radius:6px;padding:9px 16px;cursor:pointer}
+.copybtn:hover{background:#006DAE;color:#fff}
+.seen{border:1px solid #E2E2E2;border-radius:6px;background:#F9F9F9;padding:14px 18px;margin-top:18px;font-size:14px;color:#3F4041}
+.seen b{color:#000}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid #E2E2E2;font-size:12.5px;color:#818181;max-width:76ch}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="../">&larr; All patterns</a>
+<div class="eyebrow">Interactive pattern</div>
+<h1>Parameter explorer</h1>
+<p class="intro">Range slider plus presets driving a hand-drawn SVG chart whose moving-average line redraws with the chosen smoothing window.</p>
+<div class="cols">
+  <div>
+    <div class="frame">
+      <div class="framebar"><span>Placeholder interactive — try it</span>
+      <a href="../interactives/parameter-explorer/index.html" target="_blank" rel="noopener">Open full page</a></div>
+      <iframe src="../interactives/parameter-explorer/index.html" title="Parameter explorer placeholder interactive" height="758" loading="lazy"></iframe>
+    </div>
+    <div class="seen"><b>Seen in the courses as:</b> Bin width matters, Moving average window, What will this job cost, Time series decomposition, Categories of data visualisation.</div>
+  </div>
+  <div class="brief">
+    <h2>The brief</h2>
+    <p class="note">This is the example brief for the placeholder above, in the seven-part shape a build needs. Copy it, swap the placeholder content for yours, keep the structure.</p>
+    <p><b class="lead">Purpose.</b> Let the learner feel how a single parameter changes an outcome by moving a control and watching a chart respond immediately, rather than reading about the relationship.</p>
+<p><b class="lead">Layout.</b> A heading &quot;Parameter explorer&quot; and a one-sentence intro. Below, a controls panel holding one labelled range slider (&quot;Placeholder parameter (smoothing window, 1–10)&quot;) and two number-chip presets (&quot;2&quot; and &quot;8&quot;) behind a &quot;Presets:&quot; label. Below the controls, a hand-drawn inline SVG chart: 12 fixed placeholder data points drawn as light grey bars, with a blue moving-average line and dots drawn over them, plus axes, three gridlines and axis labels. Below the chart, a live readout line: &quot;Value: N — placeholder consequence text…&quot; followed by a text alternative sentence stating the smoothed line&#x27;s current range.</p>
+<p><b class="lead">Interaction.</b> Dragging the slider (or using arrow keys on it — it is a native range input with a visible focus ring) recomputes the moving-average line for the chosen window and redraws it; the bars never change. Clicking a preset chip sets the slider to that value; the chip shows a pressed state with a tick icon while the slider matches its value. Every change updates the readout (aria-live polite) and re-reports the document height.</p>
+<p><b class="lead">States.</b> Ten — one per slider value, 1 to 10. Default is 3. The chart is <code>aria-hidden</code>; the readout line is the accessible equivalent and changes with every state. No state is terminal; the learner can move freely.</p>
+<p><b class="lead">Content.</b> Placeholder throughout. Placeholder labels used: &quot;Placeholder parameter (smoothing window, 1–10)&quot;, &quot;Presets:&quot;, preset chips &quot;2&quot; and &quot;8&quot;, fixed data series 3 5 4 7 6 8 5 9 7 10 8 6, axis caption &quot;Placeholder data point&quot;, readout &quot;Value: N — placeholder consequence text…&quot; with three canned consequence sentences (small / moderate / large window), and the range sentence &quot;The smoothed line over the 12 fixed placeholder points now ranges from X to Y.&quot;</p>
+<p><b class="lead">Slug.</b> <code>parameter-explorer</code></p>
+<p><b class="lead">Target.</b> Practice — scratch page only.</p>
+    <button class="copybtn" id="copy">Copy brief as markdown</button>
+    <script type="text/plain" id="raw">**Purpose.** Let the learner feel how a single parameter changes an outcome by moving a control and watching a chart respond immediately, rather than reading about the relationship.
+
+**Layout.** A heading &quot;Parameter explorer&quot; and a one-sentence intro. Below, a controls panel holding one labelled range slider (&quot;Placeholder parameter (smoothing window, 1–10)&quot;) and two number-chip presets (&quot;2&quot; and &quot;8&quot;) behind a &quot;Presets:&quot; label. Below the controls, a hand-drawn inline SVG chart: 12 fixed placeholder data points drawn as light grey bars, with a blue moving-average line and dots drawn over them, plus axes, three gridlines and axis labels. Below the chart, a live readout line: &quot;Value: N — placeholder consequence text…&quot; followed by a text alternative sentence stating the smoothed line&#x27;s current range.
+
+**Interaction.** Dragging the slider (or using arrow keys on it — it is a native range input with a visible focus ring) recomputes the moving-average line for the chosen window and redraws it; the bars never change. Clicking a preset chip sets the slider to that value; the chip shows a pressed state with a tick icon while the slider matches its value. Every change updates the readout (aria-live polite) and re-reports the document height.
+
+**States.** Ten — one per slider value, 1 to 10. Default is 3. The chart is `aria-hidden`; the readout line is the accessible equivalent and changes with every state. No state is terminal; the learner can move freely.
+
+**Content.** Placeholder throughout. Placeholder labels used: &quot;Placeholder parameter (smoothing window, 1–10)&quot;, &quot;Presets:&quot;, preset chips &quot;2&quot; and &quot;8&quot;, fixed data series 3 5 4 7 6 8 5 9 7 10 8 6, axis caption &quot;Placeholder data point&quot;, readout &quot;Value: N — placeholder consequence text…&quot; with three canned consequence sentences (small / moderate / large window), and the range sentence &quot;The smoothed line over the 12 fixed placeholder points now ranges from X to Y.&quot;
+
+**Slug.** `parameter-explorer`
+
+**Target.** Practice — scratch page only.
+</script>
+    <script>
+    document.getElementById('copy').addEventListener('click', function () {
+      var raw = document.getElementById('raw').textContent;
+      navigator.clipboard.writeText(raw).then(() => {
+        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief as markdown', 1600);
+      });
+    });
+    </script>
+  </div>
+</div>
+<footer>Placeholder interactive — all content is placeholder by design. Heights: 758px at desktop width, 762px at phone width.</footer>
+</div></body></html>

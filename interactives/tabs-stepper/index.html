@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tabs and stage stepper</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  /* No min-height, no vh. Body height comes from content only. */
+  body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    color: #000000;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 24px 16px 32px; }
+
+  h1, h2, h3 { font-family: 'Roboto Condensed', Arial, sans-serif; font-weight: 700; }
+
+  :focus-visible { outline: 3px solid #005FCC; outline-offset: 2px; }
+
+  h1 { font-size: 28px; margin: 0 0 8px; }
+  .intro { margin: 0 0 20px; color: #3F4041; }
+
+  .tabs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin: 0 0 0;
+  }
+  .tab {
+    position: relative;
+    font: inherit;
+    text-align: left;
+    background: #F9F9F9;
+    border: 1px solid #E2E2E2;
+    border-bottom: 4px solid #E2E2E2;
+    border-radius: 8px 8px 0 0;
+    padding: 12px 36px 10px 12px;
+    cursor: pointer;
+    color: #000000;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+  .tab:hover { border-color: #006DAE; }
+  .tab[aria-selected="true"] {
+    background: #006DAE;
+    border-color: #00557F;
+    color: #FFFFFF;
+  }
+  .stage-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid #006DAE;
+    color: #006DAE;
+    font-family: 'Roboto Condensed', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    margin: 0 0 6px;
+  }
+  .tab[aria-selected="true"] .stage-num {
+    border-color: #FFFFFF;
+    color: #FFFFFF;
+  }
+  .tab-label {
+    display: block;
+    font-family: 'Roboto Condensed', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.3;
+  }
+  /* Marker arrow — the non-colour cue for the selected tab. */
+  .tab-marker {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 18px;
+    height: 18px;
+    display: none;
+  }
+  .tab[aria-selected="true"] .tab-marker { display: block; }
+  .tab-marker svg { width: 18px; height: 18px; display: block; }
+
+  .panel {
+    border: 1px solid #E2E2E2;
+    border-top: 4px solid #006DAE;
+    border-radius: 0 0 8px 8px;
+    background: #F5F5F5;
+    padding: 20px;
+  }
+  .panel-eyebrow {
+    font-family: 'Roboto Condensed', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #006DAE;
+    margin: 0 0 6px;
+  }
+  .panel h2 { font-size: 22px; margin: 0 0 8px; }
+  .panel p { margin: 0 0 10px; }
+  .panel ul { margin: 0; padding-left: 22px; }
+  .panel li { margin: 0 0 6px; }
+  .panel li:last-child { margin-bottom: 0; }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .step-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font: inherit;
+    font-weight: 500;
+    border-radius: 6px;
+    padding: 9px 16px;
+    cursor: pointer;
+    border: 1px solid #006DAE;
+    background: #006DAE;
+    color: #FFFFFF;
+    transition: background-color 0.15s ease;
+  }
+  .step-btn:hover { background: #00557F; }
+  .step-btn[disabled] {
+    background: #F5F5F5;
+    border-color: #E2E2E2;
+    color: #818181;
+    cursor: default;
+  }
+  .step-btn svg { width: 14px; height: 14px; display: block; }
+  .step-btn .chev { stroke: #FFFFFF; }
+  .step-btn[disabled] .chev { stroke: #818181; }
+  .loop-note {
+    margin: 0;
+    color: #3F4041;
+    font-size: 15px;
+  }
+
+  @media (max-width: 640px) {
+    .tabs { grid-template-columns: 1fr 1fr; }
+    .tab { border-radius: 8px; }
+    .panel { border-radius: 8px; margin-top: 8px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Tabs and stage stepper</h1>
+  <p class="intro">Move through the four placeholder stages using the tabs or the next and previous buttons.</p>
+
+  <div class="tabs" role="tablist" aria-label="Placeholder stages">
+    <button class="tab" role="tab" id="tab-1" aria-selected="true" aria-controls="panel-1" tabindex="0">
+      <span class="tab-marker" aria-hidden="true"><svg viewBox="0 0 18 18" fill="none"><path d="M4 9.5 7.5 13 14 5.5" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="stage-num" aria-hidden="true">1</span>
+      <span class="tab-label">Placeholder stage one</span>
+    </button>
+    <button class="tab" role="tab" id="tab-2" aria-selected="false" aria-controls="panel-2" tabindex="-1">
+      <span class="tab-marker" aria-hidden="true"><svg viewBox="0 0 18 18" fill="none"><path d="M4 9.5 7.5 13 14 5.5" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="stage-num" aria-hidden="true">2</span>
+      <span class="tab-label">Placeholder stage two</span>
+    </button>
+    <button class="tab" role="tab" id="tab-3" aria-selected="false" aria-controls="panel-3" tabindex="-1">
+      <span class="tab-marker" aria-hidden="true"><svg viewBox="0 0 18 18" fill="none"><path d="M4 9.5 7.5 13 14 5.5" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="stage-num" aria-hidden="true">3</span>
+      <span class="tab-label">Placeholder stage three</span>
+    </button>
+    <button class="tab" role="tab" id="tab-4" aria-selected="false" aria-controls="panel-4" tabindex="-1">
+      <span class="tab-marker" aria-hidden="true"><svg viewBox="0 0 18 18" fill="none"><path d="M4 9.5 7.5 13 14 5.5" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="stage-num" aria-hidden="true">4</span>
+      <span class="tab-label">Placeholder stage four</span>
+    </button>
+  </div>
+
+  <div class="panel" role="tabpanel" id="panel-1" aria-labelledby="tab-1">
+    <p class="panel-eyebrow">Stage one</p>
+    <h2>Placeholder step heading one</h2>
+    <p>A placeholder body paragraph for stage one: two sentences describing what happens in this stage and what the learner should notice.</p>
+    <ul>
+      <li>Placeholder detail point one for stage one.</li>
+      <li>Placeholder detail point two for stage one.</li>
+      <li>Placeholder detail point three for stage one.</li>
+    </ul>
+  </div>
+  <div class="panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden>
+    <p class="panel-eyebrow">Stage two</p>
+    <h2>Placeholder step heading two</h2>
+    <p>A placeholder body paragraph for stage two: two sentences describing what happens in this stage and what the learner should notice.</p>
+    <ul>
+      <li>Placeholder detail point one for stage two.</li>
+      <li>Placeholder detail point two for stage two.</li>
+      <li>Placeholder detail point three for stage two.</li>
+    </ul>
+  </div>
+  <div class="panel" role="tabpanel" id="panel-3" aria-labelledby="tab-3" hidden>
+    <p class="panel-eyebrow">Stage three</p>
+    <h2>Placeholder step heading three</h2>
+    <p>A placeholder body paragraph for stage three: two sentences describing what happens in this stage and what the learner should notice.</p>
+    <ul>
+      <li>Placeholder detail point one for stage three.</li>
+      <li>Placeholder detail point two for stage three.</li>
+      <li>Placeholder detail point three for stage three.</li>
+    </ul>
+  </div>
+  <div class="panel" role="tabpanel" id="panel-4" aria-labelledby="tab-4" hidden>
+    <p class="panel-eyebrow">Stage four</p>
+    <h2>Placeholder step heading four</h2>
+    <p>A placeholder body paragraph for stage four: two sentences describing what happens in this stage and what the learner should notice.</p>
+    <ul>
+      <li>Placeholder detail point one for stage four.</li>
+      <li>Placeholder detail point two for stage four.</li>
+      <li>Placeholder detail point three for stage four.</li>
+    </ul>
+  </div>
+
+  <div class="controls">
+    <button class="step-btn" type="button" id="prev-btn" disabled>
+      <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path class="chev" d="M9 2 4 7l5 5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Previous
+    </button>
+    <button class="step-btn" type="button" id="next-btn">
+      Next
+      <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path class="chev" d="M5 2l5 5-5 5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <p class="loop-note">After stage four, next loops back to stage one — the cycle repeats.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // NOT the documentElement scroll height — that is max(content, viewport) and
+  // over-reports whenever the content is shorter than the frame.
+  function contentHeight() {
+    return Math.ceil(document.body.getBoundingClientRect().height);
+  }
+
+  function reportHeight() {
+    if (window.parent === window) return;
+    window.parent.postMessage({ type: 'resize', height: contentHeight() }, '*');
+  }
+
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('[role="tabpanel"]'));
+  var prevBtn = document.getElementById('prev-btn');
+  var nextBtn = document.getElementById('next-btn');
+  var current = 0;
+
+  function select(index, focusTab) {
+    current = index;
+    tabs.forEach(function (tab, i) {
+      var on = i === index;
+      tab.setAttribute('aria-selected', on ? 'true' : 'false');
+      tab.setAttribute('tabindex', on ? '0' : '-1');
+      panels[i].hidden = !on;
+    });
+    prevBtn.disabled = index === 0;
+    if (focusTab) tabs[index].focus();
+    reportHeight();
+  }
+
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { select(i, false); });
+    tab.addEventListener('keydown', function (e) {
+      var next = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (i + 1) % tabs.length;
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (i - 1 + tabs.length) % tabs.length;
+      else if (e.key === 'Home') next = 0;
+      else if (e.key === 'End') next = tabs.length - 1;
+      if (next !== null) {
+        e.preventDefault();
+        select(next, true);
+      }
+      // Enter/Space activate natively via the button's click event.
+    });
+  });
+
+  prevBtn.addEventListener('click', function () {
+    if (current > 0) select(current - 1, false);
+  });
+
+  nextBtn.addEventListener('click', function () {
+    // Loops back to stage one after stage four.
+    select((current + 1) % tabs.length, false);
+  });
+
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(reportHeight);
+})();
+</script>
+</body>
+</html>

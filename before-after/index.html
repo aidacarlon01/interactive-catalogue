@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Before and after comparison — Interactive pattern catalogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#fff;color:#000;font-family:'Roboto',Arial,sans-serif;font-size:16px;line-height:1.55}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 48px}
+h1,h2,h3{font-family:'Roboto Condensed',Arial,sans-serif;font-weight:700}
+h1{color:#006DAE;font-size:34px;margin:0 0 8px}
+a{color:#006DAE}
+:focus-visible{outline:3px solid #005FCC;outline-offset:2px}
+.eyebrow{font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:700;color:#006DAE;margin-bottom:10px}
+.intro{color:#3F4041;max-width:72ch;margin:0 0 10px}
+.howto{border:1px solid #E2E2E2;border-left:4px solid #006DAE;border-radius:6px;background:#F9F9F9;padding:14px 18px;margin:18px 0 30px;max-width:860px}
+.howto b{color:#006DAE}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.card{border:1px solid #E2E2E2;border-radius:6px;overflow:hidden;background:#fff;display:flex;flex-direction:column;text-decoration:none;color:#000;transition:box-shadow .15s ease,transform .15s ease}
+.card:hover{box-shadow:0 6px 20px rgba(0,0,0,.10);transform:translateY(-2px)}
+.card img{width:100%;height:auto;display:block;border-bottom:1px solid #ECECEC;background:#F9F9F9}
+.card .pad{padding:14px 16px 16px}
+.card h2{font-size:18px;margin:0 0 6px;color:#006DAE}
+.card p{margin:0 0 10px;font-size:14px;color:#3F4041}
+.badge{display:inline-block;font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:11.5px;font-weight:700;color:#3F4041;border:1px solid #E2E2E2;border-radius:20px;padding:3px 10px}
+.back{display:inline-block;margin-bottom:14px;font-size:14px;text-decoration:none}
+.cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;align-items:start}
+@media(max-width:900px){.cols{grid-template-columns:1fr}}
+.frame{border:1px solid #E2E2E2;border-radius:6px;overflow:hidden}
+.frame iframe{display:block;border:0;width:100%}
+.framebar{display:flex;justify-content:space-between;align-items:center;background:#F5F5F5;border-bottom:1px solid #E2E2E2;padding:8px 12px;font-size:13px;color:#3F4041}
+.brief{border:1px solid #E2E2E2;border-top:4px solid #006DAE;border-radius:6px;padding:18px 20px;background:#fff}
+.brief h2{font-size:20px;margin:0 0 4px}
+.brief .note{font-size:13px;color:#3F4041;margin:0 0 14px}
+.brief p{font-size:14.5px;margin:0 0 12px}
+.brief ul{margin:0 0 12px;padding-left:20px;font-size:14.5px}
+.brief b.lead{color:#006DAE}
+.copybtn{font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:13px;font-weight:700;color:#006DAE;background:#fff;border:1.5px solid #006DAE;border-radius:6px;padding:9px 16px;cursor:pointer}
+.copybtn:hover{background:#006DAE;color:#fff}
+.seen{border:1px solid #E2E2E2;border-radius:6px;background:#F9F9F9;padding:14px 18px;margin-top:18px;font-size:14px;color:#3F4041}
+.seen b{color:#000}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid #E2E2E2;font-size:12.5px;color:#818181;max-width:76ch}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="../">&larr; All patterns</a>
+<div class="eyebrow">Interactive pattern</div>
+<h1>Before and after comparison</h1>
+<p class="intro">Segmented toggle switching between a cluttered poor-example mock with issue notes and its improved version with fix notes.</p>
+<div class="cols">
+  <div>
+    <div class="frame">
+      <div class="framebar"><span>Placeholder interactive — try it</span>
+      <a href="../interactives/before-after/index.html" target="_blank" rel="noopener">Open full page</a></div>
+      <iframe src="../interactives/before-after/index.html" title="Before and after comparison placeholder interactive" height="609" loading="lazy"></iframe>
+    </div>
+    <div class="seen"><b>Seen in the courses as:</b> KPI card vs trend chart, KPI overload, Colour in dashboards, Layout &amp; formatting, From exclusion to inclusive design, ERD vs Schema.</div>
+  </div>
+  <div class="brief">
+    <h2>The brief</h2>
+    <p class="note">This is the example brief for the placeholder above, in the seven-part shape a build needs. Copy it, swap the placeholder content for yours, keep the structure.</p>
+    <p><b class="lead">Purpose.</b> Let the learner compare a poor version and an improved version of the same thing in place, so the specific issues and the fixes that address them are seen side by side rather than described in the abstract.</p>
+<p><b class="lead">Layout.</b> A heading &quot;Before and after comparison&quot; and a one-sentence intro. Below, a segmented toggle with two options: &quot;1 Before — poor example&quot; and &quot;2 After — improved example&quot;. Below the toggle, one panel. The before panel holds a text tag &quot;POOR EXAMPLE&quot;, a fake mini-dashboard mock built from grey placeholder boxes (a row of five labelled widget boxes, then three further rows of unlabelled boxes of mixed sizes — deliberately cluttered), and a list of three issue notes, each with a cross icon. The after panel holds a text tag &quot;IMPROVED&quot;, a cleaned mock (one blue-outlined headline box plus four supporting boxes), and a list of three fix notes, each with a tick icon.</p>
+<p><b class="lead">Interaction.</b> Clicking a toggle option shows its panel and hides the other. Keyboard: the toggle is an ARIA tablist with roving tabindex — Left/Right (and Up/Down, Home, End) arrow keys move and select, Tab leaves the group. A tick icon appears on the selected option. Each switch re-reports the document height.</p>
+<p><b class="lead">States.</b> Two — before and after. Exactly one visible at a time; before is the default. Both panels exist in the markup; the hidden one uses the <code>hidden</code> attribute. State is carried by the text tags (&quot;POOR EXAMPLE&quot; / &quot;IMPROVED&quot;) and the toggle tick, not by colour alone.</p>
+<p><b class="lead">Content.</b> Placeholder throughout. Placeholder labels used: &quot;Placeholder widget A&quot;, &quot;Widget B&quot;–&quot;Widget E&quot;, &quot;Placeholder headline metric&quot;, &quot;Supporting A&quot;–&quot;Supporting D&quot;, &quot;Issue 1&quot;–&quot;Issue 3&quot; (&quot;placeholder note about…&quot;), &quot;Fix 1&quot;–&quot;Fix 3&quot; (&quot;placeholder note about…&quot;), tags &quot;POOR EXAMPLE&quot; and &quot;IMPROVED&quot;.</p>
+<p><b class="lead">Slug.</b> <code>before-after</code></p>
+<p><b class="lead">Target.</b> Practice — scratch page only.</p>
+    <button class="copybtn" id="copy">Copy brief as markdown</button>
+    <script type="text/plain" id="raw">**Purpose.** Let the learner compare a poor version and an improved version of the same thing in place, so the specific issues and the fixes that address them are seen side by side rather than described in the abstract.
+
+**Layout.** A heading &quot;Before and after comparison&quot; and a one-sentence intro. Below, a segmented toggle with two options: &quot;1 Before — poor example&quot; and &quot;2 After — improved example&quot;. Below the toggle, one panel. The before panel holds a text tag &quot;POOR EXAMPLE&quot;, a fake mini-dashboard mock built from grey placeholder boxes (a row of five labelled widget boxes, then three further rows of unlabelled boxes of mixed sizes — deliberately cluttered), and a list of three issue notes, each with a cross icon. The after panel holds a text tag &quot;IMPROVED&quot;, a cleaned mock (one blue-outlined headline box plus four supporting boxes), and a list of three fix notes, each with a tick icon.
+
+**Interaction.** Clicking a toggle option shows its panel and hides the other. Keyboard: the toggle is an ARIA tablist with roving tabindex — Left/Right (and Up/Down, Home, End) arrow keys move and select, Tab leaves the group. A tick icon appears on the selected option. Each switch re-reports the document height.
+
+**States.** Two — before and after. Exactly one visible at a time; before is the default. Both panels exist in the markup; the hidden one uses the `hidden` attribute. State is carried by the text tags (&quot;POOR EXAMPLE&quot; / &quot;IMPROVED&quot;) and the toggle tick, not by colour alone.
+
+**Content.** Placeholder throughout. Placeholder labels used: &quot;Placeholder widget A&quot;, &quot;Widget B&quot;–&quot;Widget E&quot;, &quot;Placeholder headline metric&quot;, &quot;Supporting A&quot;–&quot;Supporting D&quot;, &quot;Issue 1&quot;–&quot;Issue 3&quot; (&quot;placeholder note about…&quot;), &quot;Fix 1&quot;–&quot;Fix 3&quot; (&quot;placeholder note about…&quot;), tags &quot;POOR EXAMPLE&quot; and &quot;IMPROVED&quot;.
+
+**Slug.** `before-after`
+
+**Target.** Practice — scratch page only.
+</script>
+    <script>
+    document.getElementById('copy').addEventListener('click', function () {
+      var raw = document.getElementById('raw').textContent;
+      navigator.clipboard.writeText(raw).then(() => {
+        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief as markdown', 1600);
+      });
+    });
+    </script>
+  </div>
+</div>
+<footer>Placeholder interactive — all content is placeholder by design. Heights: 609px at desktop width, 865px at phone width.</footer>
+</div></body></html>

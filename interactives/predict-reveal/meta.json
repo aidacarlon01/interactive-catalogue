@@ -1,0 +1,7 @@
+{
+  "title": "Predict, then reveal",
+  "pattern": "Predict-then-reveal practice",
+  "oneliner": "Two source tables, a committed numeric prediction via answer chips, then a revealed result table with matched/not-matched verdict and restart.",
+  "h1019": 1230,
+  "h360": 1608
+}

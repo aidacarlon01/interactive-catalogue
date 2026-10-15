@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scene stepper — Interactive pattern catalogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#fff;color:#000;font-family:'Roboto',Arial,sans-serif;font-size:16px;line-height:1.55}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 48px}
+h1,h2,h3{font-family:'Roboto Condensed',Arial,sans-serif;font-weight:700}
+h1{color:#006DAE;font-size:34px;margin:0 0 8px}
+a{color:#006DAE}
+:focus-visible{outline:3px solid #005FCC;outline-offset:2px}
+.eyebrow{font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:700;color:#006DAE;margin-bottom:10px}
+.intro{color:#3F4041;max-width:72ch;margin:0 0 10px}
+.howto{border:1px solid #E2E2E2;border-left:4px solid #006DAE;border-radius:6px;background:#F9F9F9;padding:14px 18px;margin:18px 0 30px;max-width:860px}
+.howto b{color:#006DAE}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.card{border:1px solid #E2E2E2;border-radius:6px;overflow:hidden;background:#fff;display:flex;flex-direction:column;text-decoration:none;color:#000;transition:box-shadow .15s ease,transform .15s ease}
+.card:hover{box-shadow:0 6px 20px rgba(0,0,0,.10);transform:translateY(-2px)}
+.card img{width:100%;height:auto;display:block;border-bottom:1px solid #ECECEC;background:#F9F9F9}
+.card .pad{padding:14px 16px 16px}
+.card h2{font-size:18px;margin:0 0 6px;color:#006DAE}
+.card p{margin:0 0 10px;font-size:14px;color:#3F4041}
+.badge{display:inline-block;font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:11.5px;font-weight:700;color:#3F4041;border:1px solid #E2E2E2;border-radius:20px;padding:3px 10px}
+.back{display:inline-block;margin-bottom:14px;font-size:14px;text-decoration:none}
+.cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;align-items:start}
+@media(max-width:900px){.cols{grid-template-columns:1fr}}
+.frame{border:1px solid #E2E2E2;border-radius:6px;overflow:hidden}
+.frame iframe{display:block;border:0;width:100%}
+.framebar{display:flex;justify-content:space-between;align-items:center;background:#F5F5F5;border-bottom:1px solid #E2E2E2;padding:8px 12px;font-size:13px;color:#3F4041}
+.brief{border:1px solid #E2E2E2;border-top:4px solid #006DAE;border-radius:6px;padding:18px 20px;background:#fff}
+.brief h2{font-size:20px;margin:0 0 4px}
+.brief .note{font-size:13px;color:#3F4041;margin:0 0 14px}
+.brief p{font-size:14.5px;margin:0 0 12px}
+.brief ul{margin:0 0 12px;padding-left:20px;font-size:14.5px}
+.brief b.lead{color:#006DAE}
+.copybtn{font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:13px;font-weight:700;color:#006DAE;background:#fff;border:1.5px solid #006DAE;border-radius:6px;padding:9px 16px;cursor:pointer}
+.copybtn:hover{background:#006DAE;color:#fff}
+.seen{border:1px solid #E2E2E2;border-radius:6px;background:#F9F9F9;padding:14px 18px;margin-top:18px;font-size:14px;color:#3F4041}
+.seen b{color:#000}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid #E2E2E2;font-size:12.5px;color:#818181;max-width:76ch}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="../">&larr; All patterns</a>
+<div class="eyebrow">Interactive pattern</div>
+<h1>Scene stepper</h1>
+<p class="intro">Four numbered scene chips with guided tour and reset, a diagram stage, and viewed-progress ticks.</p>
+<div class="cols">
+  <div>
+    <div class="frame">
+      <div class="framebar"><span>Placeholder interactive — try it</span>
+      <a href="../interactives/scene-stepper/index.html" target="_blank" rel="noopener">Open full page</a></div>
+      <iframe src="../interactives/scene-stepper/index.html" title="Scene stepper placeholder interactive" height="651" loading="lazy"></iframe>
+    </div>
+    <div class="seen"><b>Seen in the courses as:</b> Pandas agg/groupby/apply/map/concat, Reshaping a DataFrame, Python loop trace viewer, Building ax.plot(), Enhancing a chart.</div>
+  </div>
+  <div class="brief">
+    <h2>The brief</h2>
+    <p class="note">This is the example brief for the placeholder above, in the seven-part shape a build needs. Copy it, swap the placeholder content for yours, keep the structure.</p>
+    <p><b class="lead">Purpose.</b> Let the learner step through a short visual sequence one scene at a time — in their own order or via a guided tour — and see at a glance which scenes they have already viewed.</p>
+<p><b class="lead">Layout.</b> A heading &quot;Scene stepper&quot; and a one-sentence intro. Below, a control row: four numbered circular scene chips on the left, and &quot;Guided tour&quot; and &quot;Reset view&quot; buttons on the right. Under the controls, a progress line (&quot;1 of 4 scenes viewed&quot;). Below that, a bordered stage panel showing one scene at a time: a scene heading, a placeholder diagram of labelled boxes and arrows drawn as inline SVG, and a &quot;Takeaway&quot; callout strip.</p>
+<p><b class="lead">Interaction.</b> Clicking a chip shows that scene; the chips are an ARIA tablist, so left/right arrow keys (plus Home/End) move between scenes and Enter or Space activates. &quot;Guided tour&quot; steps through all four scenes automatically at a fixed interval, relabelling itself &quot;Stop tour&quot; while running; clicking it again, clicking a chip, or &quot;Reset view&quot; stops it. &quot;Reset view&quot; returns to scene one and clears all viewed marks. Each viewed scene&#x27;s chip gains a tick badge (a non-colour mark) and the progress line updates via a live region. A short opacity transition plays between scenes, disabled under prefers-reduced-motion. Every scene change re-reports the document height.</p>
+<p><b class="lead">States.</b> Four scenes, exactly one visible at a time; scene one is the default and counts as viewed on load. Each chip is unviewed or viewed (tick badge); the tour button is idle or running (<code>aria-pressed</code>). All four scene panels exist in the markup; hidden ones are <code>hidden</code>.</p>
+<p><b class="lead">Content.</b> Placeholder throughout. Labels used: &quot;Scene stepper&quot; (h1); scene headings &quot;Placeholder scene one/two/three/four&quot;; diagram box labels &quot;Input A&quot;, &quot;Input B&quot;, &quot;Placeholder process&quot;, &quot;Stage two&quot;, &quot;Outcome one&quot;, &quot;Outcome two&quot;, &quot;Review&quot;, &quot;Outcomes&quot;, &quot;feedback loop&quot;; callout label &quot;Takeaway&quot; with &quot;Placeholder takeaway for scene N…&quot;; buttons &quot;Guided tour&quot; / &quot;Stop tour&quot; and &quot;Reset view&quot;; progress &quot;N of 4 scenes viewed&quot;.</p>
+<p><b class="lead">Slug.</b> <code>scene-stepper</code></p>
+<p><b class="lead">Target.</b> Practice — scratch page only.</p>
+    <button class="copybtn" id="copy">Copy brief as markdown</button>
+    <script type="text/plain" id="raw">**Purpose.** Let the learner step through a short visual sequence one scene at a time — in their own order or via a guided tour — and see at a glance which scenes they have already viewed.
+
+**Layout.** A heading &quot;Scene stepper&quot; and a one-sentence intro. Below, a control row: four numbered circular scene chips on the left, and &quot;Guided tour&quot; and &quot;Reset view&quot; buttons on the right. Under the controls, a progress line (&quot;1 of 4 scenes viewed&quot;). Below that, a bordered stage panel showing one scene at a time: a scene heading, a placeholder diagram of labelled boxes and arrows drawn as inline SVG, and a &quot;Takeaway&quot; callout strip.
+
+**Interaction.** Clicking a chip shows that scene; the chips are an ARIA tablist, so left/right arrow keys (plus Home/End) move between scenes and Enter or Space activates. &quot;Guided tour&quot; steps through all four scenes automatically at a fixed interval, relabelling itself &quot;Stop tour&quot; while running; clicking it again, clicking a chip, or &quot;Reset view&quot; stops it. &quot;Reset view&quot; returns to scene one and clears all viewed marks. Each viewed scene&#x27;s chip gains a tick badge (a non-colour mark) and the progress line updates via a live region. A short opacity transition plays between scenes, disabled under prefers-reduced-motion. Every scene change re-reports the document height.
+
+**States.** Four scenes, exactly one visible at a time; scene one is the default and counts as viewed on load. Each chip is unviewed or viewed (tick badge); the tour button is idle or running (`aria-pressed`). All four scene panels exist in the markup; hidden ones are `hidden`.
+
+**Content.** Placeholder throughout. Labels used: &quot;Scene stepper&quot; (h1); scene headings &quot;Placeholder scene one/two/three/four&quot;; diagram box labels &quot;Input A&quot;, &quot;Input B&quot;, &quot;Placeholder process&quot;, &quot;Stage two&quot;, &quot;Outcome one&quot;, &quot;Outcome two&quot;, &quot;Review&quot;, &quot;Outcomes&quot;, &quot;feedback loop&quot;; callout label &quot;Takeaway&quot; with &quot;Placeholder takeaway for scene N…&quot;; buttons &quot;Guided tour&quot; / &quot;Stop tour&quot; and &quot;Reset view&quot;; progress &quot;N of 4 scenes viewed&quot;.
+
+**Slug.** `scene-stepper`
+
+**Target.** Practice — scratch page only.
+</script>
+    <script>
+    document.getElementById('copy').addEventListener('click', function () {
+      var raw = document.getElementById('raw').textContent;
+      navigator.clipboard.writeText(raw).then(() => {
+        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief as markdown', 1600);
+      });
+    });
+    </script>
+  </div>
+</div>
+<footer>Placeholder interactive — all content is placeholder by design. Heights: 651px at desktop width, 647px at phone width.</footer>
+</div></body></html>

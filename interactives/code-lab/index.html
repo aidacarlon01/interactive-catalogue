@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  /* No min-height. Body height comes from content only. */
+  body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    color: #000000;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 24px 16px 32px; }
+
+  h1, h2, h3 { font-family: 'Roboto Condensed', Arial, sans-serif; font-weight: 700; margin: 0 0 8px; }
+  h1 { font-size: 28px; color: #006DAE; }
+  h2 { font-size: 20px; }
+  .intro { margin: 0 0 16px; max-width: 70ch; }
+
+  :focus-visible { outline: 3px solid #005FCC; outline-offset: 2px; }
+
+  /* Progress chips */
+  .chips {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 6px;
+    padding: 0;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 999px;
+    border: 1px solid #BFBFBF;
+    background: #F5F5F5;
+    color: #3F4041;
+  }
+  .chip svg { display: none; }
+  /* Done: blue fill + tick icon. Current: white, thick blue border + bold. Never colour alone. */
+  .chip.done { background: #006DAE; border-color: #006DAE; color: #FFFFFF; }
+  .chip.done svg { display: inline; }
+  .chip.current { background: #FFFFFF; border: 3px solid #006DAE; color: #000000; font-weight: 700; padding: 2px 10px; }
+  .progress { margin: 0 0 12px; font-weight: 500; color: #3F4041; }
+
+  /* Console. A dark panel is fine for a code area; the page itself stays light. */
+  .console {
+    margin: 0 0 20px;
+    padding: 16px;
+    border-radius: 8px;
+    background: #000000;
+    border: 1px solid #3F4041;
+    color: #FFFFFF;
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 15px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+  }
+  .console .kw { font-weight: 700; }
+  .slot {
+    border-bottom: 2px dotted #BFBFBF;
+    color: #FFFFFF;
+    font-style: italic;
+    padding: 1px 4px;
+  }
+  /* A filled slot: blue plate + bold — the plate plus weight marks it, not colour alone. */
+  .slot.filled {
+    background: #006DAE;
+    color: #FFFFFF;
+    font-weight: 700;
+    border-bottom: 0;
+    border-radius: 3px;
+  }
+
+  /* Rounds */
+  .round {
+    border: 1px solid #E2E2E2;
+    border-left: 4px solid #006DAE;
+    border-radius: 8px;
+    background: #F9F9F9;
+    padding: 16px;
+  }
+  .task { margin: 0 0 12px; }
+
+  .frags { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 4px; }
+  .frag {
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: 14px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 2px solid #006DAE;
+    background: #FFFFFF;
+    color: #006DAE;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .frag:hover { border-color: #00557F; color: #00557F; background: #F5F5F5; }
+  .frag svg { display: none; }
+  /* Chosen: blue fill + tick icon, not colour alone. */
+  .frag[aria-pressed="true"] { background: #006DAE; color: #FFFFFF; }
+  .frag[aria-pressed="true"] svg { display: inline; }
+
+  .outcome { margin-top: 16px; border-top: 1px solid #E2E2E2; padding-top: 14px; }
+  .outcome h3 { font-size: 16px; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 480px;
+    background: #FFFFFF;
+    font-size: 15px;
+    margin: 0 0 10px;
+  }
+  caption { text-align: left; font-weight: 500; font-size: 14px; color: #3F4041; padding: 0 0 6px; }
+  th, td { border: 1px solid #E2E2E2; padding: 6px 10px; text-align: left; }
+  th { background: #F5F5F5; font-weight: 700; font-family: 'Roboto Condensed', Arial, sans-serif; }
+  .explain { margin: 0 0 14px; font-size: 15px; color: #3F4041; }
+
+  .btn {
+    font: inherit;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: 2px solid #006DAE;
+    background: #006DAE;
+    color: #FFFFFF;
+    cursor: pointer;
+  }
+  .btn:hover { background: #00557F; border-color: #00557F; }
+  .btn.secondary { background: #FFFFFF; color: #006DAE; }
+  .btn.secondary:hover { background: #F5F5F5; color: #00557F; border-color: #00557F; }
+
+  /* Completion strip */
+  .complete[hidden] { display: none; }
+  .complete {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    background: #006DAE;
+    color: #FFFFFF;
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .complete svg { flex: 0 0 auto; }
+  .complete h2 { color: #FFFFFF; margin: 0; }
+  .complete p { margin: 2px 0 0; }
+  .complete .btn.secondary { border-color: #FFFFFF; margin-left: auto; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .frag, .btn { transition: background-color 0.15s ease, color 0.15s ease; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Code lab</h1>
+  <p class="intro">Placeholder intro: build the three-line placeholder query one step at a time. Each
+    round sets one task — choose a code fragment to insert it into the console, review the result it
+    returns, then move to the next round. No typing is needed.</p>
+
+  <ol class="chips" aria-label="Lab progress">
+    <li class="chip current" id="chip-1" aria-current="step"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><polyline points="2.5,7.5 5.5,10.5 11.5,3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Round 1</li>
+    <li class="chip" id="chip-2"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><polyline points="2.5,7.5 5.5,10.5 11.5,3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Round 2</li>
+    <li class="chip" id="chip-3"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><polyline points="2.5,7.5 5.5,10.5 11.5,3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Round 3</li>
+    <li class="chip" id="chip-4"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><polyline points="2.5,7.5 5.5,10.5 11.5,3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Round 4</li>
+  </ol>
+  <p class="progress" id="progress" aria-live="polite">Round 1 of 4</p>
+
+  <pre class="console" aria-label="Console showing the placeholder query"><code><span class="kw">FETCH</span> placeholder_rows <span class="kw">FROM</span> <span class="slot" id="slot-1">fragment one</span>
+<span class="kw">FILTER</span> <span class="kw">WHERE</span> <span class="slot" id="slot-2">fragment two</span>
+<span class="kw">GROUP BY</span> <span class="slot" id="slot-3">fragment three</span> <span class="kw">SORT BY</span> <span class="slot" id="slot-4">fragment four</span></code></pre>
+
+  <section class="round" id="round-1" aria-labelledby="round-1-h">
+    <h2 id="round-1-h">Round 1</h2>
+    <p class="task">Placeholder task one: choose the fragment that names the data source for line one.</p>
+    <div class="frags">
+      <button type="button" class="frag" data-slot="slot-1" aria-pressed="false"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><polyline points="2.5,7.5 5.5,10.5 11.5,3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>placeholder_source_one</button>
+      <button type="button" class="frag" data-slot="slot-1" aria-pressed="false"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><polyline points="2.5,7.5 5.5,10.5 11.5,3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>placeholder_source_two</button>
+      <button type="button" class="frag" data-slot="slot-1" aria-pressed="false"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><polyline points="2.5,7.5 5.5,10.5 11.5,3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>placeholder_source_three</button>
+    </div>
+    <div class="outcome" hidden>
+      <h3>Result</h3>
+      <table>
+        <caption>Placeholder result — 3 rows returned</caption>
+        <thead><tr><th scope="col">label</th><th scope="col">value_one</th><th scope="col">value_two</th></tr></thead>
+        <tbody>
+          <tr><td>placeholder_a</td><td>101</td><td>alpha</td></tr>
+          <tr><td>placeholder_b</td><td>102</td><td>beta</td></tr>
+          <tr><td>placeholder_c</td><td>103</td><td>gamma</td></tr>
+        </tbody>
+      </table>
+      <p class="explain">Placeholder explanation one: the fragment you chose names the source the first line reads from.</p>
+      <button type="button" class="btn next-btn">Next round</button>
+    </div>
+  </section>
+
+  <section class="round" id="round-2" aria-labelledby="round-2-h" hidden>
+    <h2 id="round-2-h">Round 2</h2>
+    <p class="task">Placeholder task two: choose the fragment that filters the rows on line two.</p>
+    <div class="frags">
+      <button type="button" class="frag" data-slot="slot-2" aria-pressed="false"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><polyline points="2.5,7.5 5.5,10.5 11.5,3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>value_one = 'placeholder'</button>
+      <button type="button" class="frag" data-slot="slot-2" aria-pressed="false"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><polyline points="2.5,7.5 5.5,10.5 11.5,3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>value_two &gt; 100</button>
+      <button type="button" class="frag" data-slot="slot-2" aria-pressed="false"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><polyline points="2.5,7.5 5.5,10.5 11.5,3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>label IS NOT NULL</button>
+    </div>
+    <div class="outcome" hidden>
+      <h3>Result</h3>
+      <table>
+        <caption>Placeholder result — 3 rows kept</caption>
+        <thead><tr><th scope="col">label</th><th scope="col">value_one</th><th scope="col">value_two</th></tr></thead>
+        <tbody>
+          <tr><td>placeholder_a</td><td>101</td><td>alpha</td></tr>
+          <tr><td>placeholder_c</td><td>103</td><td>gamma</td></tr>
+          <tr><td>placeholder_d</td><td>104</td><td>delta</td></tr>
+        </tbody>
+      </table>
+      <p class="explain">Placeholder explanation two: the filter fragment decides which rows survive to the next step.</p>
+      <button type="button" class="btn next-btn">Next round</button>
+    </div>
+  </section>
+
+  <section class="round" id="round-3" aria-labelledby="round-3-h" hidden>
+    <h2 id="round-3-h">Round 3</h2>
+    <p class="task">Placeholder task three: choose the fragment that groups the rows on line three.</p>
+    <div class="frags">
+      <button type="button" class="frag" data-slot="slot-3" aria-pressed="false"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><polyline points="2.5,7.5 5.5,10.5 11.5,3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>label</button>
+      <button type="button" class="frag" data-slot="slot-3" aria-pressed="false"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><polyline points="2.5,7.5 5.5,10.5 11.5,3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>category</button>
+      <button type="button" class="frag" data-slot="slot-3" aria-pressed="false"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><polyline points="2.5,7.5 5.5,10.5 11.5,3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>group_key</button>
+    </div>
+    <div class="outcome" hidden>
+      <h3>Result</h3>
+      <table>
+        <caption>Placeholder result — 3 groups formed</caption>
+        <thead><tr><th scope="col">group</th><th scope="col">row_count</th><th scope="col">total</th></tr></thead>
+        <tbody>
+          <tr><td>placeholder_group_1</td><td>4</td><td>410</td></tr>
+          <tr><td>placeholder_group_2</td><td>2</td><td>205</td></tr>
+          <tr><td>placeholder_group_3</td><td>3</td><td>309</td></tr>
+        </tbody>
+      </table>
+      <p class="explain">Placeholder explanation three: the grouping fragment collapses matching rows into one summary row each.</p>
+      <button type="button" class="btn next-btn">Next round</button>
+    </div>
+  </section>
+
+  <section class="round" id="round-4" aria-labelledby="round-4-h" hidden>
+    <h2 id="round-4-h">Round 4</h2>
+    <p class="task">Placeholder task four: choose the fragment that orders the grouped results.</p>
+    <div class="frags">
+      <button type="button" class="frag" data-slot="slot-4" aria-pressed="false"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><polyline points="2.5,7.5 5.5,10.5 11.5,3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>total DESC</button>
+      <button type="button" class="frag" data-slot="slot-4" aria-pressed="false"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><polyline points="2.5,7.5 5.5,10.5 11.5,3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>row_count ASC</button>
+      <button type="button" class="frag" data-slot="slot-4" aria-pressed="false"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><polyline points="2.5,7.5 5.5,10.5 11.5,3.5" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>group ASC</button>
+    </div>
+    <div class="outcome" hidden>
+      <h3>Result</h3>
+      <table>
+        <caption>Placeholder result — 3 groups, ordered</caption>
+        <thead><tr><th scope="col">group</th><th scope="col">row_count</th><th scope="col">total</th></tr></thead>
+        <tbody>
+          <tr><td>placeholder_group_1</td><td>4</td><td>410</td></tr>
+          <tr><td>placeholder_group_3</td><td>3</td><td>309</td></tr>
+          <tr><td>placeholder_group_2</td><td>2</td><td>205</td></tr>
+        </tbody>
+      </table>
+      <p class="explain">Placeholder explanation four: the ordering fragment sets which summary row appears first.</p>
+      <button type="button" class="btn next-btn">Finish lab</button>
+    </div>
+  </section>
+
+  <section class="complete" id="complete" aria-labelledby="complete-h" hidden>
+    <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true" focusable="false"><circle cx="18" cy="18" r="16" fill="#FFFFFF"/><polyline points="10,19 15.5,24.5 26,12" fill="none" stroke="#006DAE" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div>
+      <h2 id="complete-h">Lab complete</h2>
+      <p>Placeholder completion line: you built the full three-line query across four rounds.</p>
+    </div>
+    <button type="button" class="btn secondary" id="restart-btn">Restart lab</button>
+  </section>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var TOTAL = 4;
+  var current = 1;
+  var progress = document.getElementById("progress");
+  var complete = document.getElementById("complete");
+  var restartBtn = document.getElementById("restart-btn");
+  var rounds = [];
+  var chips = [];
+  for (var i = 1; i <= TOTAL; i++) {
+    rounds.push(document.getElementById("round-" + i));
+    chips.push(document.getElementById("chip-" + i));
+  }
+  var slotDefaults = {};
+  Array.prototype.forEach.call(document.querySelectorAll(".slot"), function (s) {
+    slotDefaults[s.id] = s.textContent;
+  });
+
+  function contentHeight() {
+    // NOT the documentElement measure — that is max(content, viewport).
+    return Math.ceil(document.body.getBoundingClientRect().height);
+  }
+  function reportHeight() {
+    if (window.parent === window) return;
+    window.parent.postMessage({ type: "resize", height: contentHeight() }, "*");
+  }
+
+  function setChips() {
+    chips.forEach(function (chip, idx) {
+      var n = idx + 1;
+      chip.classList.toggle("done", n < current);
+      chip.classList.toggle("current", n === current && current <= TOTAL);
+      if (n === current && current <= TOTAL) {
+        chip.setAttribute("aria-current", "step");
+      } else {
+        chip.removeAttribute("aria-current");
+      }
+      if (current > TOTAL) chip.classList.add("done");
+    });
+    progress.textContent = current <= TOTAL
+      ? "Round " + current + " of " + TOTAL
+      : "All " + TOTAL + " rounds complete";
+  }
+
+  // Fragment chips: insert the chosen fragment into the console instantly.
+  Array.prototype.forEach.call(document.querySelectorAll(".frag"), function (btn) {
+    btn.addEventListener("click", function () {
+      var group = btn.closest(".frags");
+      Array.prototype.forEach.call(group.querySelectorAll(".frag"), function (b) {
+        b.setAttribute("aria-pressed", "false");
+      });
+      btn.setAttribute("aria-pressed", "true");
+      var slot = document.getElementById(btn.getAttribute("data-slot"));
+      slot.textContent = btn.textContent;
+      slot.classList.add("filled");
+      var outcome = btn.closest(".round").querySelector(".outcome");
+      if (outcome.hidden) {
+        outcome.hidden = false;
+        outcome.querySelector(".next-btn").focus({ preventScroll: true });
+      }
+      reportHeight();
+    });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll(".next-btn"), function (btn) {
+    btn.addEventListener("click", function () {
+      rounds[current - 1].hidden = true;
+      current += 1;
+      if (current <= TOTAL) {
+        rounds[current - 1].hidden = false;
+        rounds[current - 1].querySelector(".frag").focus({ preventScroll: true });
+      } else {
+        complete.hidden = false;
+        restartBtn.focus({ preventScroll: true });
+      }
+      setChips();
+      reportHeight();
+    });
+  });
+
+  restartBtn.addEventListener("click", function () {
+    current = 1;
+    complete.hidden = true;
+    rounds.forEach(function (round, idx) {
+      round.hidden = idx !== 0;
+      round.querySelector(".outcome").hidden = true;
+      Array.prototype.forEach.call(round.querySelectorAll(".frag"), function (b) {
+        b.setAttribute("aria-pressed", "false");
+      });
+    });
+    Object.keys(slotDefaults).forEach(function (id) {
+      var s = document.getElementById(id);
+      s.textContent = slotDefaults[id];
+      s.classList.remove("filled");
+    });
+    setChips();
+    rounds[0].querySelector(".frag").focus({ preventScroll: true });
+    reportHeight();
+  });
+
+  setChips();
+  window.addEventListener("load", reportHeight);
+  window.addEventListener("resize", reportHeight);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(reportHeight);
+})();
+</script>
+</body>
+</html>

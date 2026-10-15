@@ -1,0 +1,7 @@
+{
+  "title": "Card-grid selector",
+  "pattern": "card-grid-selector",
+  "oneliner": "Six-card grid where selecting a card reveals its detail panel below; one selected at a time.",
+  "h1019": 753,
+  "h360": 1259
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Parameter explorer",
+  "pattern": "Parameter explorer / simulator",
+  "oneliner": "Range slider plus presets driving a hand-drawn SVG chart whose moving-average line redraws with the chosen smoothing window.",
+  "h1019": 758,
+  "h360": 762
+}

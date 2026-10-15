@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Labelled diagram</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  /* No min-height. Body height comes from content only. */
+  body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    color: #000000;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 24px 16px 32px; }
+
+  h1, h2, h3 { font-family: 'Roboto Condensed', Arial, sans-serif; font-weight: 700; }
+
+  h1 { font-size: 28px; margin: 0 0 8px; }
+
+  .intro { margin: 0 0 20px; color: #3F4041; }
+
+  :focus-visible { outline: 3px solid #005FCC; outline-offset: 2px; }
+
+  .figure {
+    position: relative;
+    border: 1px solid #E2E2E2;
+    border-radius: 8px;
+    background: #F9F9F9;
+    padding: 8px;
+  }
+
+  .figure svg { display: block; width: 100%; height: auto; }
+
+  /* Highlighted part — thicker dashed stroke, not colour alone. */
+  .part { transition: opacity 150ms ease; }
+  .part.hot rect, .part.hot path, .part.hot circle, .part.hot polyline, .part.hot line {
+    stroke: #00557F;
+    stroke-width: 4;
+    stroke-dasharray: 7 4;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .part { transition: none; }
+  }
+
+  .marker {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid #006DAE;
+    background: #FFFFFF;
+    color: #006DAE;
+    font-family: 'Roboto Condensed', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .marker:hover { background: #F5F5F5; }
+
+  /* Active marker — filled, plus a ring as the second (non-colour) cue. */
+  .marker[aria-pressed="true"] {
+    background: #006DAE;
+    color: #FFFFFF;
+    box-shadow: 0 0 0 3px #FFFFFF, 0 0 0 6px #006DAE;
+  }
+
+  .panel {
+    margin-top: 16px;
+    border: 1px solid #E2E2E2;
+    border-left: 4px solid #006DAE;
+    border-radius: 0 8px 8px 0;
+    background: #F9F9F9;
+    padding: 14px 16px;
+  }
+
+  .panel-item h2 { font-size: 20px; margin: 0 0 6px; color: #006DAE; }
+  .panel-item p { margin: 0; }
+
+  .panel-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background: #006DAE;
+    color: #FFFFFF;
+    font-size: 14px;
+    vertical-align: -4px;
+  }
+
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Labelled diagram</h1>
+  <p class="intro">Hover, tap, or focus each part to see what it represents.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 640 320" role="img" aria-label="Placeholder chart with five labelled parts: a vertical axis, four bars, a trend line, a peak data point, and a legend">
+      <!-- Part 1: vertical axis -->
+      <g class="part" id="part-svg-1">
+        <path d="M70 20 L70 270 L600 270" fill="none" stroke="#3F4041" stroke-width="2"/>
+      </g>
+      <!-- Part 2: bars -->
+      <g class="part" id="part-svg-2">
+        <rect x="110" y="180" width="48" height="90" rx="3" fill="#006DAE" stroke="#006DAE" stroke-width="1"/>
+        <rect x="178" y="140" width="48" height="130" rx="3" fill="#006DAE" stroke="#006DAE" stroke-width="1"/>
+        <rect x="246" y="200" width="48" height="70" rx="3" fill="#006DAE" stroke="#006DAE" stroke-width="1"/>
+        <rect x="314" y="120" width="48" height="150" rx="3" fill="#006DAE" stroke="#006DAE" stroke-width="1"/>
+      </g>
+      <!-- Part 3: trend line -->
+      <g class="part" id="part-svg-3">
+        <polyline points="134,160 202,120 270,180 338,100 450,84 544,66" fill="none" stroke="#3F4041" stroke-width="2.5"/>
+      </g>
+      <!-- Part 4: peak data point -->
+      <g class="part" id="part-svg-4">
+        <circle cx="544" cy="66" r="8" fill="#00557F" stroke="#FFFFFF" stroke-width="2"/>
+      </g>
+      <!-- Part 5: legend -->
+      <g class="part" id="part-svg-5">
+        <rect x="430" y="150" width="160" height="56" rx="6" fill="#FFFFFF" stroke="#BFBFBF" stroke-width="1.5"/>
+        <rect x="442" y="162" width="14" height="14" rx="2" fill="#006DAE"/>
+        <text x="464" y="174" font-family="Roboto, Arial, sans-serif" font-size="13" fill="#000000">Placeholder series</text>
+        <line x1="442" y1="192" x2="456" y2="192" stroke="#3F4041" stroke-width="2.5"/>
+        <text x="464" y="197" font-family="Roboto, Arial, sans-serif" font-size="13" fill="#000000">Placeholder trend</text>
+      </g>
+    </svg>
+
+    <div role="group" aria-label="Diagram parts" id="markers">
+      <button class="marker" id="marker-1" aria-pressed="true" aria-describedby="panel-1" style="left: 10.9%; top: 21%;" tabindex="0">1<span hidden>Placeholder part one</span></button>
+      <button class="marker" id="marker-2" aria-pressed="false" aria-describedby="panel-2" style="left: 31.6%; top: 68%;" tabindex="-1">2<span hidden>Placeholder part two</span></button>
+      <button class="marker" id="marker-3" aria-pressed="false" aria-describedby="panel-3" style="left: 42.2%; top: 44%;" tabindex="-1">3<span hidden>Placeholder part three</span></button>
+      <button class="marker" id="marker-4" aria-pressed="false" aria-describedby="panel-4" style="left: 85%; top: 20.6%;" tabindex="-1">4<span hidden>Placeholder part four</span></button>
+      <button class="marker" id="marker-5" aria-pressed="false" aria-describedby="panel-5" style="left: 92.2%; top: 55.6%;" tabindex="-1">5<span hidden>Placeholder part five</span></button>
+    </div>
+  </div>
+
+  <div class="panel" aria-live="polite">
+    <div class="panel-item" id="panel-1">
+      <h2><span class="panel-num" aria-hidden="true">1</span>Placeholder part one</h2>
+      <p>Placeholder explanation of part one — what the vertical axis represents in this diagram, in one or two plain sentences a learner can read at a glance.</p>
+    </div>
+    <div class="panel-item" id="panel-2" hidden>
+      <h2><span class="panel-num" aria-hidden="true">2</span>Placeholder part two</h2>
+      <p>Placeholder explanation of part two — what the bars represent in this diagram, in one or two plain sentences a learner can read at a glance.</p>
+    </div>
+    <div class="panel-item" id="panel-3" hidden>
+      <h2><span class="panel-num" aria-hidden="true">3</span>Placeholder part three</h2>
+      <p>Placeholder explanation of part three — what the trend line represents in this diagram, in one or two plain sentences a learner can read at a glance.</p>
+    </div>
+    <div class="panel-item" id="panel-4" hidden>
+      <h2><span class="panel-num" aria-hidden="true">4</span>Placeholder part four</h2>
+      <p>Placeholder explanation of part four — what the peak data point represents in this diagram, in one or two plain sentences a learner can read at a glance.</p>
+    </div>
+    <div class="panel-item" id="panel-5" hidden>
+      <h2><span class="panel-num" aria-hidden="true">5</span>Placeholder part five</h2>
+      <p>Placeholder explanation of part five — what the legend represents in this diagram, in one or two plain sentences a learner can read at a glance.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // NOT documentElement.scroll-height — that is max(content, viewport) and
+  // over-reports whenever the content is shorter than the frame.
+  function contentHeight() {
+    return Math.ceil(document.body.getBoundingClientRect().height);
+  }
+
+  function reportHeight() {
+    if (window.parent === window) return;
+    window.parent.postMessage({ type: 'resize', height: contentHeight() }, '*');
+  }
+
+  var markers = Array.prototype.slice.call(document.querySelectorAll('.marker'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.panel-item'));
+  var parts = Array.prototype.slice.call(document.querySelectorAll('.part'));
+
+  function activate(i, moveFocus) {
+    markers.forEach(function (m, j) {
+      m.setAttribute('aria-pressed', j === i ? 'true' : 'false');
+      m.tabIndex = j === i ? 0 : -1;
+    });
+    panels.forEach(function (p, j) { p.hidden = j !== i; });
+    parts.forEach(function (g, j) {
+      if (j === i) { g.classList.add('hot'); } else { g.classList.remove('hot'); }
+    });
+    if (moveFocus) markers[i].focus();
+    reportHeight();
+  }
+
+  markers.forEach(function (m, i) {
+    m.addEventListener('click', function () { activate(i, false); });
+    m.addEventListener('mouseenter', function () { activate(i, false); });
+    m.addEventListener('focus', function () { activate(i, false); });
+    m.addEventListener('keydown', function (e) {
+      var next = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (i + 1) % markers.length;
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (i - 1 + markers.length) % markers.length;
+      else if (e.key === 'Home') next = 0;
+      else if (e.key === 'End') next = markers.length - 1;
+      if (next !== null) { e.preventDefault(); activate(next, true); }
+    });
+  });
+
+  activate(0, false);
+
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(reportHeight);
+})();
+</script>
+</body>
+</html>

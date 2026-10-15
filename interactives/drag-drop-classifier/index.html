@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drag-and-drop classifier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  /* No min-height. Body height comes from content only. */
+  body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    color: #000000;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 24px 16px 32px; }
+
+  h1, h2, h3 { font-family: 'Roboto Condensed', Arial, sans-serif; font-weight: 700; margin: 0 0 8px; }
+  h1 { font-size: 28px; color: #006DAE; }
+  h2 { font-size: 20px; margin-top: 24px; }
+  h3 { font-size: 17px; margin: 0; }
+  .intro { margin: 0 0 8px; max-width: 70ch; }
+
+  :focus-visible { outline: 3px solid #005FCC; outline-offset: 2px; }
+
+  /* Tray */
+  .tray {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 12px;
+    border: 2px dashed #BFBFBF;
+    border-radius: 8px;
+    background: #F9F9F9;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .tray::after {
+    content: "Tray is empty — every card has been placed.";
+    display: none;
+    color: #3F4041;
+    font-size: 15px;
+  }
+  .tray.is-empty::after { display: block; }
+
+  /* Cards */
+  .card {
+    list-style: none;
+    background: #FFFFFF;
+    border: 1px solid #E2E2E2;
+    border-left: 4px solid #006DAE;
+    border-radius: 6px;
+    padding: 10px 12px;
+    cursor: grab;
+  }
+  .card.dragging { opacity: 0.5; }
+  .card-top { display: flex; gap: 8px; align-items: flex-start; }
+  .card-top svg { flex: 0 0 auto; margin-top: 3px; }
+  .card p.line { margin: 2px 0 0; font-size: 15px; color: #3F4041; }
+  .card-assign { margin-top: 8px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .card-assign label { font-size: 14px; font-weight: 500; }
+  .card-assign select {
+    font: inherit;
+    font-size: 14px;
+    padding: 4px 6px;
+    border: 1px solid #818181;
+    border-radius: 4px;
+    background: #FFFFFF;
+    color: #000000;
+    max-width: 100%;
+  }
+
+  /* Feedback inside a card: icon + text, never colour alone. */
+  .feedback[hidden] { display: none; }
+  .feedback {
+    display: flex;
+    gap: 6px;
+    align-items: flex-start;
+    margin: 8px 0 0;
+    padding-top: 8px;
+    border-top: 1px solid #ECECEC;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .feedback svg { flex: 0 0 auto; margin-top: 2px; }
+  .feedback svg[hidden] { display: none; }
+
+  /* Zone grid */
+  .zones {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .zone {
+    border: 1px solid #E2E2E2;
+    border-radius: 8px;
+    background: #F5F5F5;
+    padding: 12px;
+  }
+  .zone > h3 { color: #006DAE; }
+  .zone-def { margin: 2px 0 8px; font-size: 14px; color: #3F4041; }
+  .zone-cards {
+    list-style: none;
+    margin: 0;
+    padding: 8px;
+    border: 2px dashed #BFBFBF;
+    border-radius: 6px;
+    background: #FFFFFF;
+    display: grid;
+    gap: 8px;
+  }
+  .zone-cards:empty::after {
+    content: "Drop a card here";
+    color: #3F4041;
+    font-size: 14px;
+  }
+  /* Drop target cue: border style AND width change, plus tint — not colour alone. */
+  .drop-ready { border: 3px solid #006DAE; background: #F9F9F9; }
+
+  /* Controls */
+  .controls { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+  .btn {
+    font: inherit;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: 2px solid #006DAE;
+    background: #006DAE;
+    color: #FFFFFF;
+    cursor: pointer;
+  }
+  .btn:hover { background: #00557F; border-color: #00557F; }
+  .btn.secondary { background: #FFFFFF; color: #006DAE; }
+  .btn.secondary:hover { background: #F5F5F5; color: #00557F; border-color: #00557F; }
+
+  .status {
+    margin: 12px 0 0;
+    padding: 10px 12px;
+    border-left: 4px solid #006DAE;
+    background: #F9F9F9;
+    font-weight: 500;
+  }
+  .status:empty { display: none; }
+
+  @media (max-width: 620px) {
+    .tray, .zones { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .card { transition: opacity 0.15s ease; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Drag-and-drop classifier</h1>
+  <p class="intro">Placeholder intro: drag each scenario card into the zone it belongs to, or use the
+    "Assign to zone" menu on any card. When every card is placed, choose "Check my answers".</p>
+
+  <h2 id="tray-heading">Scenario cards</h2>
+  <ul class="tray" id="tray" data-drop="tray" aria-labelledby="tray-heading">
+    <li class="card" id="card-a" draggable="true" data-answer="z1">
+      <div class="card-top">
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><g fill="#818181"><circle cx="5" cy="3" r="1.6"/><circle cx="11" cy="3" r="1.6"/><circle cx="5" cy="8" r="1.6"/><circle cx="11" cy="8" r="1.6"/><circle cx="5" cy="13" r="1.6"/><circle cx="11" cy="13" r="1.6"/></g></svg>
+        <div>
+          <h3>Placeholder scenario A</h3>
+          <p class="line">One line of placeholder text describing scenario A.</p>
+        </div>
+      </div>
+      <div class="card-assign">
+        <label for="sel-a">Assign to zone</label>
+        <select id="sel-a" data-card="card-a">
+          <option value="tray" selected>Tray (not placed)</option>
+          <option value="z1">Placeholder zone one</option>
+          <option value="z2">Placeholder zone two</option>
+          <option value="z3">Placeholder zone three</option>
+          <option value="z4">Placeholder zone four</option>
+        </select>
+      </div>
+      <p class="feedback" hidden>
+        <svg class="icon-tick" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false" hidden><circle cx="9" cy="9" r="8" fill="#006DAE"/><polyline points="5,9.5 8,12.5 13,6" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="icon-cross" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false" hidden><circle cx="9" cy="9" r="8" fill="#3F4041"/><path d="M6 6l6 6M12 6l-6 6" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="feedback-text"></span>
+      </p>
+    </li>
+    <li class="card" id="card-b" draggable="true" data-answer="z2">
+      <div class="card-top">
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><g fill="#818181"><circle cx="5" cy="3" r="1.6"/><circle cx="11" cy="3" r="1.6"/><circle cx="5" cy="8" r="1.6"/><circle cx="11" cy="8" r="1.6"/><circle cx="5" cy="13" r="1.6"/><circle cx="11" cy="13" r="1.6"/></g></svg>
+        <div>
+          <h3>Placeholder scenario B</h3>
+          <p class="line">One line of placeholder text describing scenario B.</p>
+        </div>
+      </div>
+      <div class="card-assign">
+        <label for="sel-b">Assign to zone</label>
+        <select id="sel-b" data-card="card-b">
+          <option value="tray" selected>Tray (not placed)</option>
+          <option value="z1">Placeholder zone one</option>
+          <option value="z2">Placeholder zone two</option>
+          <option value="z3">Placeholder zone three</option>
+          <option value="z4">Placeholder zone four</option>
+        </select>
+      </div>
+      <p class="feedback" hidden>
+        <svg class="icon-tick" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false" hidden><circle cx="9" cy="9" r="8" fill="#006DAE"/><polyline points="5,9.5 8,12.5 13,6" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="icon-cross" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false" hidden><circle cx="9" cy="9" r="8" fill="#3F4041"/><path d="M6 6l6 6M12 6l-6 6" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="feedback-text"></span>
+      </p>
+    </li>
+    <li class="card" id="card-c" draggable="true" data-answer="z3">
+      <div class="card-top">
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><g fill="#818181"><circle cx="5" cy="3" r="1.6"/><circle cx="11" cy="3" r="1.6"/><circle cx="5" cy="8" r="1.6"/><circle cx="11" cy="8" r="1.6"/><circle cx="5" cy="13" r="1.6"/><circle cx="11" cy="13" r="1.6"/></g></svg>
+        <div>
+          <h3>Placeholder scenario C</h3>
+          <p class="line">One line of placeholder text describing scenario C.</p>
+        </div>
+      </div>
+      <div class="card-assign">
+        <label for="sel-c">Assign to zone</label>
+        <select id="sel-c" data-card="card-c">
+          <option value="tray" selected>Tray (not placed)</option>
+          <option value="z1">Placeholder zone one</option>
+          <option value="z2">Placeholder zone two</option>
+          <option value="z3">Placeholder zone three</option>
+          <option value="z4">Placeholder zone four</option>
+        </select>
+      </div>
+      <p class="feedback" hidden>
+        <svg class="icon-tick" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false" hidden><circle cx="9" cy="9" r="8" fill="#006DAE"/><polyline points="5,9.5 8,12.5 13,6" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="icon-cross" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false" hidden><circle cx="9" cy="9" r="8" fill="#3F4041"/><path d="M6 6l6 6M12 6l-6 6" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="feedback-text"></span>
+      </p>
+    </li>
+    <li class="card" id="card-d" draggable="true" data-answer="z4">
+      <div class="card-top">
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><g fill="#818181"><circle cx="5" cy="3" r="1.6"/><circle cx="11" cy="3" r="1.6"/><circle cx="5" cy="8" r="1.6"/><circle cx="11" cy="8" r="1.6"/><circle cx="5" cy="13" r="1.6"/><circle cx="11" cy="13" r="1.6"/></g></svg>
+        <div>
+          <h3>Placeholder scenario D</h3>
+          <p class="line">One line of placeholder text describing scenario D.</p>
+        </div>
+      </div>
+      <div class="card-assign">
+        <label for="sel-d">Assign to zone</label>
+        <select id="sel-d" data-card="card-d">
+          <option value="tray" selected>Tray (not placed)</option>
+          <option value="z1">Placeholder zone one</option>
+          <option value="z2">Placeholder zone two</option>
+          <option value="z3">Placeholder zone three</option>
+          <option value="z4">Placeholder zone four</option>
+        </select>
+      </div>
+      <p class="feedback" hidden>
+        <svg class="icon-tick" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false" hidden><circle cx="9" cy="9" r="8" fill="#006DAE"/><polyline points="5,9.5 8,12.5 13,6" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="icon-cross" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false" hidden><circle cx="9" cy="9" r="8" fill="#3F4041"/><path d="M6 6l6 6M12 6l-6 6" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="feedback-text"></span>
+      </p>
+    </li>
+  </ul>
+
+  <h2 id="zones-heading">Drop zones</h2>
+  <div class="zones" aria-labelledby="zones-heading">
+    <div class="zone">
+      <h3 id="zone-z1">Placeholder zone one</h3>
+      <p class="zone-def">A one-line placeholder definition of zone one.</p>
+      <ul class="zone-cards" data-drop="z1" aria-labelledby="zone-z1"></ul>
+    </div>
+    <div class="zone">
+      <h3 id="zone-z2">Placeholder zone two</h3>
+      <p class="zone-def">A one-line placeholder definition of zone two.</p>
+      <ul class="zone-cards" data-drop="z2" aria-labelledby="zone-z2"></ul>
+    </div>
+    <div class="zone">
+      <h3 id="zone-z3">Placeholder zone three</h3>
+      <p class="zone-def">A one-line placeholder definition of zone three.</p>
+      <ul class="zone-cards" data-drop="z3" aria-labelledby="zone-z3"></ul>
+    </div>
+    <div class="zone">
+      <h3 id="zone-z4">Placeholder zone four</h3>
+      <p class="zone-def">A one-line placeholder definition of zone four.</p>
+      <ul class="zone-cards" data-drop="z4" aria-labelledby="zone-z4"></ul>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button type="button" class="btn" id="check-btn">Check my answers</button>
+    <button type="button" class="btn secondary" id="restart-btn">Return to tray / Restart</button>
+  </div>
+
+  <p class="status" id="status" role="status" aria-live="polite"></p>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var ZONE_NAMES = {
+    tray: "the tray",
+    z1: "Placeholder zone one",
+    z2: "Placeholder zone two",
+    z3: "Placeholder zone three",
+    z4: "Placeholder zone four"
+  };
+
+  var status = document.getElementById("status");
+  var tray = document.getElementById("tray");
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".card"));
+  var dropLists = Array.prototype.slice.call(document.querySelectorAll("[data-drop]"));
+
+  function contentHeight() {
+    // NOT the documentElement measure — that is max(content, viewport).
+    return Math.ceil(document.body.getBoundingClientRect().height);
+  }
+  function reportHeight() {
+    if (window.parent === window) return;
+    window.parent.postMessage({ type: "resize", height: contentHeight() }, "*");
+  }
+
+  function containerOf(card) {
+    var list = card.closest("[data-drop]");
+    return list ? list.getAttribute("data-drop") : "tray";
+  }
+
+  // SVG elements lack the HTMLElement hidden property — toggle the attribute.
+  function setHidden(el, isHidden) {
+    if (isHidden) { el.setAttribute("hidden", ""); } else { el.removeAttribute("hidden"); }
+  }
+
+  function clearFeedback(card) {
+    var fb = card.querySelector(".feedback");
+    fb.hidden = true;
+    setHidden(fb.querySelector(".icon-tick"), true);
+    setHidden(fb.querySelector(".icon-cross"), true);
+    fb.querySelector(".feedback-text").textContent = "";
+  }
+
+  function moveCard(card, target) {
+    var list = target === "tray" ? tray : document.querySelector('.zone-cards[data-drop="' + target + '"]');
+    if (!list || card.parentElement === list) {
+      // Still sync the select even on a no-op drop.
+    } else {
+      list.appendChild(card);
+    }
+    card.querySelector("select").value = target;
+    clearFeedback(card);
+    tray.classList.toggle("is-empty", !tray.querySelector(".card"));
+    var name = card.querySelector("h3").textContent;
+    status.textContent = target === "tray"
+      ? name + " returned to the tray."
+      : name + " assigned to " + ZONE_NAMES[target] + ".";
+    reportHeight();
+  }
+
+  // Drag events (pointer users). The select is the keyboard/touch path.
+  cards.forEach(function (card) {
+    card.addEventListener("dragstart", function (e) {
+      e.dataTransfer.setData("text/plain", card.id);
+      e.dataTransfer.effectAllowed = "move";
+      card.classList.add("dragging");
+    });
+    card.addEventListener("dragend", function () {
+      card.classList.remove("dragging");
+      dropLists.forEach(function (l) { l.classList.remove("drop-ready"); });
+    });
+    card.querySelector("select").addEventListener("change", function (e) {
+      moveCard(card, e.target.value);
+    });
+  });
+
+  dropLists.forEach(function (list) {
+    list.addEventListener("dragover", function (e) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = "move";
+      list.classList.add("drop-ready");
+    });
+    list.addEventListener("dragleave", function () {
+      list.classList.remove("drop-ready");
+    });
+    list.addEventListener("drop", function (e) {
+      e.preventDefault();
+      list.classList.remove("drop-ready");
+      var id = e.dataTransfer.getData("text/plain");
+      var card = document.getElementById(id);
+      if (card) moveCard(card, list.getAttribute("data-drop"));
+    });
+  });
+
+  document.getElementById("check-btn").addEventListener("click", function () {
+    var correct = 0;
+    cards.forEach(function (card) {
+      var placed = containerOf(card);
+      var answer = card.getAttribute("data-answer");
+      var fb = card.querySelector(".feedback");
+      var tick = fb.querySelector(".icon-tick");
+      var cross = fb.querySelector(".icon-cross");
+      var text = fb.querySelector(".feedback-text");
+      if (placed === answer) {
+        correct += 1;
+        setHidden(tick, false);
+        setHidden(cross, true);
+        text.textContent = "Correct — this belongs in " + ZONE_NAMES[answer] + ".";
+      } else if (placed === "tray") {
+        setHidden(tick, true);
+        setHidden(cross, false);
+        text.textContent = "Not placed yet — this belongs in " + ZONE_NAMES[answer] + ".";
+      } else {
+        setHidden(tick, true);
+        setHidden(cross, false);
+        text.textContent = "Not quite — this belongs in " + ZONE_NAMES[answer] + ", not " + ZONE_NAMES[placed] + ".";
+      }
+      fb.hidden = false;
+    });
+    status.textContent = "You placed " + correct + " of " + cards.length + " cards correctly.";
+    reportHeight();
+  });
+
+  document.getElementById("restart-btn").addEventListener("click", function () {
+    cards.forEach(function (card) {
+      tray.appendChild(card);
+      card.querySelector("select").value = "tray";
+      clearFeedback(card);
+    });
+    tray.classList.remove("is-empty");
+    status.textContent = "All cards returned to the tray.";
+    reportHeight();
+  });
+
+  window.addEventListener("load", reportHeight);
+  window.addEventListener("resize", reportHeight);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(reportHeight);
+})();
+</script>
+</body>
+</html>

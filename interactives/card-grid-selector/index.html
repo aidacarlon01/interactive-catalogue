@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Card-grid selector</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  /* No min-height, no vh. Body height comes from content only. */
+  body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    color: #000000;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 24px 16px 32px; }
+
+  h1, h2, h3 { font-family: 'Roboto Condensed', Arial, sans-serif; font-weight: 700; }
+
+  :focus-visible { outline: 3px solid #005FCC; outline-offset: 2px; }
+
+  h1 { font-size: 28px; margin: 0 0 8px; }
+  .intro { margin: 0 0 20px; color: #3F4041; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 0 0 20px;
+  }
+
+  .card {
+    position: relative;
+    display: block;
+    width: 100%;
+    text-align: left;
+    font: inherit;
+    background: #F9F9F9;
+    color: #000000;
+    border: 1px solid #E2E2E2;
+    border-radius: 8px;
+    padding: 16px 44px 16px 16px;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+  .card:hover { border-color: #006DAE; }
+  .card[aria-selected="true"] {
+    background: #006DAE;
+    border-color: #00557F;
+    color: #FFFFFF;
+  }
+  .card-name {
+    display: block;
+    font-family: 'Roboto Condensed', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    margin: 0 0 4px;
+  }
+  .card-q { display: block; margin: 0; font-size: 16px; color: #3F4041; }
+  .card[aria-selected="true"] .card-q { color: #FFFFFF; }
+
+  /* Tick badge — the non-colour cue for the selected card. */
+  .tick {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  .card[aria-selected="true"] .tick { display: flex; }
+  .tick svg { width: 16px; height: 16px; display: block; }
+
+  .detail {
+    border: 1px solid #E2E2E2;
+    border-left: 6px solid #006DAE;
+    border-radius: 8px;
+    background: #F5F5F5;
+    padding: 20px;
+  }
+  .eyebrow {
+    font-family: 'Roboto Condensed', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #006DAE;
+    margin: 0 0 6px;
+  }
+  .detail h2 { font-size: 22px; margin: 0 0 8px; }
+  .detail p { margin: 0 0 10px; }
+  .detail p:last-child { margin-bottom: 0; }
+  .example {
+    border-top: 1px solid #ECECEC;
+    padding-top: 10px;
+    color: #3F4041;
+  }
+  .example strong { color: #000000; }
+
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Card-grid selector</h1>
+  <p class="intro">Select a card to read the detail for that placeholder dimension below the grid.</p>
+
+  <div class="grid" role="tablist" aria-label="Placeholder dimensions">
+    <button class="card" role="tab" id="tab-1" aria-selected="true" aria-controls="panel-1" tabindex="0">
+      <span class="tick" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="#006DAE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="card-name">Placeholder dimension one</span>
+      <span class="card-q">A one-line placeholder question about dimension one?</span>
+    </button>
+    <button class="card" role="tab" id="tab-2" aria-selected="false" aria-controls="panel-2" tabindex="-1">
+      <span class="tick" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="#006DAE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="card-name">Placeholder dimension two</span>
+      <span class="card-q">A one-line placeholder question about dimension two?</span>
+    </button>
+    <button class="card" role="tab" id="tab-3" aria-selected="false" aria-controls="panel-3" tabindex="-1">
+      <span class="tick" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="#006DAE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="card-name">Placeholder dimension three</span>
+      <span class="card-q">A one-line placeholder question about dimension three?</span>
+    </button>
+    <button class="card" role="tab" id="tab-4" aria-selected="false" aria-controls="panel-4" tabindex="-1">
+      <span class="tick" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="#006DAE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="card-name">Placeholder dimension four</span>
+      <span class="card-q">A one-line placeholder question about dimension four?</span>
+    </button>
+    <button class="card" role="tab" id="tab-5" aria-selected="false" aria-controls="panel-5" tabindex="-1">
+      <span class="tick" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="#006DAE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="card-name">Placeholder dimension five</span>
+      <span class="card-q">A one-line placeholder question about dimension five?</span>
+    </button>
+    <button class="card" role="tab" id="tab-6" aria-selected="false" aria-controls="panel-6" tabindex="-1">
+      <span class="tick" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3 8.5 6.5 12 13 4.5" stroke="#006DAE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="card-name">Placeholder dimension six</span>
+      <span class="card-q">A one-line placeholder question about dimension six?</span>
+    </button>
+  </div>
+
+  <div class="detail" role="tabpanel" id="panel-1" aria-labelledby="tab-1">
+    <p class="eyebrow">Detail</p>
+    <h2>Placeholder dimension one</h2>
+    <p>A short placeholder explanation of dimension one: two sentences describing what this dimension means and why a learner would care about it.</p>
+    <p class="example"><strong>Worked example:</strong> a one-line placeholder worked example for dimension one.</p>
+  </div>
+  <div class="detail" role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden>
+    <p class="eyebrow">Detail</p>
+    <h2>Placeholder dimension two</h2>
+    <p>A short placeholder explanation of dimension two: two sentences describing what this dimension means and why a learner would care about it.</p>
+    <p class="example"><strong>Worked example:</strong> a one-line placeholder worked example for dimension two.</p>
+  </div>
+  <div class="detail" role="tabpanel" id="panel-3" aria-labelledby="tab-3" hidden>
+    <p class="eyebrow">Detail</p>
+    <h2>Placeholder dimension three</h2>
+    <p>A short placeholder explanation of dimension three: two sentences describing what this dimension means and why a learner would care about it.</p>
+    <p class="example"><strong>Worked example:</strong> a one-line placeholder worked example for dimension three.</p>
+  </div>
+  <div class="detail" role="tabpanel" id="panel-4" aria-labelledby="tab-4" hidden>
+    <p class="eyebrow">Detail</p>
+    <h2>Placeholder dimension four</h2>
+    <p>A short placeholder explanation of dimension four: two sentences describing what this dimension means and why a learner would care about it.</p>
+    <p class="example"><strong>Worked example:</strong> a one-line placeholder worked example for dimension four.</p>
+  </div>
+  <div class="detail" role="tabpanel" id="panel-5" aria-labelledby="tab-5" hidden>
+    <p class="eyebrow">Detail</p>
+    <h2>Placeholder dimension five</h2>
+    <p>A short placeholder explanation of dimension five: two sentences describing what this dimension means and why a learner would care about it.</p>
+    <p class="example"><strong>Worked example:</strong> a one-line placeholder worked example for dimension five.</p>
+  </div>
+  <div class="detail" role="tabpanel" id="panel-6" aria-labelledby="tab-6" hidden>
+    <p class="eyebrow">Detail</p>
+    <h2>Placeholder dimension six</h2>
+    <p>A short placeholder explanation of dimension six: two sentences describing what this dimension means and why a learner would care about it.</p>
+    <p class="example"><strong>Worked example:</strong> a one-line placeholder worked example for dimension six.</p>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // NOT the documentElement scroll height — that is max(content, viewport) and
+  // over-reports whenever the content is shorter than the frame.
+  function contentHeight() {
+    return Math.ceil(document.body.getBoundingClientRect().height);
+  }
+
+  function reportHeight() {
+    if (window.parent === window) return;
+    window.parent.postMessage({ type: 'resize', height: contentHeight() }, '*');
+  }
+
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('[role="tabpanel"]'));
+
+  function select(index) {
+    tabs.forEach(function (tab, i) {
+      var on = i === index;
+      tab.setAttribute('aria-selected', on ? 'true' : 'false');
+      tab.setAttribute('tabindex', on ? '0' : '-1');
+      panels[i].hidden = !on;
+    });
+    reportHeight();
+  }
+
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { select(i); });
+    tab.addEventListener('keydown', function (e) {
+      var next = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (i + 1) % tabs.length;
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (i - 1 + tabs.length) % tabs.length;
+      else if (e.key === 'Home') next = 0;
+      else if (e.key === 'End') next = tabs.length - 1;
+      if (next !== null) {
+        e.preventDefault();
+        tabs[next].focus();
+      }
+      // Enter/Space activate natively via the button's click event.
+    });
+  });
+
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(reportHeight);
+})();
+</script>
+</body>
+</html>

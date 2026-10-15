@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parameter explorer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  /* No min-height, no viewport-height units. Body height comes from content only. */
+  body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    color: #000000;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 24px 16px 32px; }
+
+  h1, h2, h3 { font-family: 'Roboto Condensed', Arial, sans-serif; font-weight: 700; }
+  h1 { font-size: 28px; color: #006DAE; margin: 0 0 8px; }
+  .intro { margin: 0 0 20px; color: #3F4041; }
+
+  :focus-visible { outline: 3px solid #005FCC; outline-offset: 2px; }
+
+  .controls {
+    border: 1px solid #E2E2E2;
+    border-radius: 10px;
+    background: #F9F9F9;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .ctl-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .ctl-slider { flex: 1 1 260px; }
+  label[for="param"] { display: block; font-weight: 500; margin-bottom: 6px; }
+
+  input[type="range"] {
+    width: 100%;
+    height: 28px;
+    margin: 0;
+    accent-color: #006DAE;
+    cursor: pointer;
+  }
+
+  .presets { display: flex; gap: 8px; align-items: center; }
+  .presets .presets-label { color: #3F4041; font-size: 15px; margin-right: 2px; }
+  .chip {
+    font: inherit;
+    font-weight: 700;
+    min-width: 44px;
+    min-height: 40px;
+    border: 2px solid #006DAE;
+    border-radius: 8px;
+    background: #FFFFFF;
+    color: #006DAE;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 4px 12px;
+  }
+  .chip:hover { border-color: #00557F; color: #00557F; }
+  .chip[aria-pressed="true"] { background: #006DAE; color: #FFFFFF; }
+  .chip .tick { display: none; }
+  .chip[aria-pressed="true"] .tick { display: inline-flex; }
+
+  .chart-box {
+    border: 1px solid #E2E2E2;
+    border-radius: 10px;
+    padding: 12px;
+    background: #FFFFFF;
+    margin-bottom: 12px;
+  }
+  .chart-box svg { display: block; width: 100%; height: auto; }
+
+  .readout {
+    border-left: 4px solid #006DAE;
+    background: #F5F5F5;
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    margin: 0;
+  }
+  .readout strong { color: #006DAE; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .chip { transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Parameter explorer</h1>
+  <p class="intro">A placeholder simulator pattern. Move the slider, or pick a preset, and watch the smoothed line on the chart respond. The data points are fixed placeholders; only the smoothing window changes.</p>
+
+  <div class="controls">
+    <div class="ctl-row">
+      <div class="ctl-slider">
+        <label for="param">Placeholder parameter (smoothing window, 1–10)</label>
+        <input type="range" id="param" min="1" max="10" step="1" value="3"
+               aria-describedby="readout">
+      </div>
+      <div class="presets" role="group" aria-label="Parameter presets">
+        <span class="presets-label">Presets:</span>
+        <button class="chip" type="button" data-preset="2" aria-pressed="false">
+          <svg class="tick" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M2 7.5l3.5 3.5L12 3" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          2
+        </button>
+        <button class="chip" type="button" data-preset="8" aria-pressed="false">
+          <svg class="tick" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M2 7.5l3.5 3.5L12 3" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          8
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <svg viewBox="0 0 600 260" aria-hidden="true" focusable="false">
+      <!-- axes -->
+      <line x1="40" y1="230" x2="580" y2="230" stroke="#BFBFBF" stroke-width="2"/>
+      <line x1="40" y1="20" x2="40" y2="230" stroke="#BFBFBF" stroke-width="2"/>
+      <!-- gridlines -->
+      <line x1="40" y1="130" x2="580" y2="130" stroke="#ECECEC" stroke-width="1"/>
+      <line x1="40" y1="80" x2="580" y2="80" stroke="#ECECEC" stroke-width="1"/>
+      <line x1="40" y1="180" x2="580" y2="180" stroke="#ECECEC" stroke-width="1"/>
+      <!-- raw placeholder bars (fixed) -->
+      <g id="bars" fill="#ECECEC" stroke="#BFBFBF" stroke-width="1">
+        <rect x="47.5"  y="170" width="30" height="60"/>
+        <rect x="92.5"  y="130" width="30" height="100"/>
+        <rect x="137.5" y="150" width="30" height="80"/>
+        <rect x="182.5" y="90"  width="30" height="140"/>
+        <rect x="227.5" y="110" width="30" height="120"/>
+        <rect x="272.5" y="70"  width="30" height="160"/>
+        <rect x="317.5" y="130" width="30" height="100"/>
+        <rect x="362.5" y="50"  width="30" height="180"/>
+        <rect x="407.5" y="90"  width="30" height="140"/>
+        <rect x="452.5" y="30"  width="30" height="200"/>
+        <rect x="497.5" y="70"  width="30" height="160"/>
+        <rect x="542.5" y="110" width="30" height="120"/>
+      </g>
+      <!-- smoothed line (updated by script) -->
+      <polyline id="smooth-line" fill="none" stroke="#006DAE" stroke-width="3"
+        stroke-linecap="round" stroke-linejoin="round"
+        points="62.5,150 107.5,150 152.5,123.3 197.5,116.7 242.5,90 287.5,103.3 332.5,83.3 377.5,90 422.5,56.7 467.5,63.3 512.5,70 557.5,90"/>
+      <g id="smooth-dots" fill="#006DAE"></g>
+      <!-- axis labels -->
+      <text x="40" y="252" font-size="12" fill="#3F4041" font-family="Roboto, Arial, sans-serif">1</text>
+      <text x="570" y="252" font-size="12" fill="#3F4041" font-family="Roboto, Arial, sans-serif">12</text>
+      <text x="300" y="252" font-size="12" fill="#3F4041" text-anchor="middle" font-family="Roboto, Arial, sans-serif">Placeholder data point</text>
+      <text x="26" y="234" font-size="12" fill="#3F4041" text-anchor="end" font-family="Roboto, Arial, sans-serif">0</text>
+      <text x="26" y="34" font-size="12" fill="#3F4041" text-anchor="end" font-family="Roboto, Arial, sans-serif">10</text>
+    </svg>
+  </div>
+
+  <p class="readout" id="readout" aria-live="polite">
+    <strong>Value: <span id="val">3</span></strong> — <span id="consequence">placeholder consequence text: a window of 3 smooths small bumps but keeps the overall shape.</span>
+    <span id="alt">The smoothed line over the 12 fixed placeholder points now ranges from 4.0 to 8.7.</span>
+  </p>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  function contentHeight() {
+    // NOT documentElement.scroll-height — that is max(content, viewport).
+    return Math.ceil(document.body.getBoundingClientRect().height);
+  }
+
+  function reportHeight() {
+    if (window.parent === window) return;
+    window.parent.postMessage({ type: 'resize', height: contentHeight() }, '*');
+  }
+
+  var DATA = [3, 5, 4, 7, 6, 8, 5, 9, 7, 10, 8, 6]; // fixed placeholder points
+  var slider = document.getElementById('param');
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var line = document.getElementById('smooth-line');
+  var dots = document.getElementById('smooth-dots');
+  var valEl = document.getElementById('val');
+  var consEl = document.getElementById('consequence');
+  var altEl = document.getElementById('alt');
+
+  function xAt(i) { return 62.5 + i * 45; }
+  function yAt(v) { return 230 - v * 20; }
+
+  function smoothed(n) {
+    var half = Math.floor(n / 2);
+    return DATA.map(function (_, i) {
+      var lo = Math.max(0, i - half);
+      var hi = Math.min(DATA.length - 1, i + half);
+      var sum = 0;
+      for (var k = lo; k <= hi; k++) sum += DATA[k];
+      return sum / (hi - lo + 1);
+    });
+  }
+
+  function consequence(n) {
+    if (n <= 2) return 'placeholder consequence text: a small window follows every bump in the raw data.';
+    if (n <= 5) return 'placeholder consequence text: a window of ' + n + ' smooths small bumps but keeps the overall shape.';
+    return 'placeholder consequence text: a large window of ' + n + ' flattens the series towards its average.';
+  }
+
+  function render() {
+    var n = parseInt(slider.value, 10);
+    var s = smoothed(n);
+    line.setAttribute('points', s.map(function (v, i) {
+      return xAt(i).toFixed(1) + ',' + yAt(v).toFixed(1);
+    }).join(' '));
+
+    while (dots.firstChild) dots.removeChild(dots.firstChild);
+    s.forEach(function (v, i) {
+      var c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      c.setAttribute('cx', xAt(i).toFixed(1));
+      c.setAttribute('cy', yAt(v).toFixed(1));
+      c.setAttribute('r', '4');
+      dots.appendChild(c);
+    });
+
+    valEl.textContent = String(n);
+    consEl.textContent = consequence(n);
+    var min = Math.min.apply(null, s).toFixed(1);
+    var max = Math.max.apply(null, s).toFixed(1);
+    altEl.textContent = 'The smoothed line over the 12 fixed placeholder points now ranges from ' + min + ' to ' + max + '.';
+
+    chips.forEach(function (chip) {
+      chip.setAttribute('aria-pressed', chip.getAttribute('data-preset') === String(n) ? 'true' : 'false');
+    });
+
+    reportHeight();
+  }
+
+  slider.addEventListener('input', render);
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      slider.value = chip.getAttribute('data-preset');
+      render();
+    });
+  });
+
+  render();
+
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(reportHeight);
+})();
+</script>
+</body>
+</html>

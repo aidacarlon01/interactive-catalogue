@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Before and after comparison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  /* No min-height, no viewport-height units. Body height comes from content only. */
+  body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    color: #000000;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 24px 16px 32px; }
+
+  h1, h2, h3 { font-family: 'Roboto Condensed', Arial, sans-serif; font-weight: 700; }
+  h1 { font-size: 28px; color: #006DAE; margin: 0 0 8px; }
+  .intro { margin: 0 0 20px; color: #3F4041; }
+
+  :focus-visible { outline: 3px solid #005FCC; outline-offset: 2px; }
+
+  /* Segmented toggle */
+  .seg {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    border: 1px solid #E2E2E2;
+    border-radius: 10px;
+    padding: 6px;
+    background: #F9F9F9;
+    margin-bottom: 16px;
+  }
+  .seg-btn {
+    flex: 1 1 220px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 2px solid transparent;
+    border-radius: 7px;
+    background: transparent;
+    font: inherit;
+    font-weight: 500;
+    color: #3F4041;
+    padding: 10px 14px;
+    cursor: pointer;
+    text-align: left;
+    min-height: 44px;
+  }
+  .seg-btn .num {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid #3F4041;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .seg-btn[aria-selected="true"] {
+    background: #006DAE;
+    color: #FFFFFF;
+    border-color: #00557F;
+  }
+  .seg-btn[aria-selected="true"] .num { border-color: #FFFFFF; }
+  .seg-btn[aria-selected="true"] .tick { display: inline-flex; }
+  .seg-btn .tick { display: none; margin-left: auto; }
+  .seg-btn:hover { border-color: #00557F; }
+
+  /* Panels */
+  .panel {
+    border: 1px solid #E2E2E2;
+    border-radius: 10px;
+    padding: 18px 16px 20px;
+    background: #FFFFFF;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'Roboto Condensed', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    border: 2px solid #3F4041;
+    color: #3F4041;
+    border-radius: 4px;
+    padding: 2px 10px;
+    margin-bottom: 12px;
+  }
+  .tag.improved { border-color: #006DAE; color: #006DAE; }
+
+  /* Fake mini-dashboard mock */
+  .mock {
+    border: 1px solid #E2E2E2;
+    border-radius: 8px;
+    background: #F9F9F9;
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+  .mock-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+  .mock-row:last-child { margin-bottom: 0; }
+  .box {
+    border: 1px solid #BFBFBF;
+    background: #ECECEC;
+    border-radius: 4px;
+    min-height: 34px;
+    flex: 1 1 60px;
+  }
+  .box.tall { min-height: 64px; }
+  .box.wide { flex: 3 1 160px; }
+  .box.labelled {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #3F4041;
+    padding: 4px;
+    text-align: center;
+  }
+  /* After mock: calmer surfaces, one lead panel */
+  .mock.after { background: #FFFFFF; }
+  .mock.after .box { background: #F5F5F5; border-color: #E2E2E2; }
+  .mock.after .box.lead { border: 2px solid #006DAE; background: #FFFFFF; }
+
+  .notes { margin: 0; padding: 0; list-style: none; }
+  .notes li { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 8px; }
+  .notes li:last-child { margin-bottom: 0; }
+  .notes .ic { flex: none; margin-top: 3px; }
+  .notes-h { font-size: 16px; margin: 0 0 8px; color: #000000; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .seg-btn { transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Before and after comparison</h1>
+  <p class="intro">A placeholder comparison pattern. Switch between the two views to see a poor example and its improved version, with the specific issues and fixes listed under each.</p>
+
+  <div class="seg" role="tablist" aria-label="Before and after views">
+    <button class="seg-btn" id="tab-before" role="tab" aria-selected="true" aria-controls="panel-before" type="button">
+      <span class="num" aria-hidden="true">1</span>
+      <span>Before — poor example</span>
+      <svg class="tick" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M3 9.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="seg-btn" id="tab-after" role="tab" aria-selected="false" aria-controls="panel-after" tabindex="-1" type="button">
+      <span class="num" aria-hidden="true">2</span>
+      <span>After — improved example</span>
+      <svg class="tick" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><path d="M3 9.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <div class="panel" id="panel-before" role="tabpanel" aria-labelledby="tab-before">
+    <span class="tag">Poor example</span>
+    <div class="mock" aria-hidden="true">
+      <div class="mock-row">
+        <div class="box labelled">Placeholder widget A</div>
+        <div class="box labelled">Widget B</div>
+        <div class="box labelled">Widget C</div>
+        <div class="box labelled">Widget D</div>
+        <div class="box labelled">Widget E</div>
+      </div>
+      <div class="mock-row">
+        <div class="box tall"></div>
+        <div class="box tall"></div>
+        <div class="box tall wide"></div>
+        <div class="box tall"></div>
+      </div>
+      <div class="mock-row">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+      <div class="mock-row">
+        <div class="box tall wide"></div>
+        <div class="box tall wide"></div>
+      </div>
+    </div>
+    <h2 class="notes-h">Issues in this version</h2>
+    <ul class="notes">
+      <li>
+        <svg class="ic" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><circle cx="9" cy="9" r="8" fill="none" stroke="#3F4041" stroke-width="2"/><path d="M6 6l6 6M12 6l-6 6" stroke="#3F4041" stroke-width="2" stroke-linecap="round"/></svg>
+        <span><strong>Issue 1:</strong> placeholder note about too many competing elements with no clear starting point.</span>
+      </li>
+      <li>
+        <svg class="ic" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><circle cx="9" cy="9" r="8" fill="none" stroke="#3F4041" stroke-width="2"/><path d="M6 6l6 6M12 6l-6 6" stroke="#3F4041" stroke-width="2" stroke-linecap="round"/></svg>
+        <span><strong>Issue 2:</strong> placeholder note about inconsistent sizing and grouping of related items.</span>
+      </li>
+      <li>
+        <svg class="ic" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><circle cx="9" cy="9" r="8" fill="none" stroke="#3F4041" stroke-width="2"/><path d="M6 6l6 6M12 6l-6 6" stroke="#3F4041" stroke-width="2" stroke-linecap="round"/></svg>
+        <span><strong>Issue 3:</strong> placeholder note about missing hierarchy — nothing signals what matters most.</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="panel" id="panel-after" role="tabpanel" aria-labelledby="tab-after" hidden>
+    <span class="tag improved">Improved</span>
+    <div class="mock after" aria-hidden="true">
+      <div class="mock-row">
+        <div class="box tall wide lead labelled">Placeholder headline metric</div>
+        <div class="box tall labelled">Supporting A</div>
+      </div>
+      <div class="mock-row">
+        <div class="box labelled">Supporting B</div>
+        <div class="box labelled">Supporting C</div>
+        <div class="box labelled">Supporting D</div>
+      </div>
+    </div>
+    <h2 class="notes-h">Fixes in this version</h2>
+    <ul class="notes">
+      <li>
+        <svg class="ic" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><circle cx="9" cy="9" r="8" fill="none" stroke="#006DAE" stroke-width="2"/><path d="M5 9.5l3 3 5-6" fill="none" stroke="#006DAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><strong>Fix 1:</strong> placeholder note about reducing the view to one headline element and a few supports.</span>
+      </li>
+      <li>
+        <svg class="ic" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><circle cx="9" cy="9" r="8" fill="none" stroke="#006DAE" stroke-width="2"/><path d="M5 9.5l3 3 5-6" fill="none" stroke="#006DAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><strong>Fix 2:</strong> placeholder note about consistent sizing so related items read as a group.</span>
+      </li>
+      <li>
+        <svg class="ic" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false"><circle cx="9" cy="9" r="8" fill="none" stroke="#006DAE" stroke-width="2"/><path d="M5 9.5l3 3 5-6" fill="none" stroke="#006DAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span><strong>Fix 3:</strong> placeholder note about clear hierarchy — the headline element signals where to look first.</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  function contentHeight() {
+    // NOT documentElement.scroll-height — that is max(content, viewport).
+    return Math.ceil(document.body.getBoundingClientRect().height);
+  }
+
+  function reportHeight() {
+    if (window.parent === window) return;
+    window.parent.postMessage({ type: 'resize', height: contentHeight() }, '*');
+  }
+
+  var tabs = [document.getElementById('tab-before'), document.getElementById('tab-after')];
+  var panels = [document.getElementById('panel-before'), document.getElementById('panel-after')];
+
+  function select(i) {
+    tabs.forEach(function (t, j) {
+      var on = j === i;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      panels[j].hidden = !on;
+    });
+    reportHeight();
+  }
+
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { select(i); });
+    t.addEventListener('keydown', function (e) {
+      var next = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (i + 1) % tabs.length;
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (i - 1 + tabs.length) % tabs.length;
+      if (e.key === 'Home') next = 0;
+      if (e.key === 'End') next = tabs.length - 1;
+      if (next !== null) {
+        e.preventDefault();
+        select(next);
+        tabs[next].focus();
+      }
+    });
+  });
+
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(reportHeight);
+})();
+</script>
+</body>
+</html>

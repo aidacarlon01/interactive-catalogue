@@ -1,0 +1,7 @@
+{
+  "title": "Tabs and stage stepper",
+  "pattern": "tabs-stepper",
+  "oneliner": "Four numbered stage tabs with Next/Previous stepping and a loop back to stage one.",
+  "h1019": 556,
+  "h360": 926
+}

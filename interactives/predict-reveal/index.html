@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Predict, then reveal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  /* No min-height, no viewport-height units. Body height comes from content only. */
+  body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    color: #000000;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 24px 16px 32px; }
+
+  h1, h2, h3 { font-family: 'Roboto Condensed', Arial, sans-serif; font-weight: 700; }
+  h1 { font-size: 28px; color: #006DAE; margin: 0 0 8px; }
+  h2 { font-size: 17px; color: #006DAE; margin: 0 0 10px; letter-spacing: 0.04em; }
+  .intro { margin: 0 0 20px; color: #3F4041; }
+
+  :focus-visible { outline: 3px solid #005FCC; outline-offset: 2px; }
+
+  /* Hidden means hidden — SVG elements do not get the UA [hidden] style. */
+  [hidden] { display: none !important; }
+
+  .setup, .predict, .reveal {
+    border: 1px solid #E2E2E2;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+    background: #FFFFFF;
+  }
+  .tables { display: flex; flex-wrap: wrap; gap: 16px; }
+  .tbl { flex: 1 1 200px; }
+  .tbl caption {
+    font-family: 'Roboto Condensed', Arial, sans-serif;
+    font-weight: 700;
+    text-align: left;
+    color: #006DAE;
+    padding-bottom: 6px;
+  }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { border: 1px solid #E2E2E2; padding: 6px 10px; text-align: left; font-size: 15px; }
+  th { background: #F5F5F5; font-weight: 700; }
+  tbody tr:nth-child(even) td { background: #F9F9F9; }
+
+  .question { font-weight: 500; margin: 0 0 12px; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .chip {
+    font: inherit;
+    font-weight: 700;
+    min-width: 48px;
+    min-height: 44px;
+    border: 2px solid #006DAE;
+    border-radius: 8px;
+    background: #FFFFFF;
+    color: #006DAE;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 4px 12px;
+  }
+  .chip:hover { border-color: #00557F; color: #00557F; }
+  .chip[aria-pressed="true"] { background: #006DAE; color: #FFFFFF; }
+  .chip .tick { display: none; }
+  .chip[aria-pressed="true"] .tick { display: inline-flex; }
+
+  .btn {
+    font: inherit;
+    font-weight: 700;
+    min-height: 44px;
+    border: 2px solid #006DAE;
+    border-radius: 8px;
+    background: #006DAE;
+    color: #FFFFFF;
+    cursor: pointer;
+    padding: 8px 20px;
+  }
+  .btn:hover { background: #00557F; border-color: #00557F; }
+  .btn[disabled] {
+    background: #F5F5F5;
+    border-color: #BFBFBF;
+    color: #3F4041;
+    cursor: not-allowed;
+  }
+  .btn.secondary { background: #FFFFFF; color: #006DAE; }
+  .btn.secondary:hover { color: #00557F; border-color: #00557F; }
+
+  .verdict { display: flex; gap: 10px; align-items: flex-start; margin: 14px 0 6px; font-weight: 500; }
+  .verdict .ic { flex: none; margin-top: 2px; }
+  .explain { margin: 0 0 14px; color: #3F4041; }
+
+  .progress { display: flex; align-items: center; gap: 10px; margin-top: 4px; color: #3F4041; font-size: 15px; }
+  .dot {
+    width: 14px; height: 14px; border-radius: 50%;
+    border: 2px solid #006DAE; background: #FFFFFF;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .dot.done { background: #006DAE; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .chip, .btn { transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Predict, then reveal</h1>
+  <p class="intro">A placeholder practice pattern. Look at the two source tables, predict what the placeholder operation will return, then reveal the result to check your prediction.</p>
+
+  <section class="setup" aria-label="Source tables">
+    <h2>1. Source tables</h2>
+    <div class="tables">
+      <div class="tbl">
+        <table>
+          <caption>Table A (placeholder)</caption>
+          <thead><tr><th scope="col">id</th><th scope="col">value_a</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>alpha</td></tr>
+            <tr><td>2</td><td>bravo</td></tr>
+            <tr><td>3</td><td>charlie</td></tr>
+            <tr><td>4</td><td>delta</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tbl">
+        <table>
+          <caption>Table B (placeholder)</caption>
+          <thead><tr><th scope="col">id</th><th scope="col">value_b</th></tr></thead>
+          <tbody>
+            <tr><td>2</td><td>echo</td></tr>
+            <tr><td>3</td><td>foxtrot</td></tr>
+            <tr><td>4</td><td>golf</td></tr>
+            <tr><td>5</td><td>hotel</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="predict" aria-label="Make a prediction">
+    <h2>2. Predict</h2>
+    <p class="question">How many rows will the placeholder operation return?</p>
+    <div class="chips" role="group" aria-label="Predicted row count">
+      <button class="chip" type="button" data-n="3" aria-pressed="false"><svg class="tick" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M2 7.5l3.5 3.5L12 3" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>3</button>
+      <button class="chip" type="button" data-n="4" aria-pressed="false"><svg class="tick" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M2 7.5l3.5 3.5L12 3" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>4</button>
+      <button class="chip" type="button" data-n="5" aria-pressed="false"><svg class="tick" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M2 7.5l3.5 3.5L12 3" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>5</button>
+      <button class="chip" type="button" data-n="6" aria-pressed="false"><svg class="tick" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M2 7.5l3.5 3.5L12 3" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>6</button>
+      <button class="chip" type="button" data-n="7" aria-pressed="false"><svg class="tick" width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M2 7.5l3.5 3.5L12 3" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>7</button>
+    </div>
+    <button class="btn" type="button" id="reveal-btn" disabled>Reveal result</button>
+  </section>
+
+  <section class="reveal" id="reveal-panel" aria-label="Result" hidden>
+    <h2>3. Result</h2>
+    <div class="tbl">
+      <table>
+        <caption>Result table (placeholder)</caption>
+        <thead><tr><th scope="col">id</th><th scope="col">value</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>alpha</td></tr>
+          <tr><td>2</td><td>bravo</td></tr>
+          <tr><td>3</td><td>charlie</td></tr>
+          <tr><td>4</td><td>delta</td></tr>
+          <tr><td>5</td><td>hotel</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="verdict" id="verdict" aria-live="polite">
+      <svg class="ic" id="icon-match" width="22" height="22" viewBox="0 0 22 22" aria-hidden="true" focusable="false" hidden><circle cx="11" cy="11" r="10" fill="none" stroke="#006DAE" stroke-width="2"/><path d="M6 11.5l3.5 3.5 6.5-7.5" fill="none" stroke="#006DAE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="ic" id="icon-miss" width="22" height="22" viewBox="0 0 22 22" aria-hidden="true" focusable="false" hidden><circle cx="11" cy="11" r="10" fill="none" stroke="#3F4041" stroke-width="2"/><path d="M7 7l8 8M15 7l-8 8" stroke="#3F4041" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <span id="verdict-text"></span>
+    </p>
+    <p class="explain">The placeholder operation keeps one row per distinct id across both tables — ids 2, 3 and 4 appear in both, so 8 input rows become 5 result rows.</p>
+    <button class="btn secondary" type="button" id="restart-btn">Restart</button>
+  </section>
+
+  <p class="progress">
+    <span class="dot" id="dot" aria-hidden="true"></span>
+    <span id="progress-text">0 of 1 completed</span>
+  </p>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  function contentHeight() {
+    // NOT documentElement.scroll-height — that is max(content, viewport).
+    return Math.ceil(document.body.getBoundingClientRect().height);
+  }
+
+  function reportHeight() {
+    if (window.parent === window) return;
+    window.parent.postMessage({ type: 'resize', height: contentHeight() }, '*');
+  }
+
+  var CORRECT = 5;
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var revealBtn = document.getElementById('reveal-btn');
+  var restartBtn = document.getElementById('restart-btn');
+  var panel = document.getElementById('reveal-panel');
+  var verdictText = document.getElementById('verdict-text');
+  var iconMatch = document.getElementById('icon-match');
+  var iconMiss = document.getElementById('icon-miss');
+  var dot = document.getElementById('dot');
+  var progressText = document.getElementById('progress-text');
+  var picked = null;
+
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      if (!panel.hidden) return; // locked after reveal until restart
+      picked = parseInt(chip.getAttribute('data-n'), 10);
+      chips.forEach(function (c) {
+        c.setAttribute('aria-pressed', c === chip ? 'true' : 'false');
+      });
+      revealBtn.disabled = false;
+      reportHeight();
+    });
+  });
+
+  revealBtn.addEventListener('click', function () {
+    if (picked === null) return;
+    var match = picked === CORRECT;
+    // setAttribute, not the .hidden property — SVGElement has no hidden property.
+    iconMatch.toggleAttribute('hidden', !match);
+    iconMiss.toggleAttribute('hidden', match);
+    verdictText.textContent = match
+      ? 'Correct — your prediction of ' + picked + ' rows matched the result.'
+      : 'Not quite — you predicted ' + picked + ' rows, but the result has ' + CORRECT + '.';
+    panel.hidden = false;
+    revealBtn.disabled = true;
+    dot.className = 'dot done';
+    progressText.textContent = '1 of 1 completed';
+    reportHeight();
+  });
+
+  restartBtn.addEventListener('click', function () {
+    picked = null;
+    chips.forEach(function (c) { c.setAttribute('aria-pressed', 'false'); });
+    panel.hidden = true;
+    revealBtn.disabled = true;
+    dot.className = 'dot';
+    progressText.textContent = '0 of 1 completed';
+    chips[0].focus();
+    reportHeight();
+  });
+
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(reportHeight);
+})();
+</script>
+</body>
+</html>

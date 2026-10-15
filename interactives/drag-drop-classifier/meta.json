@@ -1,0 +1,7 @@
+{
+  "title": "Drag-and-drop classifier",
+  "pattern": "drag-drop-classifier",
+  "oneliner": "Sort four placeholder scenario cards into a 2x2 grid of labelled zones by drag-and-drop or a per-card assign select, then check answers for per-card tick/cross feedback.",
+  "h1019": 1225,
+  "h360": 1966
+}

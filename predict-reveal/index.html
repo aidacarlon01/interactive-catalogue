@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Predict, then reveal — Interactive pattern catalogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#fff;color:#000;font-family:'Roboto',Arial,sans-serif;font-size:16px;line-height:1.55}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 48px}
+h1,h2,h3{font-family:'Roboto Condensed',Arial,sans-serif;font-weight:700}
+h1{color:#006DAE;font-size:34px;margin:0 0 8px}
+a{color:#006DAE}
+:focus-visible{outline:3px solid #005FCC;outline-offset:2px}
+.eyebrow{font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:700;color:#006DAE;margin-bottom:10px}
+.intro{color:#3F4041;max-width:72ch;margin:0 0 10px}
+.howto{border:1px solid #E2E2E2;border-left:4px solid #006DAE;border-radius:6px;background:#F9F9F9;padding:14px 18px;margin:18px 0 30px;max-width:860px}
+.howto b{color:#006DAE}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.card{border:1px solid #E2E2E2;border-radius:6px;overflow:hidden;background:#fff;display:flex;flex-direction:column;text-decoration:none;color:#000;transition:box-shadow .15s ease,transform .15s ease}
+.card:hover{box-shadow:0 6px 20px rgba(0,0,0,.10);transform:translateY(-2px)}
+.card img{width:100%;height:auto;display:block;border-bottom:1px solid #ECECEC;background:#F9F9F9}
+.card .pad{padding:14px 16px 16px}
+.card h2{font-size:18px;margin:0 0 6px;color:#006DAE}
+.card p{margin:0 0 10px;font-size:14px;color:#3F4041}
+.badge{display:inline-block;font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:11.5px;font-weight:700;color:#3F4041;border:1px solid #E2E2E2;border-radius:20px;padding:3px 10px}
+.back{display:inline-block;margin-bottom:14px;font-size:14px;text-decoration:none}
+.cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;align-items:start}
+@media(max-width:900px){.cols{grid-template-columns:1fr}}
+.frame{border:1px solid #E2E2E2;border-radius:6px;overflow:hidden}
+.frame iframe{display:block;border:0;width:100%}
+.framebar{display:flex;justify-content:space-between;align-items:center;background:#F5F5F5;border-bottom:1px solid #E2E2E2;padding:8px 12px;font-size:13px;color:#3F4041}
+.brief{border:1px solid #E2E2E2;border-top:4px solid #006DAE;border-radius:6px;padding:18px 20px;background:#fff}
+.brief h2{font-size:20px;margin:0 0 4px}
+.brief .note{font-size:13px;color:#3F4041;margin:0 0 14px}
+.brief p{font-size:14.5px;margin:0 0 12px}
+.brief ul{margin:0 0 12px;padding-left:20px;font-size:14.5px}
+.brief b.lead{color:#006DAE}
+.copybtn{font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:13px;font-weight:700;color:#006DAE;background:#fff;border:1.5px solid #006DAE;border-radius:6px;padding:9px 16px;cursor:pointer}
+.copybtn:hover{background:#006DAE;color:#fff}
+.seen{border:1px solid #E2E2E2;border-radius:6px;background:#F9F9F9;padding:14px 18px;margin-top:18px;font-size:14px;color:#3F4041}
+.seen b{color:#000}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid #E2E2E2;font-size:12.5px;color:#818181;max-width:76ch}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="../">&larr; All patterns</a>
+<div class="eyebrow">Interactive pattern</div>
+<h1>Predict, then reveal</h1>
+<p class="intro">Two source tables, a committed numeric prediction via answer chips, then a revealed result table with matched/not-matched verdict and restart.</p>
+<div class="cols">
+  <div>
+    <div class="frame">
+      <div class="framebar"><span>Placeholder interactive — try it</span>
+      <a href="../interactives/predict-reveal/index.html" target="_blank" rel="noopener">Open full page</a></div>
+      <iframe src="../interactives/predict-reveal/index.html" title="Predict, then reveal placeholder interactive" height="1230" loading="lazy"></iframe>
+    </div>
+    <div class="seen"><b>Seen in the courses as:</b> Pick your join, Which missing-value method, AI SQL verification cockpit, Dashboard consolidation planner, McNulty framework.</div>
+  </div>
+  <div class="brief">
+    <h2>The brief</h2>
+    <p class="note">This is the example brief for the placeholder above, in the seven-part shape a build needs. Copy it, swap the placeholder content for yours, keep the structure.</p>
+    <p><b class="lead">Purpose.</b> Make the learner commit to a prediction before seeing a result, so the reveal confirms or corrects a genuine guess instead of being passively read.</p>
+<p><b class="lead">Layout.</b> A heading &quot;Predict, then reveal&quot; and a one-sentence intro. Three stacked sections: &quot;1. Source tables&quot; — two small side-by-side placeholder tables of 4 data rows each (Table A: id 1–4 with value_a; Table B: id 2–5 with value_b); &quot;2. Predict&quot; — the question line &quot;How many rows will the placeholder operation return?&quot;, five numeric answer chips (3, 4, 5, 6, 7) and a &quot;Reveal result&quot; button, disabled at rest; &quot;3. Result&quot; — hidden at rest. Below everything, a progress line: one dot and the text &quot;0 of 1 completed&quot;.</p>
+<p><b class="lead">Interaction.</b> Clicking a chip selects it (pressed state with a tick icon) and enables &quot;Reveal result&quot;. Clicking reveal shows the result section: a 5-row result table, a verdict line with icon — a tick icon and &quot;Correct — your prediction of N rows matched the result.&quot; on a match, a cross icon and &quot;Not quite — you predicted N rows, but the result has 5.&quot; otherwise — a one-line explanation, and a &quot;Restart&quot; button. After reveal the chips lock and the progress line becomes a filled dot with &quot;1 of 1 completed&quot;. Restart clears the selection, hides the result, disables reveal, resets progress and moves focus to the first chip. All buttons are native and keyboard operable; every change re-reports the document height.</p>
+<p><b class="lead">States.</b> Three — unanswered (default: no chip pressed, reveal disabled, result hidden), predicted (one chip pressed, reveal enabled), revealed (result shown with matched or not-matched verdict, chips locked, progress 1 of 1). Exactly one chip can be pressed. The correct answer is 5. The result section exists in the markup and uses the <code>hidden</code> attribute; verdict is carried by text plus icon, not colour alone.</p>
+<p><b class="lead">Content.</b> Placeholder throughout. Placeholder labels used: &quot;Table A (placeholder)&quot; and &quot;Table B (placeholder)&quot; with values alpha–hotel, &quot;Result table (placeholder)&quot;, question &quot;How many rows will the placeholder operation return?&quot;, chips &quot;3&quot;–&quot;7&quot;, buttons &quot;Reveal result&quot; and &quot;Restart&quot;, explanation &quot;The placeholder operation keeps one row per distinct id across both tables — ids 2, 3 and 4 appear in both, so 8 input rows become 5 result rows.&quot;, progress &quot;0 of 1 completed&quot; / &quot;1 of 1 completed&quot;.</p>
+<p><b class="lead">Slug.</b> <code>predict-reveal</code></p>
+<p><b class="lead">Target.</b> Practice — scratch page only.</p>
+    <button class="copybtn" id="copy">Copy brief as markdown</button>
+    <script type="text/plain" id="raw">**Purpose.** Make the learner commit to a prediction before seeing a result, so the reveal confirms or corrects a genuine guess instead of being passively read.
+
+**Layout.** A heading &quot;Predict, then reveal&quot; and a one-sentence intro. Three stacked sections: &quot;1. Source tables&quot; — two small side-by-side placeholder tables of 4 data rows each (Table A: id 1–4 with value_a; Table B: id 2–5 with value_b); &quot;2. Predict&quot; — the question line &quot;How many rows will the placeholder operation return?&quot;, five numeric answer chips (3, 4, 5, 6, 7) and a &quot;Reveal result&quot; button, disabled at rest; &quot;3. Result&quot; — hidden at rest. Below everything, a progress line: one dot and the text &quot;0 of 1 completed&quot;.
+
+**Interaction.** Clicking a chip selects it (pressed state with a tick icon) and enables &quot;Reveal result&quot;. Clicking reveal shows the result section: a 5-row result table, a verdict line with icon — a tick icon and &quot;Correct — your prediction of N rows matched the result.&quot; on a match, a cross icon and &quot;Not quite — you predicted N rows, but the result has 5.&quot; otherwise — a one-line explanation, and a &quot;Restart&quot; button. After reveal the chips lock and the progress line becomes a filled dot with &quot;1 of 1 completed&quot;. Restart clears the selection, hides the result, disables reveal, resets progress and moves focus to the first chip. All buttons are native and keyboard operable; every change re-reports the document height.
+
+**States.** Three — unanswered (default: no chip pressed, reveal disabled, result hidden), predicted (one chip pressed, reveal enabled), revealed (result shown with matched or not-matched verdict, chips locked, progress 1 of 1). Exactly one chip can be pressed. The correct answer is 5. The result section exists in the markup and uses the `hidden` attribute; verdict is carried by text plus icon, not colour alone.
+
+**Content.** Placeholder throughout. Placeholder labels used: &quot;Table A (placeholder)&quot; and &quot;Table B (placeholder)&quot; with values alpha–hotel, &quot;Result table (placeholder)&quot;, question &quot;How many rows will the placeholder operation return?&quot;, chips &quot;3&quot;–&quot;7&quot;, buttons &quot;Reveal result&quot; and &quot;Restart&quot;, explanation &quot;The placeholder operation keeps one row per distinct id across both tables — ids 2, 3 and 4 appear in both, so 8 input rows become 5 result rows.&quot;, progress &quot;0 of 1 completed&quot; / &quot;1 of 1 completed&quot;.
+
+**Slug.** `predict-reveal`
+
+**Target.** Practice — scratch page only.
+</script>
+    <script>
+    document.getElementById('copy').addEventListener('click', function () {
+      var raw = document.getElementById('raw').textContent;
+      navigator.clipboard.writeText(raw).then(() => {
+        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief as markdown', 1600);
+      });
+    });
+    </script>
+  </div>
+</div>
+<footer>Placeholder interactive — all content is placeholder by design. Heights: 1230px at desktop width, 1608px at phone width.</footer>
+</div></body></html>

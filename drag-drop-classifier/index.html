@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drag-and-drop classifier — Interactive pattern catalogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#fff;color:#000;font-family:'Roboto',Arial,sans-serif;font-size:16px;line-height:1.55}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 48px}
+h1,h2,h3{font-family:'Roboto Condensed',Arial,sans-serif;font-weight:700}
+h1{color:#006DAE;font-size:34px;margin:0 0 8px}
+a{color:#006DAE}
+:focus-visible{outline:3px solid #005FCC;outline-offset:2px}
+.eyebrow{font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:700;color:#006DAE;margin-bottom:10px}
+.intro{color:#3F4041;max-width:72ch;margin:0 0 10px}
+.howto{border:1px solid #E2E2E2;border-left:4px solid #006DAE;border-radius:6px;background:#F9F9F9;padding:14px 18px;margin:18px 0 30px;max-width:860px}
+.howto b{color:#006DAE}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.card{border:1px solid #E2E2E2;border-radius:6px;overflow:hidden;background:#fff;display:flex;flex-direction:column;text-decoration:none;color:#000;transition:box-shadow .15s ease,transform .15s ease}
+.card:hover{box-shadow:0 6px 20px rgba(0,0,0,.10);transform:translateY(-2px)}
+.card img{width:100%;height:auto;display:block;border-bottom:1px solid #ECECEC;background:#F9F9F9}
+.card .pad{padding:14px 16px 16px}
+.card h2{font-size:18px;margin:0 0 6px;color:#006DAE}
+.card p{margin:0 0 10px;font-size:14px;color:#3F4041}
+.badge{display:inline-block;font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:11.5px;font-weight:700;color:#3F4041;border:1px solid #E2E2E2;border-radius:20px;padding:3px 10px}
+.back{display:inline-block;margin-bottom:14px;font-size:14px;text-decoration:none}
+.cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;align-items:start}
+@media(max-width:900px){.cols{grid-template-columns:1fr}}
+.frame{border:1px solid #E2E2E2;border-radius:6px;overflow:hidden}
+.frame iframe{display:block;border:0;width:100%}
+.framebar{display:flex;justify-content:space-between;align-items:center;background:#F5F5F5;border-bottom:1px solid #E2E2E2;padding:8px 12px;font-size:13px;color:#3F4041}
+.brief{border:1px solid #E2E2E2;border-top:4px solid #006DAE;border-radius:6px;padding:18px 20px;background:#fff}
+.brief h2{font-size:20px;margin:0 0 4px}
+.brief .note{font-size:13px;color:#3F4041;margin:0 0 14px}
+.brief p{font-size:14.5px;margin:0 0 12px}
+.brief ul{margin:0 0 12px;padding-left:20px;font-size:14.5px}
+.brief b.lead{color:#006DAE}
+.copybtn{font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:13px;font-weight:700;color:#006DAE;background:#fff;border:1.5px solid #006DAE;border-radius:6px;padding:9px 16px;cursor:pointer}
+.copybtn:hover{background:#006DAE;color:#fff}
+.seen{border:1px solid #E2E2E2;border-radius:6px;background:#F9F9F9;padding:14px 18px;margin-top:18px;font-size:14px;color:#3F4041}
+.seen b{color:#000}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid #E2E2E2;font-size:12.5px;color:#818181;max-width:76ch}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="../">&larr; All patterns</a>
+<div class="eyebrow">Interactive pattern</div>
+<h1>Drag-and-drop classifier</h1>
+<p class="intro">Sort four placeholder scenario cards into a 2x2 grid of labelled zones by drag-and-drop or a per-card assign select, then check answers for per-card tick/cross feedback.</p>
+<div class="cols">
+  <div>
+    <div class="frame">
+      <div class="framebar"><span>Placeholder interactive — try it</span>
+      <a href="../interactives/drag-drop-classifier/index.html" target="_blank" rel="noopener">Open full page</a></div>
+      <iframe src="../interactives/drag-drop-classifier/index.html" title="Drag-and-drop classifier placeholder interactive" height="1225" loading="lazy"></iframe>
+    </div>
+    <div class="seen"><b>Seen in the courses as:</b> Four-point AI evaluation framework, Stakeholder power-interest mapping, Asking effective questions.</div>
+  </div>
+  <div class="brief">
+    <h2>The brief</h2>
+    <p class="note">This is the example brief for the placeholder above, in the seven-part shape a build needs. Copy it, swap the placeholder content for yours, keep the structure.</p>
+    <p><b class="lead">Purpose.</b> Give the learner a way to practise classifying items by sorting scenario cards into labelled category zones and getting per-card feedback on where each one belongs.</p>
+<p><b class="lead">Layout.</b> A heading and a one-paragraph intro. Below it, a dashed tray holding four scenario cards in a two-column grid, each card showing a title, one line of text, and a visible &quot;Assign to zone&quot; select menu. Below the tray, a 2×2 grid of labelled drop zones, each with a one-line definition and a dashed drop area. Under the grid, two buttons — &quot;Check my answers&quot; and &quot;Return to tray / Restart&quot; — and a status line. At narrow widths the tray and the zone grid each collapse to one column.</p>
+<p><b class="lead">Interaction.</b> The learner drags a card from the tray into any zone&#x27;s drop area (HTML5 drag events); the target shows a thicker solid border while a drag hovers it. Every card also carries a visible &quot;Assign to zone&quot; select that moves the card to the chosen zone or back to the tray — the mandatory keyboard and touch path, mirroring the real course pattern. &quot;Check my answers&quot; reveals a feedback line inside each card: a tick or cross icon plus text naming the zone the card belongs in (never colour alone), and the status line announces the score. Moving a card or changing its select clears that card&#x27;s feedback. &quot;Return to tray / Restart&quot; sends all cards back to the tray and clears all feedback. A polite live region announces each move.</p>
+<p><b class="lead">States.</b> Each of the four cards is in exactly one of five containers — the tray or one of the four zones — all cards in the tray by default. Each card&#x27;s feedback is hidden, correct (tick), or incorrect/not-placed (cross); all hidden by default. Checking can happen at any time, including with cards still in the tray.</p>
+<p><b class="lead">Content.</b> Placeholder throughout. Labels used: heading &quot;Drag-and-drop classifier&quot;; cards &quot;Placeholder scenario A/B/C/D&quot;, each with &quot;One line of placeholder text describing scenario A/B/C/D.&quot;; zones &quot;Placeholder zone one/two/three/four&quot;, each with &quot;A one-line placeholder definition of zone one/two/three/four.&quot;; select options &quot;Tray (not placed)&quot; plus the four zone names; buttons &quot;Check my answers&quot; and &quot;Return to tray / Restart&quot;. Correct mapping is A→one, B→two, C→three, D→four — swap the mapping with the real content.</p>
+<p><b class="lead">Slug.</b> <code>drag-drop-classifier</code></p>
+<p><b class="lead">Target.</b> Practice — scratch page only.</p>
+    <button class="copybtn" id="copy">Copy brief as markdown</button>
+    <script type="text/plain" id="raw">**Purpose.** Give the learner a way to practise classifying items by sorting scenario cards into labelled category zones and getting per-card feedback on where each one belongs.
+
+**Layout.** A heading and a one-paragraph intro. Below it, a dashed tray holding four scenario cards in a two-column grid, each card showing a title, one line of text, and a visible &quot;Assign to zone&quot; select menu. Below the tray, a 2×2 grid of labelled drop zones, each with a one-line definition and a dashed drop area. Under the grid, two buttons — &quot;Check my answers&quot; and &quot;Return to tray / Restart&quot; — and a status line. At narrow widths the tray and the zone grid each collapse to one column.
+
+**Interaction.** The learner drags a card from the tray into any zone&#x27;s drop area (HTML5 drag events); the target shows a thicker solid border while a drag hovers it. Every card also carries a visible &quot;Assign to zone&quot; select that moves the card to the chosen zone or back to the tray — the mandatory keyboard and touch path, mirroring the real course pattern. &quot;Check my answers&quot; reveals a feedback line inside each card: a tick or cross icon plus text naming the zone the card belongs in (never colour alone), and the status line announces the score. Moving a card or changing its select clears that card&#x27;s feedback. &quot;Return to tray / Restart&quot; sends all cards back to the tray and clears all feedback. A polite live region announces each move.
+
+**States.** Each of the four cards is in exactly one of five containers — the tray or one of the four zones — all cards in the tray by default. Each card&#x27;s feedback is hidden, correct (tick), or incorrect/not-placed (cross); all hidden by default. Checking can happen at any time, including with cards still in the tray.
+
+**Content.** Placeholder throughout. Labels used: heading &quot;Drag-and-drop classifier&quot;; cards &quot;Placeholder scenario A/B/C/D&quot;, each with &quot;One line of placeholder text describing scenario A/B/C/D.&quot;; zones &quot;Placeholder zone one/two/three/four&quot;, each with &quot;A one-line placeholder definition of zone one/two/three/four.&quot;; select options &quot;Tray (not placed)&quot; plus the four zone names; buttons &quot;Check my answers&quot; and &quot;Return to tray / Restart&quot;. Correct mapping is A→one, B→two, C→three, D→four — swap the mapping with the real content.
+
+**Slug.** `drag-drop-classifier`
+
+**Target.** Practice — scratch page only.
+</script>
+    <script>
+    document.getElementById('copy').addEventListener('click', function () {
+      var raw = document.getElementById('raw').textContent;
+      navigator.clipboard.writeText(raw).then(() => {
+        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief as markdown', 1600);
+      });
+    });
+    </script>
+  </div>
+</div>
+<footer>Placeholder interactive — all content is placeholder by design. Heights: 1225px at desktop width, 1966px at phone width.</footer>
+</div></body></html>

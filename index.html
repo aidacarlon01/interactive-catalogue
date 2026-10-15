@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interactive pattern catalogue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#fff;color:#000;font-family:'Roboto',Arial,sans-serif;font-size:16px;line-height:1.55}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 48px}
+h1,h2,h3{font-family:'Roboto Condensed',Arial,sans-serif;font-weight:700}
+h1{color:#006DAE;font-size:34px;margin:0 0 8px}
+a{color:#006DAE}
+:focus-visible{outline:3px solid #005FCC;outline-offset:2px}
+.eyebrow{font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:700;color:#006DAE;margin-bottom:10px}
+.intro{color:#3F4041;max-width:72ch;margin:0 0 10px}
+.howto{border:1px solid #E2E2E2;border-left:4px solid #006DAE;border-radius:6px;background:#F9F9F9;padding:14px 18px;margin:18px 0 30px;max-width:860px}
+.howto b{color:#006DAE}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.card{border:1px solid #E2E2E2;border-radius:6px;overflow:hidden;background:#fff;display:flex;flex-direction:column;text-decoration:none;color:#000;transition:box-shadow .15s ease,transform .15s ease}
+.card:hover{box-shadow:0 6px 20px rgba(0,0,0,.10);transform:translateY(-2px)}
+.card img{width:100%;height:auto;display:block;border-bottom:1px solid #ECECEC;background:#F9F9F9}
+.card .pad{padding:14px 16px 16px}
+.card h2{font-size:18px;margin:0 0 6px;color:#006DAE}
+.card p{margin:0 0 10px;font-size:14px;color:#3F4041}
+.badge{display:inline-block;font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:11.5px;font-weight:700;color:#3F4041;border:1px solid #E2E2E2;border-radius:20px;padding:3px 10px}
+.back{display:inline-block;margin-bottom:14px;font-size:14px;text-decoration:none}
+.cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;align-items:start}
+@media(max-width:900px){.cols{grid-template-columns:1fr}}
+.frame{border:1px solid #E2E2E2;border-radius:6px;overflow:hidden}
+.frame iframe{display:block;border:0;width:100%}
+.framebar{display:flex;justify-content:space-between;align-items:center;background:#F5F5F5;border-bottom:1px solid #E2E2E2;padding:8px 12px;font-size:13px;color:#3F4041}
+.brief{border:1px solid #E2E2E2;border-top:4px solid #006DAE;border-radius:6px;padding:18px 20px;background:#fff}
+.brief h2{font-size:20px;margin:0 0 4px}
+.brief .note{font-size:13px;color:#3F4041;margin:0 0 14px}
+.brief p{font-size:14.5px;margin:0 0 12px}
+.brief ul{margin:0 0 12px;padding-left:20px;font-size:14.5px}
+.brief b.lead{color:#006DAE}
+.copybtn{font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:13px;font-weight:700;color:#006DAE;background:#fff;border:1.5px solid #006DAE;border-radius:6px;padding:9px 16px;cursor:pointer}
+.copybtn:hover{background:#006DAE;color:#fff}
+.seen{border:1px solid #E2E2E2;border-radius:6px;background:#F9F9F9;padding:14px 18px;margin-top:18px;font-size:14px;color:#3F4041}
+.seen b{color:#000}
+footer{margin-top:40px;padding-top:16px;border-top:1px solid #E2E2E2;font-size:12.5px;color:#818181;max-width:76ch}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="eyebrow">Monash courses &middot; FourthRev</div>
+<h1>Interactive pattern catalogue</h1>
+<p class="intro">Every interaction pattern used across the MON_DA courses, as a placeholder you can try. Pick the pattern that fits your learning goal, open it, and copy its brief.</p>
+<div class="howto"><b>How to use this:</b> <b>1.</b> Click a card and play with the placeholder. <b>2.</b> Copy its brief. <b>3.</b> Replace the placeholder content with yours &mdash; keep the seven headings, don&rsquo;t specify colours, fonts or layout mechanics (the house style supplies those). Hand the finished brief to the build process.</div>
+<div class="grid">
+<a class="card" href="card-grid-selector/"><img src="assets/thumbs/card-grid-selector.jpg" alt="Preview of the Card-grid selector placeholder interactive"><div class="pad"><h2>Card-grid selector</h2><p>Six-card grid where selecting a card reveals its detail panel below; one selected at a time.</p><span class="badge">Seen 9&times; in the courses</span></div></a><a class="card" href="tile-explorer/"><img src="assets/thumbs/tile-explorer.jpg" alt="Preview of the Tile explorer placeholder interactive"><div class="pad"><h2>Tile explorer</h2><p>Six explore-all tiles with a progress bar and insight panel; exploring all six reveals a completion panel.</p><span class="badge">Seen 4&times; in the courses</span></div></a><a class="card" href="tabs-stepper/"><img src="assets/thumbs/tabs-stepper.jpg" alt="Preview of the Tabs and stage stepper placeholder interactive"><div class="pad"><h2>Tabs and stage stepper</h2><p>Four numbered stage tabs with Next/Previous stepping and a loop back to stage one.</p><span class="badge">Seen 2&times; in the courses</span></div></a><a class="card" href="accordion-walkthrough/"><img src="assets/thumbs/accordion-walkthrough.jpg" alt="Preview of the Accordion walkthrough placeholder interactive"><div class="pad"><h2>Accordion walkthrough</h2><p>Four numbered accordion steps, one open at a time, each with a short paragraph and a Try it callout.</p><span class="badge">Seen 12&times; in the courses</span></div></a><a class="card" href="scene-stepper/"><img src="assets/thumbs/scene-stepper.jpg" alt="Preview of the Scene stepper placeholder interactive"><div class="pad"><h2>Scene stepper</h2><p>Four numbered scene chips with guided tour and reset, a diagram stage, and viewed-progress ticks.</p><span class="badge">Seen 9&times; in the courses</span></div></a><a class="card" href="before-after/"><img src="assets/thumbs/before-after.jpg" alt="Preview of the Before and after comparison placeholder interactive"><div class="pad"><h2>Before and after comparison</h2><p>Segmented toggle switching between a cluttered poor-example mock with issue notes and its improved version with fix notes.</p><span class="badge">Seen 6&times; in the courses</span></div></a><a class="card" href="parameter-explorer/"><img src="assets/thumbs/parameter-explorer.jpg" alt="Preview of the Parameter explorer placeholder interactive"><div class="pad"><h2>Parameter explorer</h2><p>Range slider plus presets driving a hand-drawn SVG chart whose moving-average line redraws with the chosen smoothing window.</p><span class="badge">Seen 5&times; in the courses</span></div></a><a class="card" href="drag-drop-classifier/"><img src="assets/thumbs/drag-drop-classifier.jpg" alt="Preview of the Drag-and-drop classifier placeholder interactive"><div class="pad"><h2>Drag-and-drop classifier</h2><p>Sort four placeholder scenario cards into a 2x2 grid of labelled zones by drag-and-drop or a per-card assign select, then check answers for per-card tick/cross feedback.</p><span class="badge">Seen 3&times; in the courses</span></div></a><a class="card" href="predict-reveal/"><img src="assets/thumbs/predict-reveal.jpg" alt="Preview of the Predict, then reveal placeholder interactive"><div class="pad"><h2>Predict, then reveal</h2><p>Two source tables, a committed numeric prediction via answer chips, then a revealed result table with matched/not-matched verdict and restart.</p><span class="badge">Seen 5&times; in the courses</span></div></a><a class="card" href="code-lab/"><img src="assets/thumbs/code-lab.jpg" alt="Preview of the Code lab placeholder interactive"><div class="pad"><h2>Code lab</h2><p>Build a three-line placeholder query across four selection-based rounds: pick a code fragment, see it land in a dark console, review a three-row result table, then advance to a completion strip.</p><span class="badge">Seen 5&times; in the courses</span></div></a><a class="card" href="labelled-diagram/"><img src="assets/thumbs/labelled-diagram.jpg" alt="Preview of the Labelled diagram placeholder interactive"><div class="pad"><h2>Labelled diagram</h2><p>Five numbered hotspot markers on an abstract SVG chart, each revealing its part in a panel below.</p><span class="badge">Seen 5&times; in the courses</span></div></a>
+</div>
+<footer>All eleven patterns were catalogued from the interactives in MON_DA_101 and MON_DA_201. Each placeholder is a single self-contained HTML file built to the Monash interactive rules; the brief beside it is the complete specification a colleague needs to request one.</footer>
+</div></body></html>

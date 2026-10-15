@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Accordion walkthrough</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  /* No min-height. Body height comes from content only. */
+  body {
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+    color: #000000;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 24px 16px 32px; }
+
+  h1, h2, h3 { font-family: 'Roboto Condensed', Arial, sans-serif; font-weight: 700; }
+
+  h1 { font-size: 28px; margin: 0 0 8px; }
+
+  .intro { margin: 0 0 20px; color: #3F4041; }
+
+  :focus-visible { outline: 3px solid #005FCC; outline-offset: 2px; }
+
+  .accordion {
+    border: 1px solid #E2E2E2;
+    border-radius: 8px;
+  }
+
+  .acc-item + .acc-item { border-top: 1px solid #E2E2E2; }
+
+  .acc-item h3 { margin: 0; }
+
+  .acc-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 14px 16px;
+    border: 0;
+    background: #FFFFFF;
+    color: #000000;
+    font: inherit;
+    font-family: 'Roboto Condensed', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .acc-item:first-child .acc-head { border-radius: 8px 8px 0 0; }
+  .acc-item:last-child .acc-head { border-radius: 0 0 8px 8px; }
+  .acc-item:last-child .acc-head[aria-expanded="true"] { border-radius: 0; }
+
+  .acc-head:hover { background: #F5F5F5; }
+
+  /* Open header inverts to Monash Blue; the flipped chevron and the expanded
+     body are the non-colour cues for the same state. */
+  .acc-head[aria-expanded="true"] { background: #006DAE; color: #FFFFFF; }
+  .acc-head[aria-expanded="true"]:hover { background: #00557F; }
+
+  .acc-num {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid #006DAE;
+    color: #006DAE;
+    font-family: 'Roboto Condensed', Arial, sans-serif;
+    font-size: 15px;
+  }
+
+  .acc-head[aria-expanded="true"] .acc-num { border-color: #FFFFFF; color: #FFFFFF; }
+
+  .acc-title { flex: 1 1 auto; }
+  .acc-title .acc-desc { font-family: 'Roboto', Arial, sans-serif; font-weight: 400; font-size: 15px; }
+  .acc-head[aria-expanded="false"] .acc-desc { color: #3F4041; }
+  .acc-head[aria-expanded="true"] .acc-desc { color: #FFFFFF; }
+
+  .acc-chevron { flex: 0 0 auto; transition: transform 200ms ease; }
+  .acc-head[aria-expanded="true"] .acc-chevron { transform: rotate(180deg); }
+
+  .acc-body { padding: 16px; }
+  .acc-body p { margin: 0 0 14px; }
+
+  .tryit {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    background: #F9F9F9;
+    border-left: 4px solid #006DAE;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .tryit svg { flex: 0 0 auto; margin-top: 2px; }
+
+  .tryit-label {
+    font-family: 'Roboto Condensed', Arial, sans-serif;
+    font-weight: 700;
+    color: #006DAE;
+    display: block;
+  }
+
+  .tryit p { margin: 0; font-size: 15px; }
+
+  [hidden] { display: none !important; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .acc-chevron { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Accordion walkthrough</h1>
+  <p class="intro">Work through the steps below in order. Open a step to read its detail and try the short activity, then move on to the next one.</p>
+
+  <div class="accordion" id="accordion">
+
+    <div class="acc-item">
+      <h3>
+        <button class="acc-head" id="acc-head-1" aria-expanded="true" aria-controls="acc-body-1">
+          <span class="acc-num" aria-hidden="true">1</span>
+          <span class="acc-title">Placeholder step one <span class="acc-desc">— short description of step one</span></span>
+          <svg class="acc-chevron" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+            <path d="M4 7.5 L10 13 L16 7.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </h3>
+      <div class="acc-body" id="acc-body-1" role="region" aria-labelledby="acc-head-1">
+        <p>Placeholder paragraph for step one. A short explanation of what this step covers sits here — two or three sentences a learner can read before trying it themselves.</p>
+        <div class="tryit">
+          <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+            <circle cx="10" cy="10" r="8" fill="none" stroke="#006DAE" stroke-width="2"/>
+            <path d="M8 6.5 L13 10 L8 13.5 Z" fill="#006DAE"/>
+          </svg>
+          <div>
+            <span class="tryit-label">Try it</span>
+            <p>Placeholder activity prompt for step one — a single task the learner carries out now.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <h3>
+        <button class="acc-head" id="acc-head-2" aria-expanded="false" aria-controls="acc-body-2">
+          <span class="acc-num" aria-hidden="true">2</span>
+          <span class="acc-title">Placeholder step two <span class="acc-desc">— short description of step two</span></span>
+          <svg class="acc-chevron" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+            <path d="M4 7.5 L10 13 L16 7.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </h3>
+      <div class="acc-body" id="acc-body-2" role="region" aria-labelledby="acc-head-2" hidden>
+        <p>Placeholder paragraph for step two. A short explanation of what this step covers sits here — two or three sentences a learner can read before trying it themselves.</p>
+        <div class="tryit">
+          <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+            <circle cx="10" cy="10" r="8" fill="none" stroke="#006DAE" stroke-width="2"/>
+            <path d="M8 6.5 L13 10 L8 13.5 Z" fill="#006DAE"/>
+          </svg>
+          <div>
+            <span class="tryit-label">Try it</span>
+            <p>Placeholder activity prompt for step two — a single task the learner carries out now.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <h3>
+        <button class="acc-head" id="acc-head-3" aria-expanded="false" aria-controls="acc-body-3">
+          <span class="acc-num" aria-hidden="true">3</span>
+          <span class="acc-title">Placeholder step three <span class="acc-desc">— short description of step three</span></span>
+          <svg class="acc-chevron" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+            <path d="M4 7.5 L10 13 L16 7.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </h3>
+      <div class="acc-body" id="acc-body-3" role="region" aria-labelledby="acc-head-3" hidden>
+        <p>Placeholder paragraph for step three. A short explanation of what this step covers sits here — two or three sentences a learner can read before trying it themselves.</p>
+        <div class="tryit">
+          <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+            <circle cx="10" cy="10" r="8" fill="none" stroke="#006DAE" stroke-width="2"/>
+            <path d="M8 6.5 L13 10 L8 13.5 Z" fill="#006DAE"/>
+          </svg>
+          <div>
+            <span class="tryit-label">Try it</span>
+            <p>Placeholder activity prompt for step three — a single task the learner carries out now.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <h3>
+        <button class="acc-head" id="acc-head-4" aria-expanded="false" aria-controls="acc-body-4">
+          <span class="acc-num" aria-hidden="true">4</span>
+          <span class="acc-title">Placeholder step four <span class="acc-desc">— short description of step four</span></span>
+          <svg class="acc-chevron" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+            <path d="M4 7.5 L10 13 L16 7.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </h3>
+      <div class="acc-body" id="acc-body-4" role="region" aria-labelledby="acc-head-4" hidden>
+        <p>Placeholder paragraph for step four. A short explanation of what this step covers sits here — two or three sentences a learner can read before trying it themselves.</p>
+        <div class="tryit">
+          <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+            <circle cx="10" cy="10" r="8" fill="none" stroke="#006DAE" stroke-width="2"/>
+            <path d="M8 6.5 L13 10 L8 13.5 Z" fill="#006DAE"/>
+          </svg>
+          <div>
+            <span class="tryit-label">Try it</span>
+            <p>Placeholder activity prompt for step four — a single task the learner carries out now.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // NOT documentElement.scroll-height — that is max(content, viewport) and
+  // over-reports whenever the content is shorter than the frame.
+  function contentHeight() {
+    return Math.ceil(document.body.getBoundingClientRect().height);
+  }
+
+  function reportHeight() {
+    if (window.parent === window) return;
+    window.parent.postMessage({ type: 'resize', height: contentHeight() }, '*');
+  }
+
+  var heads = Array.prototype.slice.call(document.querySelectorAll('.acc-head'));
+
+  function setOpen(head, open) {
+    head.setAttribute('aria-expanded', open ? 'true' : 'false');
+    var body = document.getElementById(head.getAttribute('aria-controls'));
+    if (open) { body.hidden = false; } else { body.hidden = true; }
+  }
+
+  heads.forEach(function (head) {
+    head.addEventListener('click', function () {
+      var isOpen = head.getAttribute('aria-expanded') === 'true';
+      heads.forEach(function (other) { if (other !== head) setOpen(other, false); });
+      setOpen(head, !isOpen);
+      reportHeight();
+    });
+
+    head.addEventListener('keydown', function (e) {
+      var i = heads.indexOf(head);
+      var next = null;
+      if (e.key === 'ArrowDown') next = heads[(i + 1) % heads.length];
+      else if (e.key === 'ArrowUp') next = heads[(i - 1 + heads.length) % heads.length];
+      else if (e.key === 'Home') next = heads[0];
+      else if (e.key === 'End') next = heads[heads.length - 1];
+      if (next) { e.preventDefault(); next.focus(); }
+    });
+  });
+
+  window.addEventListener('load', reportHeight);
+  window.addEventListener('resize', reportHeight);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(reportHeight);
+})();
+</script>
+</body>
+</html>

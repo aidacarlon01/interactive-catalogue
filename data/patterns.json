@@ -1,0 +1,133 @@
+{
+  "card-grid-selector": {
+    "name": "Card-grid selector",
+    "files": [
+      "280273",
+      "280274",
+      "280272",
+      "282783",
+      "280275",
+      "281681",
+      "284478",
+      "281913",
+      "281899"
+    ],
+    "examples": "Data Quality Dimensions, Common Excel Errors, SMART framework, Formula Anatomy, Preattentive Attributes, Four categories of SQL, Programming languages by sector, Comparing privacy laws, De-identifying survey"
+  },
+  "tile-explorer": {
+    "name": "Explore-all tile dashboard",
+    "files": [
+      "280526",
+      "286027",
+      "293227",
+      "293229"
+    ],
+    "examples": "Data never stops, Data ingestion and wrangling, Where does the tool fit (x2 dupe)"
+  },
+  "tabs-stepper": {
+    "name": "Tabs / stage stepper",
+    "files": [
+      "282791",
+      "286043"
+    ],
+    "examples": "Dashboard development lifecycle, Principles of pandas merge()"
+  },
+  "accordion-walkthrough": {
+    "name": "Accordion walkthrough / guided lesson",
+    "files": [
+      "285448",
+      "281916",
+      "283391",
+      "283392",
+      "283393",
+      "283394",
+      "283395",
+      "283396",
+      "283397",
+      "283399",
+      "283400",
+      "283398"
+    ],
+    "examples": "Reading the box, Power BI accessibility, + the ten Pandas guided lessons"
+  },
+  "scene-stepper": {
+    "name": "Scene stepper (animated concept explorer)",
+    "files": [
+      "286076",
+      "286075",
+      "286140",
+      "286138",
+      "286040",
+      "286134",
+      "284564",
+      "285444",
+      "281439"
+    ],
+    "examples": "Pandas agg/groupby/apply/map/concat, Reshaping a DataFrame, Python loop trace viewer, Building ax.plot(), Enhancing a chart"
+  },
+  "before-after": {
+    "name": "Before/after comparison (incl. flip, slider)",
+    "files": [
+      "282790",
+      "282789",
+      "282792",
+      "282793",
+      "281915",
+      "281626"
+    ],
+    "examples": "KPI card vs trend chart, KPI overload, Colour in dashboards, Layout & formatting, From exclusion to inclusive design, ERD vs Schema"
+  },
+  "parameter-explorer": {
+    "name": "Parameter explorer / simulator",
+    "files": [
+      "285447",
+      "284786",
+      "291124",
+      "284787",
+      "280564"
+    ],
+    "examples": "Bin width matters, Moving average window, What will this job cost, Time series decomposition, Categories of data visualisation"
+  },
+  "drag-drop": {
+    "name": "Drag-and-drop classifier",
+    "files": [
+      "284785",
+      "281917",
+      "280537"
+    ],
+    "examples": "Four-point AI evaluation framework, Stakeholder power-interest mapping, Asking effective questions"
+  },
+  "predict-reveal": {
+    "name": "Predict-then-reveal practice",
+    "files": [
+      "286044",
+      "283397",
+      "281733",
+      "281918",
+      "281912"
+    ],
+    "examples": "Pick your join, Which missing-value method, AI SQL verification cockpit, Dashboard consolidation planner, McNulty framework"
+  },
+  "code-lab": {
+    "name": "Code lab / console simulation",
+    "files": [
+      "281684",
+      "289042",
+      "289045",
+      "289046",
+      "283398"
+    ],
+    "examples": "SQL Query/Aggregation/Change/Joins labs, loc vs iloc"
+  },
+  "labelled-diagram": {
+    "name": "Labelled diagram / hotspot",
+    "files": [
+      "280930",
+      "285443",
+      "292058",
+      "281412",
+      "283151"
+    ],
+    "examples": "Boxplot components, Anatomy of a Matplotlib figure, Reading a data table, Connecting to data in Power BI, Data types in Power BI"
+  }
+}
