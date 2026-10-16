@@ -1,0 +1,45 @@
+<h2>About this build</h2>
+<p><strong>A sample course that shows a production Canvas theme working the way learners actually meet it.</strong></p>
+<p>I designed and coded this theme for a university's online AI and data analytics programs, delivered in Canvas LMS. Instead of showing it as a list of components, this site puts the theme inside a short course: a home page and four content pages, connected the way modules and topics are in a live course. The copy is style guide copy, so each component explains itself, and no real course content is used.</p>
+
+<h2>What I built</h2>
+<ul>
+<li><strong>The theme stylesheet:</strong> design tokens drawn from the university's published brand palette, with every colour pair checked for WCAG contrast. All styles are scoped to authored page content, so Canvas's own interface is never affected.</li>
+<li><strong>The theme script:</strong> small, self-contained modules that enhance authored markup: the page banner, transcript and glossary dialogs, the image lightbox and card navigation. One shared content watcher re-runs them whenever Canvas re-renders part of a page, and each module is safe to run more than once.</li>
+<li><strong>The component set:</strong> the authored markup a learning technologist pastes into the Rich Content Editor, documented in an internal style guide and used across every course in the program.</li>
+</ul>
+
+<h2>Accessibility decisions</h2>
+<table>
+<caption>Design choices made for WCAG 2.2 AA</caption>
+<thead><tr><th scope="col">Decision</th><th scope="col">Why</th></tr></thead>
+<tbody>
+<tr><td>Inline links keep their underline</td><td>Colour is never the only cue (1.4.1 Use of Color)</td></tr>
+<tr><td>Dialogs move focus into themselves, keep it there and hand it back on close; the background is made inert</td><td>Keyboard and screen reader users stay oriented (2.1.2, 2.4.3)</td></tr>
+<tr><td>Accordions use native details and summary</td><td>Fully accessible with no script to fail</td></tr>
+<tr><td>Image zoom is opt-in per image</td><td>Decorative images and icons stay out of the tab order</td></tr>
+<tr><td>Glossary terms stay inline</td><td>Keeps the inline exception for target size (2.5.8)</td></tr>
+<tr><td>Transcripts are authored in the page</td><td>If the script fails, the text is still there</td></tr>
+<tr><td>Banner titles are real text from the page heading</td><td>The page keeps its accessible name; the image is decorative</td></tr>
+</tbody>
+</table>
+
+<h2>How this static version differs from Canvas</h2>
+<p>The page bodies, theme stylesheet and theme script are the production files. Around them, this site recreates the Canvas frame (navigation, breadcrumb and module footer) in a separate stylesheet. Three things change for the web:</p>
+<ol>
+<li>Videos are placeholders, because course videos belong to the client.</li>
+<li>The Canvas icon font isn't available, so well icons are inline SVG.</li>
+<li>The H5P resizer module is swapped for one that sizes the embedded catalogue interactives.</li>
+</ol>
+
+<h4 class="box_heading wcag-well-heading"><span class="well-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v4h4M8 11h8M8 15h8M8 19h5"/></svg></span>Related work</h4>
+<div class="box_content wcag-well-content">
+<p>The interactive activities in this course come from my <a href="https://aidacarlon01.github.io/interactive-catalogue/">interactive pattern catalogue</a>: placeholder interactives, each with a brief a learning designer can fill in and hand over to be built.</p>
+</div>
+
+<div class="wcag-single-cta">
+<div class="wcag-action-card">
+<p class="wcag-action-card__text">Take the tour from the start.</p>
+<div class="wcag-action-card__bottom"><div class="wcag-button-row"><a class="wcag-button" href="index.html">Go to the sample course</a></div></div>
+</div>
+</div>

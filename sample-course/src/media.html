@@ -1,0 +1,43 @@
+<div class="wcag-page-banner"><img src="assets/img/banner-activity.jpg" alt=""></div>
+<h2>Media</h2>
+<p><strong>Video, images and embedded interactives, each with an accessible alternative built in.</strong></p>
+<p>Media carries a lot of the teaching in an online course, and it's also where accessibility most often breaks. Each media component here ships with its alternative: a transcript for video, alt text and an accessible zoom for images, and a title and keyboard support for embeds.</p>
+
+<h2>Video template</h2>
+<p>The video template frames a hosted video with a title above it and a Transcript button below. The frame holds a 16:9 ratio at every screen width, so the video never letterboxes or overflows on a phone.</p>
+<div class="pad-box-mega border border-trbl video-template">
+<h4 class="video-template__title">Watch: How the video template works</h4>
+<div class="video-container">
+<div class="video-placeholder" style="background-image:url('assets/img/banner-welcome.jpg'); background-position: right center;" role="img" aria-label="Video placeholder: in a live course the hosted video plays here.">
+<span class="video-placeholder__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span>
+<span class="video-placeholder__label" aria-hidden="true">Video placeholder: paste the provider's embed iframe inside the video container.</span>
+</div>
+</div>
+<div id="transcript-video-2" class="video-transcript">
+<h3 class="video-transcript__title">Transcript: How the video template works</h3>
+<h4>Parts of the template</h4>
+<p>The template has four parts: a Heading 4 title, a video container that holds the provider's iframe, the transcript itself, and a link that opens it.</p>
+<h4>Authoring the transcript</h4>
+<p>Paste the transcript into the transcript block below the video. Give the block an id, and point the Transcript link at it with aria-controls. The theme script does the rest: it stops Canvas turning the block into its own plain dialog, then shows the text in this styled one.</p>
+<h4>If the script doesn't load</h4>
+<p>The transcript stays on the page as ordinary text, so learners can still read it.</p>
+</div>
+<div class="video-transcript-link"><a class="btn btn-small transcript-button" title="How the video template works transcript" href="#transcript-video-2" aria-label="How the video template works: transcript" aria-controls="transcript-video-2">Transcript</a></div>
+</div>
+
+<h2>Zoomable images</h2>
+<p>Diagrams with small labels can be marked as zoomable. Select the image below, or tab to it and press Enter, to open it full screen. Press Escape or the close button to return to the page.</p>
+<figure class="content-figure">
+<img class="wcag-zoomable" src="assets/img/page-anatomy.svg" width="1200" height="720" alt="Diagram of a course page with six labelled parts: 1 page banner, 2 Heading 2, 3 body text, 4 well, 5 clickable cards, 6 module navigation.">
+<figcaption>Figure 1: The anatomy of a content page. Zoom is opt-in: only images given the <code>wcag-zoomable</code> class become zoom buttons, so icons and decorative images stay out of the keyboard tab order.</figcaption>
+</figure>
+
+<h2>Embedded interactives</h2>
+<p>Interactives and H5P activities embed as iframes. Give every iframe a title that says what it is, because that's what a screen reader announces. The frame resizes itself to its content height, so learners never scroll inside a box within the page.</p>
+<iframe class="embed-frame" title="Labelled diagram: select each numbered marker to learn about that part" src="../interactives/labelled-diagram/" style="height: 721px;" loading="lazy"></iframe>
+<p class="embed-note">Placeholder interactive from the <a href="https://aidacarlon01.github.io/interactive-catalogue/labelled-diagram/">interactive pattern catalogue</a>: labelled diagram.</p>
+
+<h4 class="box_heading wcag-well-heading"><span class="well-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v4h4M8 11h8M8 15h8M8 19h5"/></svg></span>Note</h4>
+<div class="box_content wcag-well-content">
+<p>Every image needs alt text that says what the image shows and why it matters on this page. If an image is purely decorative, give it an empty alt (<code>alt=""</code>) so screen readers skip it. Banners are decorative, which is why the page title in each banner is real text, not part of the picture.</p>
+</div>
