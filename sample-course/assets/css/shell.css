@@ -191,3 +191,6 @@ figure.content-figure figcaption { font-size: 0.9rem; color: #3F4041; margin-top
     .video-placeholder__label { display: none; }
     .video-placeholder__play { width: 60px; height: 60px; }
 }
+@media (max-width: 600px) {
+    .user_content table { display: block; overflow-x: auto; }
+}
