@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>2. Callouts and navigation · SAMPLE_101: Course Style Guide</title>
+<title>2. Designing for every learner · SAMPLE_101: Course Style Guide</title>
 <meta name="description" content="A sample Canvas course built on a custom WCAG 2.2 AA theme, built as a portfolio piece.">
 <link rel="stylesheet" href="assets/css/theme.css">
 <link rel="stylesheet" href="assets/css/shell.css">
@@ -30,8 +30,8 @@
       <nav class="breadcrumbs" aria-label="Breadcrumb">
         <ol>
           <li><a href="index.html">SAMPLE_101</a></li>
-          <li><a href="reading-content.html">Modules</a></li>
-          <li><span aria-current="page">2. Callouts and navigation</span></li>
+          
+          <li><span aria-current="page">2. Designing for every learner</span></li>
         </ol>
       </nav>
     </header>
@@ -40,111 +40,89 @@
         <p class="course-nav__code">SAMPLE_101</p>
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="reading-content.html" aria-current="page">Modules</a></li>
-          <li><a href="callouts-navigation.html#glossary">Glossary</a></li>
+          <li><a href="reading-content.html">Page 1</a></li>
+          <li><a href="callouts-navigation.html" aria-current="page">Page 2</a></li>
+          <li><a href="media.html">Page 3</a></li>
+          <li><a href="interactive-activities.html">Page 4</a></li>
           <li aria-hidden="true"><hr class="course-nav__sep"></li>
           <li><a href="about.html">About this build</a></li>
         </ul>
       </nav>
       <div class="content-wrap">
         <main id="content" class="ic-Layout-contentMain" tabindex="-1">
-          <h1 class="page-title">2. Callouts and navigation</h1>
+          <h1 class="page-title">2. Designing for every learner</h1>
           <div class="show-content user_content">
 <div class="wcag-page-banner"><img src="assets/img/banner-topic.jpg" alt=""></div>
-<h2>Callouts and navigation</h2>
-<p><strong>Components that make content stand out and show learners where to go next.</strong></p>
-<p>Callouts pull one piece of content out of the flow of a page. Navigation components move a learner between pages. Both work best when they're used sparingly: if everything is highlighted, nothing is.</p>
+<h2>Designing for every learner</h2>
+<p><strong>Accessibility isn't a layer added at the end. It's a set of choices made in every component.</strong></p>
+<p>Some learners read with a screen reader, some move through a page with the keyboard alone, and some zoom text to twice its size or more. Many more are reading on a phone, in bright light, or at the end of a long day. A course built to the <span class="wcag-glossary-term" role="button" data-glossary-term="WCAG 2.2 AA" data-glossary-definition="Level AA of the Web Content Accessibility Guidelines, version 2.2. AA is the accepted baseline for web services; 2.2 adds criteria for focus appearance and target size.">WCAG 2.2 AA</span> standard works for all of them, and it's easier for everyone else to use too.</p>
 
-<h2>Wells</h2>
-<p>A well is a callout with a heading bar and a content panel. The icon and heading name the kind of callout, so learners can tell a reminder from a task before they read it. These three cover most needs.</p>
+<h2>Colour and contrast</h2>
+<p>Text needs enough contrast with its background to be read comfortably. The standard asks for a ratio of at least 4.5:1 for body text, and 3:1 for large text and interface parts such as borders and focus outlines. Every colour pair in this course has been checked against that formula.</p>
+<table>
+<caption>Colours used in this course and their contrast on white</caption>
+<thead>
+<tr><th scope="col">Colour</th><th scope="col">Used for</th><th scope="col">Contrast</th></tr>
+</thead>
+<tbody>
+<tr><td>Brand blue #006DAE</td><td>Headings, links, card hover</td><td>5.53:1</td></tr>
+<tr><td>Dark blue #00557F</td><td>Link hover</td><td>8.06:1</td></tr>
+<tr><td>Black #000000</td><td>Body text</td><td>21:1</td></tr>
+<tr><td>Grey #3F4041</td><td>Captions and credits</td><td>10.4:1</td></tr>
+<tr><td>Focus blue #005FCC</td><td>Keyboard focus outline</td><td>5.98:1</td></tr>
+</tbody>
+</table>
+<p>Colour is also never the only signal. Links in body text, like this one to the <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html">guidance on use of colour</a>, keep their underline, so a learner who can't tell blue from black can still find them.</p>
 
-<h4 class="box_heading wcag-well-heading"><span class="well-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v4h4M8 11h8M8 15h8M8 19h5"/></svg></span>Note</h4>
-<div class="box_content wcag-well-content">
-<p>Use a note for information a learner must not miss, such as a download or a date. Keep it short and use one per page.</p>
+<blockquote class="blockquote">
+<p class="blockquote_text">The power of the Web is in its universality. Access by everyone regardless of disability is an essential aspect.</p>
+<p class="blockquote_text blockquote_text--credit">Tim Berners-Lee, W3C Director and inventor of the World Wide Web</p>
+</blockquote>
+
+<h2>How a page is structured</h2>
+<p>Every page in this course follows the same structure, from the banner at the top to the navigation at the bottom. Select the diagram to enlarge it.</p>
+<figure class="content-figure">
+<img class="wcag-zoomable" src="assets/img/page-anatomy.svg" width="1200" height="720" alt="Diagram of a course page with six labelled parts: 1 page banner, 2 Heading 2, 3 body text, 4 well, 5 clickable cards, 6 module navigation.">
+<figcaption>Figure 1: The six parts of a content page.</figcaption>
+</figure>
+<p>Headings do more than break up the text. Screen reader users move through a page by its heading outline, so a page that skips from a Heading 2 straight to a Heading 4 is harder to navigate, even if it looks fine.</p>
+
+<h2>Explore: six principles of accessible pages</h2>
+<p>Select each card to read about one principle.</p>
+<iframe class="embed-frame" title="Card-grid selector: select a card to show its details" src="../interactives/card-grid-selector/" style="height: 753px;" loading="lazy"></iframe>
+<p class="embed-note">Placeholder content from my <a href="https://aidacarlon01.github.io/interactive-catalogue/card-grid-selector/">interactive pattern catalogue</a>.</p>
+
+<h2>Common questions</h2>
+<details>
+<summary class="accordions">Why are headings in sentence case, not capitals?</summary>
+<div class="panel">
+<p>Headings here are full sentences. Set in capitals, they read as shouting, they're harder to scan, and some screen readers spell them out letter by letter.</p>
 </div>
-
-<h4 class="box_heading wcag-well-heading"><span class="well-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><path d="M15.5 14.6c2.9-.4 5.2 1.3 6 4.4"/></svg></span>Reflect</h4>
-<div class="box_content wcag-well-content">
-<p>Use a reflection well to give learners questions to think about. They aren't graded, so a short list works best:</p>
-<ul>
-<li>Which component on this page would you reach for first, and why?</li>
-<li>Where in your own courses would a callout help a learner, and where would it get in the way?</li>
-</ul>
+</details>
+<details>
+<summary class="accordions">Why isn't the quote in italics?</summary>
+<div class="panel">
+<p>Long runs of italic text are harder to read, particularly for learners with dyslexia or low vision. Italics are kept for short spans, such as the title of a book.</p>
 </div>
+</details>
+<details>
+<summary class="accordions">How is a callout built?</summary>
+<div class="panel">
+<p>Every callout in this course is the same two elements, a heading and a content panel, so it looks and behaves the same wherever it appears:</p>
+<pre><code>&lt;h4 class="box_heading wcag-well-heading"&gt;Note&lt;/h4&gt;
+&lt;div class="box_content wcag-well-content"&gt;
+  &lt;p&gt;The one thing a learner must not miss.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</details>
 
 <h4 class="box_heading wcag-well-heading"><span class="well-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.5 4.5l5 5L9 20H4v-5z"/><path d="M12.5 6.5l5 5"/></svg></span>Apply your learning</h4>
 <div class="box_content wcag-well-content">
-<p>Use an activity well when the page stops explaining and asks the learner to do something. Say what to make, where to put it, and roughly how long it should take.</p>
-<p>For example: list three pages in a course you know well, and name the one component each page is missing. Spend about 10 minutes on it.</p>
-</div>
-
-<h2>Glossary terms</h2>
-<p>Key terms in the body text open their definition in a small dialog, so learners can check a word without leaving the page. Try <span class="wcag-glossary-term" role="button" data-glossary-term="Component" data-glossary-definition="A reusable piece of authored page markup, such as a well, card or accordion, that the theme styles and, where needed, enhances with script.">component</span> or <span class="wcag-glossary-term" role="button" data-glossary-term="WCAG 2.2 AA" data-glossary-definition="Level AA of the Web Content Accessibility Guidelines, version 2.2: the accessibility standard every component in this theme is built and tested against.">WCAG 2.2 AA</span>. The term is authored as a <code>span</code> with its definition in data attributes, because Canvas removes <code>button</code> elements from page content. The theme script makes it keyboard-operable when the page loads.</p>
-
-<h2>Topic cards</h2>
-<p>Cards are the main way learners move through a module. Each card is a single link: an eyebrow for the topic number, a title, and pills listing the activities inside. Hover over a card or tab to it and it fills with Monash Blue.</p>
-<div class="wcag-grid">
-<a class="wcag-card" style="display: block;" href="media.html"> <span class="wcag-card__eyebrow" style="display: block;">Topic 3</span> <span class="wcag-card__title" style="display: block;">Media</span> <span class="wcag-card__bottom" style="display: block;"> <span class="wcag-card__bottom-label" style="display: block;">Activities</span> <span class="wcag-pills"><span class="wcag-pill">Video</span><span class="wcag-pill">Embedded interactive</span></span> </span> </a>
-<a class="wcag-card" style="display: block;" href="interactive-activities.html"> <span class="wcag-card__eyebrow" style="display: block;">Topic 4</span> <span class="wcag-card__title" style="display: block;">Interactive activities</span> <span class="wcag-card__bottom" style="display: block;"> <span class="wcag-card__bottom-label" style="display: block;">Activities</span> <span class="wcag-pills"><span class="wcag-pill">Three practice activities</span></span> </span> </a>
-<a class="wcag-card" style="display: block;" href="reading-content.html"> <span class="wcag-card__eyebrow" style="display: block;">Topic 1</span> <span class="wcag-card__title" style="display: block;">Reading content</span> <span class="wcag-card__bottom" style="display: block;"> <span class="wcag-card__bottom-label" style="display: block;">Activities</span> <span class="wcag-pills"><span class="wcag-pill">Scenario</span><span class="wcag-pill">Code example</span></span> </span> </a>
-</div>
-
-<h2>Action cards and buttons</h2>
-<p>Action cards give a learner a choice between a few clear next steps. Each one pairs a short sentence with a single button. Buttons are outlined in Monash Blue and fill when hovered or focused.</p>
-<div class="wcag-action-grid">
-<div class="wcag-action-card">
-<span class="wcag-action-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h11a3 3 0 0 1 3 3v12H7a3 3 0 0 1-3-3z"/><path d="M4 17a3 3 0 0 1 3-3h11"/></svg></span>
-<p class="wcag-action-card__text">Use an action card to send learners to the start of the course or module, with the overview, schedule and tips for success.</p>
-<div class="wcag-action-card__bottom"><div class="wcag-button-row"><a class="wcag-button" href="index.html">Course home</a></div></div>
-</div>
-<div class="wcag-action-card">
-<span class="wcag-action-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><path d="M15.5 14.6c2.9-.4 5.2 1.3 6 4.4"/></svg></span>
-<p class="wcag-action-card__text">Use a second card for the other common route, such as support, community or the module list, so learners can continue where they left off.</p>
-<div class="wcag-action-card__bottom"><div class="wcag-button-row"><a class="wcag-button" href="interactive-activities.html">Continue to activities</a></div></div>
-</div>
-</div>
-
-<h2 id="glossary">Glossary page</h2>
-<p class="wcag-gp__intro">A course glossary collects every term learners meet in a course. The letter bar jumps to each section, and letters with no terms are greyed out and can't be selected, so nobody follows a link to an empty section.</p>
-<nav class="wcag-gp__alpha-nav" aria-label="Glossary letters">
-<a class="wcag-gp__alpha-chip" href="#gp-a">A</a><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">B</span><a class="wcag-gp__alpha-chip" href="#gp-c">C</a><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">D</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">E</span><a class="wcag-gp__alpha-chip" href="#gp-f">F</a><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">G</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">H</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">I</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">J</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">K</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">L</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">M</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">N</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">O</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">P</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">Q</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">R</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">S</span><a class="wcag-gp__alpha-chip" href="#gp-t">T</a><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">U</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">V</span><a class="wcag-gp__alpha-chip" href="#gp-w">W</a><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">X</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">Y</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">Z</span>
-</nav>
-
-<div class="wcag-gp__section" id="gp-a">
-<h3>A</h3>
-<dl class="wcag-gp__list">
-<div class="wcag-gp__item"><dt class="wcag-gp__term"><strong>Accordion</strong></dt><dd class="wcag-gp__def">A heading that opens to show more content beneath it. Built from native details and summary elements, so it works with a keyboard and screen reader without script.</dd></div>
-<div class="wcag-gp__item"><dt class="wcag-gp__term"><strong>Action card</strong></dt><dd class="wcag-gp__def">A panel that pairs one sentence of context with one button, used to offer a clear next step.</dd></div>
-</dl>
-</div>
-<div class="wcag-gp__section" id="gp-c">
-<h3>C</h3>
-<dl class="wcag-gp__list">
-<div class="wcag-gp__item"><dt class="wcag-gp__term"><strong>Card</strong></dt><dd class="wcag-gp__def">A single link styled as a tile, with an eyebrow, a title and optional activity pills. Used to move between topics and modules.</dd></div>
-<div class="wcag-gp__item"><dt class="wcag-gp__term"><strong>Component</strong></dt><dd class="wcag-gp__def">A reusable piece of authored page markup that the theme styles and, where needed, enhances with script.</dd></div>
-</dl>
-</div>
-<div class="wcag-gp__section" id="gp-f">
-<h3>F</h3>
-<dl class="wcag-gp__list">
-<div class="wcag-gp__item"><dt class="wcag-gp__term"><strong>Focus ring</strong></dt><dd class="wcag-gp__def">The visible outline that shows which element has keyboard focus. The theme draws it in a high-visibility blue on every interactive component.</dd></div>
-</dl>
-</div>
-<div class="wcag-gp__section" id="gp-t">
-<h3>T</h3>
-<dl class="wcag-gp__list">
-<div class="wcag-gp__item"><dt class="wcag-gp__term"><strong>Transcript</strong></dt><dd class="wcag-gp__def">The full text of a video's spoken content, opened in an accessible dialog from the button below the video.</dd></div>
-</dl>
-</div>
-<div class="wcag-gp__section" id="gp-w">
-<h3>W</h3>
-<dl class="wcag-gp__list">
-<div class="wcag-gp__item"><dt class="wcag-gp__term"><strong>Well</strong></dt><dd class="wcag-gp__def">A callout with a heading bar and a content panel, used for notes, reflections and activities.</dd></div>
-</dl>
+<p>Open a page from a course you know and move through it using only the Tab key. Note where focus goes, whether you can always see it, and anything you can't reach. Spend about 10 minutes on this.</p>
 </div>
           </div>
         </main>
-        <nav class="module-footer" aria-label="Module navigation"><a href="reading-content.html" aria-label="Previous: 1. Reading content">&#8592; Previous</a><a href="media.html" aria-label="Next: 3. Media">Next &#8594;</a></nav>
+        <nav class="module-footer" aria-label="Module navigation"><a href="reading-content.html" aria-label="Previous: 1. Building a consistent course">&#8592; Previous</a><a href="media.html" aria-label="Next: 3. Media that works for everyone">Next &#8594;</a></nav>
       </div>
     </div>
   </div>

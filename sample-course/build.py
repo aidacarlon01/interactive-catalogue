@@ -15,10 +15,10 @@ CODE = "SAMPLE_101"
 # (file, page title, course-nav key)
 PAGES = [
     ("index", "Welcome to the sample course", "home"),
-    ("reading-content", "1. Reading content", "modules"),
-    ("callouts-navigation", "2. Callouts and navigation", "modules"),
-    ("media", "3. Media", "modules"),
-    ("interactive-activities", "4. Interactive activities", "modules"),
+    ("reading-content", "1. Building a consistent course", "p1"),
+    ("callouts-navigation", "2. Designing for every learner", "p2"),
+    ("media", "3. Media that works for everyone", "p3"),
+    ("interactive-activities", "4. Practice and review", "p4"),
     ("about", "About this build", "about"),
 ]
 FLOW = ["index", "reading-content", "callouts-navigation", "media", "interactive-activities"]
@@ -100,8 +100,9 @@ def global_items():
 
 
 def course_items(active):
-    items = [("home", "index.html", "Home"), ("modules", "reading-content.html", "Modules"),
-             ("glossary", "callouts-navigation.html#glossary", "Glossary"),
+    items = [("home", "index.html", "Home"), ("p1", "reading-content.html", "Page 1"),
+             ("p2", "callouts-navigation.html", "Page 2"), ("p3", "media.html", "Page 3"),
+             ("p4", "interactive-activities.html", "Page 4"),
              None, ("about", "about.html", "About this build")]
     out = []
     for it in items:
@@ -129,7 +130,7 @@ def footer(name):
 def main():
     for name, title, nav in PAGES:
         body = (HERE / "src" / f"{name}.html").read_text(encoding="utf-8")
-        crumb_mid = '<li><a href="reading-content.html">Modules</a></li>' if nav == "modules" else ""
+        crumb_mid = ""
         html = TEMPLATE.format(
             title=escape(title), course=escape(COURSE), code=CODE,
             global_items=global_items(), menu=MENU, crumb_mid=crumb_mid,
