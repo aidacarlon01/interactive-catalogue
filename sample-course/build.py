@@ -19,7 +19,6 @@ PAGES = [
     ("callouts-navigation", "2. Colour and typography", "p2"),
     ("media", "3. Accessibility and structure", "p3"),
     ("interactive-activities", "4. The theme script", "p4"),
-    ("about", "About this build", "about"),
 ]
 FLOW = ["index", "reading-content", "callouts-navigation", "media", "interactive-activities"]
 
@@ -47,7 +46,6 @@ TEMPLATE = """<!DOCTYPE html>
 <a class="skip-link" href="#content">Skip to content</a>
 <div class="portfolio-strip">
   <span>Portfolio piece: a sample Canvas course built on a custom theme I designed and coded (WCAG 2.2 AA).</span>
-  <a href="about.html">About this build</a>
 </div>
 <div id="application">
   <nav class="global-nav" aria-label="Global navigation (illustration)">
@@ -102,8 +100,7 @@ def global_items():
 def course_items(active):
     items = [("home", "index.html", "Home"), ("p1", "reading-content.html", "Page 1"),
              ("p2", "callouts-navigation.html", "Page 2"), ("p3", "media.html", "Page 3"),
-             ("p4", "interactive-activities.html", "Page 4"),
-             None, ("about", "about.html", "About this build")]
+             ("p4", "interactive-activities.html", "Page 4")]
     out = []
     for it in items:
         if it is None:
