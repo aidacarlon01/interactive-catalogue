@@ -1,70 +1,105 @@
 <div class="wcag-page-banner"><img src="assets/img/banner-glossary.jpg" alt=""></div>
-<h2>Practice and review</h2>
-<p><strong>Check what you've learned, then review the key ideas and terms from this course.</strong></p>
-<p>This page brings the course together. Start with the activity to test your understanding, then use the summary and key terms to review anything you'd like to revisit.</p>
+<h2>The theme script</h2>
+<p><strong>Seven small, self-contained modules, each there because a component in the content needs it.</strong></p>
+<p>The JavaScript follows the modular pattern of reference build A. Each module runs in strict mode and is <span class="wcag-glossary-term" role="button" data-glossary-term="Idempotent" data-glossary-definition="Safe to run more than once: running a module a second time on the same page changes nothing and doesn't duplicate its effects.">idempotent</span>, and one shared helper sits alongside them. A shared content watcher re-runs the modules whenever Canvas re-renders part of a page, so components added after the first load are wired up too. Global listeners are registered once, guarded against the theme loading twice.</p>
+<p>The script binds to the same component classes the course content is authored with, verified against the full page inventory, so it works against real pages with no find-and-replace.</p>
+<table>
+<caption>Theme script modules</caption>
+<thead><tr><th scope="col">#</th><th scope="col">Module</th><th scope="col">What it does</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>H5P resizer</td><td>Sizes H5P frames from their height messages, checking the sender's origin and clamping the height</td></tr>
+<tr><td>2</td><td>Image lightbox</td><td>Turns opted-in images into keyboard-operable zoom buttons that open a true modal dialog</td></tr>
+<tr><td>3</td><td>Transcript modal</td><td>Opens the transcript in a focus-managed dialog, and stops Canvas opening its own plain dialog</td></tr>
+<tr><td>4</td><td>Card navigation</td><td>Makes linked cards work with Enter and Space, without hijacking controls nested inside</td></tr>
+<tr><td>5</td><td>Page banner</td><td>Rebuilds the banner Canvas strips on save, and writes the page title into the overlay</td></tr>
+<tr><td>6</td><td>Video label cleanup</td><td>Removes the stray "[Video]" text Canvas adds beside video embeds</td></tr>
+<tr><td>7</td><td>Glossary modal</td><td>Turns glossary terms into accessible buttons that open their definition in a dialog</td></tr>
+</tbody>
+</table>
+
+<h2>Consolidated from the reference build</h2>
+<p>Reference build A carried two banner systems: one with a partner prefix and one generic. The content here only ever uses the generic one, so the duplicate was removed and its title-overlay logic folded into the single system that remains.</p>
+<h4 class="box_heading wcag-well-heading"><span class="well-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v4h4M8 11h8M8 15h8M8 19h5"/></svg></span>Note</h4>
+<div class="box_content wcag-well-content">
+<p><strong>Where the brand lives</strong></p>
+<p>Class names that bind the script to markup are kept exactly as the content authors them, with the <code>wcag-</code> prefix. Brand identity lives in the stylesheet's colour tokens instead, which is the right place for it.</p>
+</div>
+
+<h2>Explore</h2>
+<iframe class="embed-frame" title="Tabs and stage stepper: step through four stages" src="../interactives/tabs-stepper/" style="height: 556px;" loading="lazy"></iframe>
+<p class="embed-note">Placeholder interactive.</p>
+
+<h2>Deliberately left out</h2>
+<details>
+<summary class="accordions">Learning outcomes hidden in a pop-up</summary>
+<div class="panel"><p>Reference build B hard-coded around 330 lines of course-specific outcomes inside the theme script and showed them in a modal. That ties content to presentation, makes the file course-specific, and hides outcomes behind a click. Outcomes are authored on the page instead.</p></div>
+</details>
+<details>
+<summary class="accordions">Forcing links to open in new tabs</summary>
+<div class="panel"><p>New windows break the back button and disorient assistive-technology users. Links open in the same tab unless an author sets a target explicitly.</p></div>
+</details>
+<details>
+<summary class="accordions">Loading the whole Google Fonts library</summary>
+<div class="panel"><p>Reference build B imported hundreds of font families on every page, a serious performance problem. This theme loads only the two families it uses.</p></div>
+</details>
+<details>
+<summary class="accordions">A script for accordions</summary>
+<div class="panel"><p>Accordions are native details and summary elements, which work with a keyboard and screen reader with no script at all. One less moving part.</p></div>
+</details>
+<details>
+<summary class="accordions">Carousels, tabs, slideshows and read-more toggles</summary>
+<div class="panel"><p>None of them appear in the course content, so none of them are in the script.</p></div>
+</details>
 
 <h2>Check your knowledge</h2>
-<p>Sort each scenario into the zone it belongs to, then check your answers. You can drag each card, or use its menu to place it.</p>
 <iframe class="embed-frame" title="Drag-and-drop classifier: sort each card into a zone, then check your answers" src="../interactives/drag-drop-classifier/" style="height: 1225px;" loading="lazy"></iframe>
-<p class="embed-note">Placeholder content from my <a href="https://aidacarlon01.github.io/interactive-catalogue/drag-drop-classifier/">interactive pattern catalogue</a>.</p>
-
-<h2>Course in review</h2>
-<p>In this sample course, you've seen that:</p>
-<ul>
-<li>A shared component set means learners only have to learn how a course works once.</li>
-<li>Contrast, underlined links and a clear heading outline make a page readable for every learner.</li>
-<li>Every video, image and interactive needs an alternative that carries the same learning.</li>
-<li>Accessibility is designed into each component, not checked at the end.</li>
-</ul>
+<p class="embed-note">Placeholder interactive.</p>
 
 <h2 id="glossary">Key terms</h2>
-<p class="wcag-gp__intro">Select a letter to jump to its terms.</p>
 <nav class="wcag-gp__alpha-nav" aria-label="Glossary letters">
-<a class="wcag-gp__alpha-chip" href="#gp-a">A</a><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">B</span><a class="wcag-gp__alpha-chip" href="#gp-c">C</a><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">D</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">E</span><a class="wcag-gp__alpha-chip" href="#gp-f">F</a><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">G</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">H</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">I</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">J</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">K</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">L</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">M</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">N</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">O</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">P</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">Q</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">R</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">S</span><a class="wcag-gp__alpha-chip" href="#gp-t">T</a><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">U</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">V</span><a class="wcag-gp__alpha-chip" href="#gp-w">W</a><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">X</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">Y</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">Z</span>
+<span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">A</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">B</span><a class="wcag-gp__alpha-chip" href="#gp-c">C</a><a class="wcag-gp__alpha-chip" href="#gp-d">D</a><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">E</span><a class="wcag-gp__alpha-chip" href="#gp-f">F</a><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">G</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">H</span><a class="wcag-gp__alpha-chip" href="#gp-i">I</a><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">J</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">K</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">L</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">M</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">N</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">O</span><a class="wcag-gp__alpha-chip" href="#gp-p">P</a><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">Q</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">R</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">S</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">T</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">U</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">V</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">W</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">X</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">Y</span><span class="wcag-gp__alpha-chip wcag-gp__alpha-chip--inactive" aria-hidden="true">Z</span>
 </nav>
-
-<div class="wcag-gp__section" id="gp-a">
-<h3>A</h3>
-<dl class="wcag-gp__list">
-<div class="wcag-gp__item"><dt class="wcag-gp__term"><strong>Alt text</strong></dt><dd class="wcag-gp__def">A short text alternative for an image that says what it shows and why it matters. Screen readers read it aloud in place of the image.</dd></div>
-</dl>
-</div>
 <div class="wcag-gp__section" id="gp-c">
 <h3>C</h3>
 <dl class="wcag-gp__list">
-<div class="wcag-gp__item"><dt class="wcag-gp__term"><strong>Component</strong></dt><dd class="wcag-gp__def">A reusable building block of a course page, such as a callout, a card or an accordion, that looks and behaves the same wherever it's used.</dd></div>
-<div class="wcag-gp__item"><dt class="wcag-gp__term"><strong>Contrast ratio</strong></dt><dd class="wcag-gp__def">How much lighter one colour is than another, from 1:1 to 21:1. Body text needs at least 4.5:1 against its background.</dd></div>
+<div class="wcag-gp__item"><dt class="wcag-gp__term"><strong>Content watcher</strong></dt><dd class="wcag-gp__def">One shared observer that re-runs every module whenever Canvas changes the page, so components added after the first load still work.</dd></div>
+</dl>
+</div>
+<div class="wcag-gp__section" id="gp-d">
+<h3>D</h3>
+<dl class="wcag-gp__list">
+<div class="wcag-gp__item"><dt class="wcag-gp__term"><strong>Design token</strong></dt><dd class="wcag-gp__def">A named value, such as a colour, stored once as a CSS custom property and reused everywhere, so a retheme is a single-location edit.</dd></div>
 </dl>
 </div>
 <div class="wcag-gp__section" id="gp-f">
 <h3>F</h3>
 <dl class="wcag-gp__list">
-<div class="wcag-gp__item"><dt class="wcag-gp__term"><strong>Focus indicator</strong></dt><dd class="wcag-gp__def">The visible outline that shows which element has keyboard focus, so a learner using the Tab key always knows where they are.</dd></div>
+<div class="wcag-gp__item"><dt class="wcag-gp__term"><strong>Focus trap</strong></dt><dd class="wcag-gp__def">Keeping the Tab key inside an open dialog, so keyboard users can't move to the page behind it until they close it.</dd></div>
 </dl>
 </div>
-<div class="wcag-gp__section" id="gp-t">
-<h3>T</h3>
+<div class="wcag-gp__section" id="gp-i">
+<h3>I</h3>
 <dl class="wcag-gp__list">
-<div class="wcag-gp__item"><dt class="wcag-gp__term"><strong>Transcript</strong></dt><dd class="wcag-gp__def">The full text of a video's spoken content, including any on-screen text that matters.</dd></div>
+<div class="wcag-gp__item"><dt class="wcag-gp__term"><strong>Idempotent</strong></dt><dd class="wcag-gp__def">Safe to run more than once, with no duplicated effects.</dd></div>
+<div class="wcag-gp__item"><dt class="wcag-gp__term"><strong>Inert</strong></dt><dd class="wcag-gp__def">The state of the page behind an open dialog: it can't be focused or clicked, and is hidden from screen readers.</dd></div>
 </dl>
 </div>
-<div class="wcag-gp__section" id="gp-w">
-<h3>W</h3>
+<div class="wcag-gp__section" id="gp-p">
+<h3>P</h3>
 <dl class="wcag-gp__list">
-<div class="wcag-gp__item"><dt class="wcag-gp__term"><strong>WCAG 2.2 AA</strong></dt><dd class="wcag-gp__def">Level AA of the Web Content Accessibility Guidelines, version 2.2: the accepted baseline for accessible web content.</dd></div>
+<div class="wcag-gp__item"><dt class="wcag-gp__term"><strong>Progressive enhancement</strong></dt><dd class="wcag-gp__def">Authoring content so it works without the script, then letting the script improve it. If the script fails, nothing is lost.</dd></div>
 </dl>
 </div>
 
-<h2>Where to next</h2>
 <div class="wcag-action-grid">
 <div class="wcag-action-card">
 <span class="wcag-action-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h11a3 3 0 0 1 3 3v12H7a3 3 0 0 1-3-3z"/><path d="M4 17a3 3 0 0 1 3-3h11"/></svg></span>
-<p class="wcag-action-card__text">Return to the course home page to revisit any page.</p>
+<p class="wcag-action-card__text">Return to the course home page.</p>
 <div class="wcag-action-card__bottom"><div class="wcag-button-row"><a class="wcag-button" href="index.html">Course home</a></div></div>
 </div>
 <div class="wcag-action-card">
 <span class="wcag-action-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l2.5 5.5L20 9.3l-4 4 1 5.7-5-2.8-5 2.8 1-5.7-4-4 5.5-.8z"/></svg></span>
-<p class="wcag-action-card__text">Read about the design and accessibility decisions behind this theme.</p>
+<p class="wcag-action-card__text">Read the full summary of the build.</p>
 <div class="wcag-action-card__bottom"><div class="wcag-button-row"><a class="wcag-button" href="about.html">About this build</a></div></div>
 </div>
 </div>

@@ -1,48 +1,57 @@
 <div class="wcag-page-banner"><img src="assets/img/banner-module.jpg" alt=""></div>
-<h2>Building a consistent course</h2>
-<p><strong>Why every page in a course should look and behave the same, and what that takes.</strong></p>
-<p>Learners spend their first few minutes in any course learning how it works: where the next step is, what a callout means, how to open a transcript. When every page follows the same patterns, they only have to learn that once. When each page is built differently, they relearn it on every page, and that effort comes straight out of the time they have for the content.</p>
-<p>Consistency doesn't happen by accident. It comes from a small, agreed set of components, a theme that styles them the same way everywhere, and a build process that uses nothing else.</p>
+<h2>Starting point</h2>
+<p><strong>Two earlier builds were audited before a line of this theme was written.</strong></p>
+<p>The program is delivered in Canvas LMS, consistent with the other recent builds in the same portfolio. The university's own visual guidelines were reviewed for brand reference only. They don't govern structure, because the deliverable is a Canvas theme rather than a page on the university's website.</p>
+<p>The two reference builds had very different strengths:</p>
+<table>
+<caption>The two reference builds compared</caption>
+<thead>
+<tr><th scope="col">&nbsp;</th><th scope="col">Reference build A</th><th scope="col">Reference build B</th></tr>
+</thead>
+<tbody>
+<tr><th scope="row">Selectors</th><td>Scoped to authored content</td><td>Global and unscoped</td></tr>
+<tr><th scope="row">Colours</th><td>Taken verbatim from the client's published brand site</td><td>Approximated from the logo colour</td></tr>
+<tr><th scope="row">Accessibility</th><td>Full focus, keyboard, screen reader and reflow layer</td><td>Minimal scaffolding</td></tr>
+</tbody>
+</table>
+<p>The decision was to build on the structural pattern of build A, and to record what was rejected from build B, and why.</p>
 
-<h2>What you'll learn on these pages</h2>
-<p>By the end of this sample course, you'll be able to:</p>
-<ul>
-<li>Explain why a shared component set makes a course easier to learn from.</li>
-<li>Recognise the design choices that make a page accessible to every learner.</li>
-<li>Identify an accessible alternative for each kind of media.</li>
-<li>Check your understanding with interactive practice activities.</li>
-</ul>
+<blockquote class="blockquote">
+<p class="blockquote_text">No need to approximate from a logo; the documented palette is used directly.</p>
+<p class="blockquote_text blockquote_text--credit">Style sheet decisions, section 7</p>
+</blockquote>
+
+<h2>What wasn't carried over</h2>
+<details>
+<summary class="accordions">Theming off the most visible brand colour</summary>
+<div class="panel">
+<p>This university publishes exact hex values and a WCAG AA colour table. There was no need to work from a logo; the documented palette is used directly.</p>
+</div>
+</details>
+<details>
+<summary class="accordions">Global, unscoped element selectors</summary>
+<div class="panel">
+<p>Styling bare headings, paragraphs and tables everywhere risks leaking into Canvas's own navigation and admin screens. Every content rule is scoped to authored content instead.</p>
+</div>
+</details>
+<details>
+<summary class="accordions">Minimal accessibility scaffolding</summary>
+<div class="panel">
+<p>Replaced with the full focus, keyboard, screen reader and reflow layer from build A, which is structural engineering that works independently of any palette.</p>
+</div>
+</details>
+
+<div class="paper">
+<p><strong>Why build B looked the way it did</strong></p>
+<p>Build B's looseness appears partly forced. That client's brand portal was staff-login-only, so the original author most likely couldn't reach the exact hex values and worked from the visible logo colour instead.</p>
+<p>This build wasn't in that position. The guidelines were in hand, so it follows the fidelity pattern of build A, even though the program is organisationally modelled on build B.</p>
+</div>
+
+<h2>The standard: WCAG 2.2 AA</h2>
+<p>The theme targets <span class="wcag-glossary-term" role="button" data-glossary-term="WCAG 2.2 AA" data-glossary-definition="Level AA of the Web Content Accessibility Guidelines, version 2.2. AA is the universal baseline for web services; 2.2 adds criteria for focus appearance and target size.">WCAG 2.2 AA</span>. AA is the universal baseline for web services; AAA is aspirational and not expected wholesale. Version 2.2 is a superset of 2.1 and adds focus-appearance and target-size criteria that a stylesheet directly controls, so authoring to it future-proofs the build at near-zero cost.</p>
 
 <h4 class="box_heading wcag-well-heading"><span class="well-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v4h4M8 11h8M8 15h8M8 19h5"/></svg></span>Note</h4>
 <div class="box_content wcag-well-content">
-<p><strong>Work through the pages in order</strong></p>
-<p>Each page builds on the one before it. Use the Next button at the bottom of each page, or the cards below to jump back to a page you've already visited.</p>
-</div>
-
-<h3>Pages in this course</h3>
-<p>Select a card to open a page.</p>
-<div class="wcag-grid">
-<a class="wcag-card" style="display: block;" href="callouts-navigation.html"> <span class="wcag-card__eyebrow" style="display: block;">Page 2</span> <span class="wcag-card__title" style="display: block;">Designing for every learner</span> <span class="wcag-card__bottom" style="display: block;"> <span class="wcag-card__bottom-label" style="display: block;">Activities</span> <span class="wcag-pills"><span class="wcag-pill">Explore activity</span></span> </span> </a>
-<a class="wcag-card" style="display: block;" href="media.html"> <span class="wcag-card__eyebrow" style="display: block;">Page 3</span> <span class="wcag-card__title" style="display: block;">Media that works for everyone</span> <span class="wcag-card__bottom" style="display: block;"> <span class="wcag-card__bottom-label" style="display: block;">Activities</span> <span class="wcag-pills"><span class="wcag-pill">Video</span><span class="wcag-pill">Two interactives</span></span> </span> </a>
-<a class="wcag-card" style="display: block;" href="interactive-activities.html"> <span class="wcag-card__eyebrow" style="display: block;">Page 4</span> <span class="wcag-card__title" style="display: block;">Practice and review</span> <span class="wcag-card__bottom" style="display: block;"> <span class="wcag-card__bottom-label" style="display: block;">Activities</span> <span class="wcag-pills"><span class="wcag-pill">Check your knowledge</span></span> </span> </a>
-</div>
-
-<h2>Case study: one program, many builders</h2>
-<p>Start with a case you can return to as you work through the pages.</p>
-<div class="paper">
-<p><strong>Case: the six-module rebuild</strong></p>
-<p>An online program runs four courses of six modules each. Over two years, its pages have been built by several people, each with their own habits. Some callouts are blue boxes, some are bold text, some are tables with one cell. Some links open new tabs and some don't. Transcripts sit under some videos, in a separate file for others, and are missing for a few.</p>
-<p>Learners haven't complained about any one page. But support requests keep asking the same questions: where is the transcript, what does this box mean, how do I get to the next topic. The program team decides to rebuild every page from one shared set of components before the next intake.</p>
-</div>
-<p>The rebuild takes a few weeks. Each page loses its one-off formatting and gains the same banner, the same callouts and the same navigation. Nothing about the teaching changes, but the support questions about finding things largely stop.</p>
-
-<h4 class="box_heading wcag-well-heading"><span class="well-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><path d="M15.5 14.6c2.9-.4 5.2 1.3 6 4.4"/></svg></span>Case reflection</h4>
-<div class="box_content wcag-well-content">
-<p>Take a moment to reflect on these questions:</p>
-<ul>
-<li>Think of a course you've taken online. What did you have to work out before you could focus on the content?</li>
-<li>Why might learners ask "where is the transcript?" rather than report that a transcript is missing?</li>
-<li>What would you need to agree on before a team of builders could work from one component set?</li>
-</ul>
-<p>Keep these questions in mind as you work through the next pages.</p>
+<p><strong>Why documented conformance matters</strong></p>
+<p>The university's own digital guidelines reference AA. In the current higher-education climate, legal floors cite 2.1 AA while field guidance advises 2.2 AA, so documented AA conformance is valuable to have on record.</p>
 </div>
