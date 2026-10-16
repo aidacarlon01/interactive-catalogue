@@ -15,10 +15,10 @@ CODE = "SAMPLE_101"
 # (file, page title, course-nav key)
 PAGES = [
     ("index", "Welcome to the sample course", "home"),
-    ("reading-content", "1. Building a consistent course", "p1"),
-    ("callouts-navigation", "2. Designing for every learner", "p2"),
-    ("media", "3. Media that works for everyone", "p3"),
-    ("interactive-activities", "4. Practice and review", "p4"),
+    ("reading-content", "1. Starting point and standard", "p1"),
+    ("callouts-navigation", "2. Colour and typography", "p2"),
+    ("media", "3. Accessibility and structure", "p3"),
+    ("interactive-activities", "4. The theme script", "p4"),
     ("about", "About this build", "about"),
 ]
 FLOW = ["index", "reading-content", "callouts-navigation", "media", "interactive-activities"]
@@ -46,7 +46,7 @@ TEMPLATE = """<!DOCTYPE html>
 <body class="pages show">
 <a class="skip-link" href="#content">Skip to content</a>
 <div class="portfolio-strip">
-  <span>Portfolio piece: a sample Canvas course built on a custom theme I designed and coded (WCAG 2.2 AA). All copy is style guide copy.</span>
+  <span>Portfolio piece: a sample Canvas course built on a custom theme I designed and coded (WCAG 2.2 AA).</span>
   <a href="about.html">About this build</a>
 </div>
 <div id="application">

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>2. Designing for every learner · SAMPLE_101: Course Style Guide</title>
+<title>2. Colour and typography · SAMPLE_101: Course Style Guide</title>
 <meta name="description" content="A sample Canvas course built on a custom WCAG 2.2 AA theme, built as a portfolio piece.">
 <link rel="stylesheet" href="assets/css/theme.css">
 <link rel="stylesheet" href="assets/css/shell.css">
@@ -11,7 +11,7 @@
 <body class="pages show">
 <a class="skip-link" href="#content">Skip to content</a>
 <div class="portfolio-strip">
-  <span>Portfolio piece: a sample Canvas course built on a custom theme I designed and coded (WCAG 2.2 AA). All copy is style guide copy.</span>
+  <span>Portfolio piece: a sample Canvas course built on a custom theme I designed and coded (WCAG 2.2 AA).</span>
   <a href="about.html">About this build</a>
 </div>
 <div id="application">
@@ -31,7 +31,7 @@
         <ol>
           <li><a href="index.html">SAMPLE_101</a></li>
           
-          <li><span aria-current="page">2. Designing for every learner</span></li>
+          <li><span aria-current="page">2. Colour and typography</span></li>
         </ol>
       </nav>
     </header>
@@ -50,79 +50,64 @@
       </nav>
       <div class="content-wrap">
         <main id="content" class="ic-Layout-contentMain" tabindex="-1">
-          <h1 class="page-title">2. Designing for every learner</h1>
+          <h1 class="page-title">2. Colour and typography</h1>
           <div class="show-content user_content">
 <div class="wcag-page-banner"><img src="assets/img/banner-topic.jpg" alt=""></div>
-<h2>Designing for every learner</h2>
-<p><strong>Accessibility isn't a layer added at the end. It's a set of choices made in every component.</strong></p>
-<p>Some learners read with a screen reader, some move through a page with the keyboard alone, and some zoom text to twice its size or more. Many more are reading on a phone, in bright light, or at the end of a long day. A course built to the <span class="wcag-glossary-term" role="button" data-glossary-term="WCAG 2.2 AA" data-glossary-definition="Level AA of the Web Content Accessibility Guidelines, version 2.2. AA is the accepted baseline for web services; 2.2 adds criteria for focus appearance and target size.">WCAG 2.2 AA</span> standard works for all of them, and it's easier for everyone else to use too.</p>
-
-<h2>Colour and contrast</h2>
-<p>Text needs enough contrast with its background to be read comfortably. The standard asks for a ratio of at least 4.5:1 for body text, and 3:1 for large text and interface parts such as borders and focus outlines. Every colour pair in this course has been checked against that formula.</p>
+<h2>Colour</h2>
+<p><strong>The official palette only, with exactly two additions, both flagged.</strong></p>
+<p>The theme uses the official co-branding palette: the brand blue, black, white and three greys. The two additions are a secondary dark blue the university already uses on the web, and a focus-ring colour for accessibility. Every other neutral is a <span class="wcag-glossary-term" role="button" data-glossary-term="Derived tint" data-glossary-definition="A colour made by fading the official light grey (#BFBFBF) over white at a set opacity, so panels and borders trace back to the official palette instead of being arbitrary shades.">derived tint</span> of the official light grey, so it traces back to the palette rather than being an arbitrary shade.</p>
+<figure class="content-figure">
+<img class="wcag-zoomable" src="assets/img/palette.svg" width="1200" height="640" alt="The theme palette: brand blue #006DAE, black, white and three greys; two flagged additions, secondary dark blue #00557F and focus ring #005FCC; and four light-grey tints used for panels and borders.">
+<figcaption>Figure 1: The palette. Select the image to enlarge it.</figcaption>
+</figure>
+<p>Every pair was checked against the WCAG relative-luminance contrast formula. AA asks for 4.5:1 for normal text, and 3:1 for large text and interface components.</p>
 <table>
-<caption>Colours used in this course and their contrast on white</caption>
-<thead>
-<tr><th scope="col">Colour</th><th scope="col">Used for</th><th scope="col">Contrast</th></tr>
-</thead>
+<caption>Design tokens and their contrast on white</caption>
+<thead><tr><th scope="col">Token</th><th scope="col">Value</th><th scope="col">Role</th><th scope="col">Contrast</th></tr></thead>
 <tbody>
-<tr><td>Brand blue #006DAE</td><td>Headings, links, card hover</td><td>5.53:1</td></tr>
-<tr><td>Dark blue #00557F</td><td>Link hover</td><td>8.06:1</td></tr>
-<tr><td>Black #000000</td><td>Body text</td><td>21:1</td></tr>
-<tr><td>Grey #3F4041</td><td>Captions and credits</td><td>10.4:1</td></tr>
-<tr><td>Focus blue #005FCC</td><td>Keyboard focus outline</td><td>5.98:1</td></tr>
+<tr><td><code>--monash-blue</code></td><td>#006DAE</td><td>Headings, links, accent, card hover</td><td>5.53:1</td></tr>
+<tr><td><code>--monash-blue-dark</code></td><td>#00557F</td><td>Link hover, deep accents</td><td>8.06:1</td></tr>
+<tr><td><code>--body-text</code></td><td>#000000</td><td>Body copy</td><td>21:1</td></tr>
+<tr><td><code>--muted-text</code></td><td>#3F4041</td><td>Captions, meta, credits</td><td>10.4:1</td></tr>
+<tr><td><code>--mid-grey</code></td><td>#818181</td><td>Decorative only, never text</td><td>3.9:1</td></tr>
+<tr><td><code>--surface-pale</code></td><td>#F9F9F9</td><td>Panel background</td><td>19.9:1</td></tr>
+<tr><td><code>--focus-ring</code></td><td>#005FCC</td><td>Keyboard focus indicator</td><td>5.98:1</td></tr>
 </tbody>
 </table>
-<p>Colour is also never the only signal. Links in body text, like this one to the <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html">guidance on use of colour</a>, keep their underline, so a learner who can't tell blue from black can still find them.</p>
 
-<blockquote class="blockquote">
-<p class="blockquote_text">The power of the Web is in its universality. Access by everyone regardless of disability is an essential aspect.</p>
-<p class="blockquote_text blockquote_text--credit">Tim Berners-Lee, W3C Director and inventor of the World Wide Web</p>
-</blockquote>
-
-<h2>How a page is structured</h2>
-<p>Every page in this course follows the same structure, from the banner at the top to the navigation at the bottom. Select the diagram to enlarge it.</p>
-<figure class="content-figure">
-<img class="wcag-zoomable" src="assets/img/page-anatomy.svg" width="1200" height="720" alt="Diagram of a course page with six labelled parts: 1 page banner, 2 Heading 2, 3 body text, 4 well, 5 clickable cards, 6 module navigation.">
-<figcaption>Figure 1: The six parts of a content page.</figcaption>
-</figure>
-<p>Headings do more than break up the text. Screen reader users move through a page by its heading outline, so a page that skips from a Heading 2 straight to a Heading 4 is harder to navigate, even if it looks fine.</p>
-
-<h2>Explore: six principles of accessible pages</h2>
-<p>Select each card to read about one principle.</p>
-<iframe class="embed-frame" title="Card-grid selector: select a card to show its details" src="../interactives/card-grid-selector/" style="height: 753px;" loading="lazy"></iframe>
-<p class="embed-note">Placeholder content from my <a href="https://aidacarlon01.github.io/interactive-catalogue/card-grid-selector/">interactive pattern catalogue</a>.</p>
-
-<h2>Common questions</h2>
-<details>
-<summary class="accordions">Why are headings in sentence case, not capitals?</summary>
-<div class="panel">
-<p>Headings here are full sentences. Set in capitals, they read as shouting, they're harder to scan, and some screen readers spell them out letter by letter.</p>
-</div>
-</details>
-<details>
-<summary class="accordions">Why isn't the quote in italics?</summary>
-<div class="panel">
-<p>Long runs of italic text are harder to read, particularly for learners with dyslexia or low vision. Italics are kept for short spans, such as the title of a book.</p>
-</div>
-</details>
-<details>
-<summary class="accordions">How is a callout built?</summary>
-<div class="panel">
-<p>Every callout in this course is the same two elements, a heading and a content panel, so it looks and behaves the same wherever it appears:</p>
-<pre><code>&lt;h4 class="box_heading wcag-well-heading"&gt;Note&lt;/h4&gt;
-&lt;div class="box_content wcag-well-content"&gt;
-  &lt;p&gt;The one thing a learner must not miss.&lt;/p&gt;
-&lt;/div&gt;</code></pre>
-</div>
-</details>
-
-<h4 class="box_heading wcag-well-heading"><span class="well-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.5 4.5l5 5L9 20H4v-5z"/><path d="M12.5 6.5l5 5"/></svg></span>Apply your learning</h4>
+<h4 class="box_heading wcag-well-heading"><span class="well-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v4h4M8 11h8M8 15h8M8 19h5"/></svg></span>Note</h4>
 <div class="box_content wcag-well-content">
-<p>Open a page from a course you know and move through it using only the Tab key. Note where focus goes, whether you can always see it, and anything you can't reach. Spend about 10 minutes on this.</p>
+<p><strong>There is no separate accent colour</strong></p>
+<p>The heading underline, quote mark and card rules use the brand blue itself. Earlier iterations tried gold, then the dark blue, but neither is in the official palette, so both were replaced. A blue underline under a blue heading is consistent with the guideline that headings lead with the brand blue.</p>
 </div>
+
+<h2>Typography</h2>
+<p>Headings are set in Roboto Condensed and body text in Roboto, with Arial as the brand's named fallback, exactly as the co-branding guide specifies. Helvetica Neue is deliberately not first in the stack: it's licensed and missing on most student machines, so it would silently fall back anyway.</p>
+<ul>
+<li>Minimum body size 16px</li>
+<li>Hierarchy from size and the brand underline, at regular weight</li>
+<li>Left-aligned text throughout</li>
+<li>Fonts web-served from Google Fonts, falling back to Arial if they don't load</li>
+</ul>
+
+<h3>Two deliberate departures from the brand guide</h3>
+<p>The co-branding guide gives two instructions aimed at marketing material that weren't applied to the LMS, for usability and accessibility reasons.</p>
+<div class="wcag-action-grid">
+<div class="wcag-action-card">
+<p class="wcag-action-card__text"><strong>Sentence-case headings.</strong> The guide asks for uppercase titles. Content headings are full sentences, and forcing them to uppercase reads as shouting, harms readability, and can change screen reader pronunciation.</p>
+</div>
+<div class="wcag-action-card">
+<p class="wcag-action-card__text"><strong>Rounded corners.</strong> The guide shows square buttons. Buttons, cards, wells and dialogs share one radius in the LMS, and squaring only the buttons would break that consistency.</p>
+</div>
+</div>
+<p>If a brand review requires strict alignment, both are one-line CSS changes.</p>
+
+<h2>Explore</h2>
+<iframe class="embed-frame" title="Card-grid selector: select a card to show its details" src="../interactives/card-grid-selector/" style="height: 753px;" loading="lazy"></iframe>
+<p class="embed-note">Placeholder interactive.</p>
           </div>
         </main>
-        <nav class="module-footer" aria-label="Module navigation"><a href="reading-content.html" aria-label="Previous: 1. Building a consistent course">&#8592; Previous</a><a href="media.html" aria-label="Next: 3. Media that works for everyone">Next &#8594;</a></nav>
+        <nav class="module-footer" aria-label="Module navigation"><a href="reading-content.html" aria-label="Previous: 1. Starting point and standard">&#8592; Previous</a><a href="media.html" aria-label="Next: 3. Accessibility and structure">Next &#8594;</a></nav>
       </div>
     </div>
   </div>

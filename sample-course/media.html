@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>3. Media that works for everyone · SAMPLE_101: Course Style Guide</title>
+<title>3. Accessibility and structure · SAMPLE_101: Course Style Guide</title>
 <meta name="description" content="A sample Canvas course built on a custom WCAG 2.2 AA theme, built as a portfolio piece.">
 <link rel="stylesheet" href="assets/css/theme.css">
 <link rel="stylesheet" href="assets/css/shell.css">
@@ -11,7 +11,7 @@
 <body class="pages show">
 <a class="skip-link" href="#content">Skip to content</a>
 <div class="portfolio-strip">
-  <span>Portfolio piece: a sample Canvas course built on a custom theme I designed and coded (WCAG 2.2 AA). All copy is style guide copy.</span>
+  <span>Portfolio piece: a sample Canvas course built on a custom theme I designed and coded (WCAG 2.2 AA).</span>
   <a href="about.html">About this build</a>
 </div>
 <div id="application">
@@ -31,7 +31,7 @@
         <ol>
           <li><a href="index.html">SAMPLE_101</a></li>
           
-          <li><span aria-current="page">3. Media that works for everyone</span></li>
+          <li><span aria-current="page">3. Accessibility and structure</span></li>
         </ol>
       </nav>
     </header>
@@ -50,15 +50,15 @@
       </nav>
       <div class="content-wrap">
         <main id="content" class="ic-Layout-contentMain" tabindex="-1">
-          <h1 class="page-title">3. Media that works for everyone</h1>
+          <h1 class="page-title">3. Accessibility and structure</h1>
           <div class="show-content user_content">
 <div class="wcag-page-banner"><img src="assets/img/banner-activity.jpg" alt=""></div>
-<h2>Media that works for everyone</h2>
-<p><strong>Every video, image and interactive needs an alternative that carries the same learning.</strong></p>
-<p>Media carries much of the teaching in an online course, and it's also where access most often breaks. A video without a <span class="wcag-glossary-term" role="button" data-glossary-term="Transcript" data-glossary-definition="A full text version of a video's spoken content, including any on-screen text that matters. Learners can read it instead of watching, or alongside the video.">transcript</span> shuts out learners who can't hear it. A diagram without alt text is a blank space to a screen reader. An interactive that needs a mouse can't be completed from a keyboard.</p>
+<h2>Accessibility</h2>
+<p><strong>A brand-agnostic accessibility layer, carried over whole, plus a few choices made specifically for this build.</strong></p>
+<p>The focus, keyboard, screen reader and reflow layer from reference build A is structural engineering that works with any palette, so it was carried over wholesale. On top of it, each component's behaviour was designed so that keyboard and screen reader users get the same experience as everyone else.</p>
 
 <div class="pad-box-mega border border-trbl video-template">
-<h4 class="video-template__title">Watch: Why every video needs a transcript</h4>
+<h4 class="video-template__title">Walkthrough: keyboard behaviour in the three dialogs</h4>
 <div class="video-container">
 <div class="video-placeholder" style="background-image:url('assets/img/banner-welcome.jpg'); background-position: right center;" role="img" aria-label="Video placeholder: in a live course the video plays here.">
 <span class="video-placeholder__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span>
@@ -66,32 +66,70 @@
 </div>
 </div>
 <div id="transcript-video-2" class="video-transcript">
-<h3 class="video-transcript__title">Transcript: Why every video needs a transcript</h3>
-<p>A transcript is the full text of a video: everything that's said, and any on-screen text that matters, such as figures, slide titles or labels on a chart.</p>
-<p>Learners use transcripts for many reasons. Some are deaf or hard of hearing. Some are studying on a train without headphones. Some read faster than a video plays, or want to search for the one point they need to revisit before an assessment.</p>
-<p>In this course, the transcript opens in a window over the page, so the page itself stays short. You can close it with the Escape key, the close button, or by selecting outside it, and you'll return to exactly where you were.</p>
+<h3 class="video-transcript__title">Transcript: keyboard behaviour in the three dialogs</h3>
+<p>The theme has three dialogs: the image lightbox, the transcript you're reading now, and the glossary definition. All three behave the same way.</p>
+<p>When a dialog opens, focus moves into it, onto the close button. The Tab key stays inside the dialog while it's open, and the rest of the page is made inert, so it can't be reached with the keyboard and is hidden from screen readers.</p>
+<p>Escape, the close button, or a click on the backdrop closes the dialog, and focus goes back to whatever opened it. Each dialog carries a role, is marked as modal, and has an accessible name.</p>
 </div>
-<div class="video-transcript-link"><a class="btn btn-small transcript-button" title="Why every video needs a transcript: transcript" href="#transcript-video-2" aria-label="Why every video needs a transcript: transcript" aria-controls="transcript-video-2">Transcript</a></div>
+<div class="video-transcript-link"><a class="btn btn-small transcript-button" title="Keyboard behaviour in the three dialogs: transcript" href="#transcript-video-2" aria-label="Keyboard behaviour in the three dialogs: transcript" aria-controls="transcript-video-2">Transcript</a></div>
 </div>
 
-<h2>Images and diagrams</h2>
-<p>Alt text should say what an image shows and why it matters on that page. A photo of a team at a whiteboard might need only a few words; a chart needs its key finding. Decorative images, such as the banner at the top of this page, get an empty alt so screen readers skip them, and the page title in the banner is real text, not part of the picture.</p>
-<p>Select each numbered marker to learn about one part of the diagram.</p>
+<h3>Decisions made for this build</h3>
+<details>
+<summary class="accordions">Inline links keep their underline</summary>
+<div class="panel">
+<p>Colour is never the only cue that separates a link from body text (SC 1.4.1), which the co-branding guide also requires. On hover and focus, the colour deepens to the dark blue and the underline thickens, with no change in font weight, so nothing shifts on the page. Buttons and cards opt out, because their shape and fill already signal that they're clickable.</p>
+</div>
+</details>
+<details>
+<summary class="accordions">Quotes are set upright, not italic</summary>
+<div class="panel">
+<p>The guide limits italics to three to five consecutive words, kept for titles of books, journals and programs. A quote is a full sentence or passage, and long italic runs are harder to read, particularly for dyslexic and low-vision readers.</p>
+</div>
+</details>
+<details>
+<summary class="accordions">Keyboard focus is visible, but only for the keyboard</summary>
+<div class="panel">
+<p>A high-visibility focus ring (#005FCC, 5.98:1) appears on every authored component for keyboard users, but not on mouse click. Canvas's own interface keeps its native focus styling untouched.</p>
+</div>
+</details>
+<details>
+<summary class="accordions">Reflow and reduced motion</summary>
+<div class="panel">
+<p>Every grid reflows to fewer columns on narrow screens (SC 1.4.10). For learners who ask for reduced motion, the banner's loading shimmer and non-essential transitions are switched off.</p>
+</div>
+</details>
+
+<h2>Structure</h2>
+<p>Most content rules are scoped to authored content, so Canvas's navigation, sidebars and admin screens are never restyled. A small set of rules deliberately reach outside that scope: the page-width wrappers, the discussion title, the module navigation spacing and the focus layer. These are the intended exceptions to "scope everything".</p>
+<figure class="content-figure">
+<img class="wcag-zoomable" src="assets/img/page-anatomy.svg" width="1200" height="720" alt="Diagram of a course page with six labelled parts: 1 page banner, 2 Heading 2, 3 body text, 4 well, 5 clickable cards, 6 module navigation.">
+<figcaption>Figure 1: The six parts of a content page, in a 1100px content column. Select the image to enlarge it.</figcaption>
+</figure>
+
+<h3>Contracts between the stylesheet and the script</h3>
+<p>Two behaviours are split across the two files and only work if both sides agree. They're the first thing to re-check whenever either file changes.</p>
+<ol>
+<li><strong>Transcripts degrade safely.</strong> The script adds a class to the page body when it loads, and the stylesheet hides the inline transcript only under that class. If the script fails, the transcript stays visible.</li>
+<li><strong>Image zoom is opt-in.</strong> Only images an author marks as zoomable get the zoom cursor and become lightbox triggers, so the two files never disagree about which images are interactive.</li>
+</ol>
+<pre><code>/* Hidden only when the theme script is running */
+body.monash-theme-js .user_content .video-transcript {
+    display: none !important;
+}</code></pre>
+
+<div class="paper">
+<p><strong>Discussion pages: the one page type without a banner</strong></p>
+<p>Canvas's discussions interface renders its title after the theme script has run. When a banner was added, the script would hide the native title but couldn't reliably write the replacement into the banner, so the title disappeared entirely.</p>
+<p>The fix removes the failure at source. The title stays in place and is styled in CSS as a brand-blue accent bar, targeting a stable attribute that doesn't change between Canvas releases. It can't fail on timing, it reflows on every screen size, and it can't affect any other page type.</p>
+</div>
+
+<h2>Explore</h2>
 <iframe class="embed-frame" title="Labelled diagram: select each numbered marker to learn about that part" src="../interactives/labelled-diagram/" style="height: 721px;" loading="lazy"></iframe>
-<p class="embed-note">Placeholder content from my <a href="https://aidacarlon01.github.io/interactive-catalogue/labelled-diagram/">interactive pattern catalogue</a>.</p>
-
-<h2>Making a video accessible, step by step</h2>
-<p>Captions, a transcript and audio description are produced at different stages. Step through the process below.</p>
-<iframe class="embed-frame" title="Tabs and stage stepper: step through four stages" src="../interactives/tabs-stepper/" style="height: 556px;" loading="lazy"></iframe>
-<p class="embed-note">Placeholder content from my <a href="https://aidacarlon01.github.io/interactive-catalogue/tabs-stepper/">interactive pattern catalogue</a>.</p>
-
-<h4 class="box_heading wcag-well-heading"><span class="well-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v4h4M8 11h8M8 15h8M8 19h5"/></svg></span>Note</h4>
-<div class="box_content wcag-well-content">
-<p>Every interactive in this course can be completed with a keyboard alone, never relies on colour to show what's selected, and resizes to fit its content, so you never scroll inside a box within the page.</p>
-</div>
+<p class="embed-note">Placeholder interactive.</p>
           </div>
         </main>
-        <nav class="module-footer" aria-label="Module navigation"><a href="callouts-navigation.html" aria-label="Previous: 2. Designing for every learner">&#8592; Previous</a><a href="interactive-activities.html" aria-label="Next: 4. Practice and review">Next &#8594;</a></nav>
+        <nav class="module-footer" aria-label="Module navigation"><a href="callouts-navigation.html" aria-label="Previous: 2. Colour and typography">&#8592; Previous</a><a href="interactive-activities.html" aria-label="Next: 4. The theme script">Next &#8594;</a></nav>
       </div>
     </div>
   </div>
