@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About this build · SAMPLE_101: Course Style Guide</title>
+<meta name="description" content="A sample Canvas course built on a custom WCAG 2.2 AA theme, built as a portfolio piece.">
+<link rel="stylesheet" href="assets/css/theme.css">
+<link rel="stylesheet" href="assets/css/shell.css">
+</head>
+<body class="pages show">
+<a class="skip-link" href="#content">Skip to content</a>
+<div class="portfolio-strip">
+  <span>Portfolio piece: a sample Canvas course built on a custom theme I designed and coded (WCAG 2.2 AA). All copy is style guide copy.</span>
+  <a href="about.html">About this build</a>
+</div>
+<div id="application">
+  <nav class="global-nav" aria-label="Global navigation (illustration)">
+    <span class="global-nav__logo" aria-hidden="true">LMS</span>
+    <span class="global-nav__item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span>Account</span></span>
+    <span class="global-nav__item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 15a8 8 0 1 1 16 0"/><path d="M12 15l4-5"/><circle cx="12" cy="15" r="1.5" fill="currentColor"/></svg><span>Dashboard</span></span>
+    <span class="global-nav__item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h11a3 3 0 0 1 3 3v12H7a3 3 0 0 1-3-3z"/><path d="M4 17a3 3 0 0 1 3-3h11"/></svg><span>Courses</span></span>
+    <span class="global-nav__item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>Calendar</span></span>
+    <span class="global-nav__item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 13l3-8h12l3 8v6H3z"/><path d="M3 13h5l1 3h6l1-3h5"/></svg><span>Inbox</span></span>
+    <span class="global-nav__item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7"/><circle cx="12" cy="17" r=".8" fill="currentColor"/></svg><span>Help</span></span>
+  </nav>
+  <div class="app-main">
+    <header class="app-header">
+      <button class="nav-toggle" type="button" aria-controls="course-nav" aria-expanded="true" aria-label="Course navigation menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="index.html">SAMPLE_101</a></li>
+          
+          <li><span aria-current="page">About this build</span></li>
+        </ol>
+      </nav>
+    </header>
+    <div class="app-body">
+      <nav class="course-nav" id="course-nav" aria-label="Course navigation">
+        <p class="course-nav__code">SAMPLE_101</p>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reading-content.html">Modules</a></li>
+          <li><a href="callouts-navigation.html#glossary">Glossary</a></li>
+          <li aria-hidden="true"><hr class="course-nav__sep"></li>
+          <li><a href="about.html" aria-current="page">About this build</a></li>
+        </ul>
+      </nav>
+      <div class="content-wrap">
+        <main id="content" class="ic-Layout-contentMain" tabindex="-1">
+          <h1 class="page-title">About this build</h1>
+          <div class="show-content user_content">
+<h2>About this build</h2>
+<p><strong>A sample course that shows a production Canvas theme working the way learners actually meet it.</strong></p>
+<p>I designed and coded this theme for a university's online AI and data analytics programs, delivered in Canvas LMS. Instead of showing it as a list of components, this site puts the theme inside a short course: a home page and four content pages, connected the way modules and topics are in a live course. The copy is style guide copy, so each component explains itself, and no real course content is used.</p>
+
+<h2>What I built</h2>
+<ul>
+<li><strong>The theme stylesheet:</strong> design tokens drawn from the university's published brand palette, with every colour pair checked for WCAG contrast. All styles are scoped to authored page content, so Canvas's own interface is never affected.</li>
+<li><strong>The theme script:</strong> small, self-contained modules that enhance authored markup: the page banner, transcript and glossary dialogs, the image lightbox and card navigation. One shared content watcher re-runs them whenever Canvas re-renders part of a page, and each module is safe to run more than once.</li>
+<li><strong>The component set:</strong> the authored markup a learning technologist pastes into the Rich Content Editor, documented in an internal style guide and used across every course in the program.</li>
+</ul>
+
+<h2>Accessibility decisions</h2>
+<table>
+<caption>Design choices made for WCAG 2.2 AA</caption>
+<thead><tr><th scope="col">Decision</th><th scope="col">Why</th></tr></thead>
+<tbody>
+<tr><td>Inline links keep their underline</td><td>Colour is never the only cue (1.4.1 Use of Color)</td></tr>
+<tr><td>Dialogs move focus into themselves, keep it there and hand it back on close; the background is made inert</td><td>Keyboard and screen reader users stay oriented (2.1.2, 2.4.3)</td></tr>
+<tr><td>Accordions use native details and summary</td><td>Fully accessible with no script to fail</td></tr>
+<tr><td>Image zoom is opt-in per image</td><td>Decorative images and icons stay out of the tab order</td></tr>
+<tr><td>Glossary terms stay inline</td><td>Keeps the inline exception for target size (2.5.8)</td></tr>
+<tr><td>Transcripts are authored in the page</td><td>If the script fails, the text is still there</td></tr>
+<tr><td>Banner titles are real text from the page heading</td><td>The page keeps its accessible name; the image is decorative</td></tr>
+</tbody>
+</table>
+
+<h2>How this static version differs from Canvas</h2>
+<p>The page bodies, theme stylesheet and theme script are the production files. Around them, this site recreates the Canvas frame (navigation, breadcrumb and module footer) in a separate stylesheet. Three things change for the web:</p>
+<ol>
+<li>Videos are placeholders, because course videos belong to the client.</li>
+<li>The Canvas icon font isn't available, so well icons are inline SVG.</li>
+<li>The H5P resizer module is swapped for one that sizes the embedded catalogue interactives.</li>
+</ol>
+
+<h4 class="box_heading wcag-well-heading"><span class="well-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v4h4M8 11h8M8 15h8M8 19h5"/></svg></span>Related work</h4>
+<div class="box_content wcag-well-content">
+<p>The interactive activities in this course come from my <a href="https://aidacarlon01.github.io/interactive-catalogue/">interactive pattern catalogue</a>: placeholder interactives, each with a brief a learning designer can fill in and hand over to be built.</p>
+</div>
+
+<div class="wcag-single-cta">
+<div class="wcag-action-card">
+<p class="wcag-action-card__text">Take the tour from the start.</p>
+<div class="wcag-action-card__bottom"><div class="wcag-button-row"><a class="wcag-button" href="index.html">Go to the sample course</a></div></div>
+</div>
+</div>
+          </div>
+        </main>
+
+      </div>
+    </div>
+  </div>
+</div>
+<script src="assets/js/theme.js"></script>
+<script src="assets/js/shell.js"></script>
+</body>
+</html>

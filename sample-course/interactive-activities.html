@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>4. Interactive activities · SAMPLE_101: Course Style Guide</title>
+<meta name="description" content="A sample Canvas course built on a custom WCAG 2.2 AA theme, built as a portfolio piece.">
+<link rel="stylesheet" href="assets/css/theme.css">
+<link rel="stylesheet" href="assets/css/shell.css">
+</head>
+<body class="pages show">
+<a class="skip-link" href="#content">Skip to content</a>
+<div class="portfolio-strip">
+  <span>Portfolio piece: a sample Canvas course built on a custom theme I designed and coded (WCAG 2.2 AA). All copy is style guide copy.</span>
+  <a href="about.html">About this build</a>
+</div>
+<div id="application">
+  <nav class="global-nav" aria-label="Global navigation (illustration)">
+    <span class="global-nav__logo" aria-hidden="true">LMS</span>
+    <span class="global-nav__item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span>Account</span></span>
+    <span class="global-nav__item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 15a8 8 0 1 1 16 0"/><path d="M12 15l4-5"/><circle cx="12" cy="15" r="1.5" fill="currentColor"/></svg><span>Dashboard</span></span>
+    <span class="global-nav__item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h11a3 3 0 0 1 3 3v12H7a3 3 0 0 1-3-3z"/><path d="M4 17a3 3 0 0 1 3-3h11"/></svg><span>Courses</span></span>
+    <span class="global-nav__item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>Calendar</span></span>
+    <span class="global-nav__item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 13l3-8h12l3 8v6H3z"/><path d="M3 13h5l1 3h6l1-3h5"/></svg><span>Inbox</span></span>
+    <span class="global-nav__item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7"/><circle cx="12" cy="17" r=".8" fill="currentColor"/></svg><span>Help</span></span>
+  </nav>
+  <div class="app-main">
+    <header class="app-header">
+      <button class="nav-toggle" type="button" aria-controls="course-nav" aria-expanded="true" aria-label="Course navigation menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="index.html">SAMPLE_101</a></li>
+          <li><a href="reading-content.html">Modules</a></li>
+          <li><span aria-current="page">4. Interactive activities</span></li>
+        </ol>
+      </nav>
+    </header>
+    <div class="app-body">
+      <nav class="course-nav" id="course-nav" aria-label="Course navigation">
+        <p class="course-nav__code">SAMPLE_101</p>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reading-content.html" aria-current="page">Modules</a></li>
+          <li><a href="callouts-navigation.html#glossary">Glossary</a></li>
+          <li aria-hidden="true"><hr class="course-nav__sep"></li>
+          <li><a href="about.html">About this build</a></li>
+        </ul>
+      </nav>
+      <div class="content-wrap">
+        <main id="content" class="ic-Layout-contentMain" tabindex="-1">
+          <h1 class="page-title">4. Interactive activities</h1>
+          <div class="show-content user_content">
+<div class="wcag-page-banner"><img src="assets/img/banner-glossary.jpg" alt=""></div>
+<h2>Interactive activities</h2>
+<p><strong>Practice that learners do, not just read: built as standalone HTML interactives and embedded in the page.</strong></p>
+<p>Each activity below is a placeholder from the interactive pattern catalogue. Every one is a single self-contained HTML file built to the same brand and accessibility rules as the theme: it can be used with a keyboard alone, it never relies on colour to show state, and it reports its height so the page can size the frame.</p>
+
+<div class="paper">
+<p><strong>How these activities are made</strong></p>
+<p>A learning designer picks a pattern from the catalogue and fills in its seven-heading brief (Purpose, Layout, Interaction, States, Content, Slug, Target) with the real course content. The interactive is then built from that brief, committed to GitHub, uploaded to the course files, and embedded on the page.</p>
+</div>
+
+<h2>Explore: card-grid selector</h2>
+<p>Use a card-grid selector when learners need to compare several related ideas but only read one in depth at a time. Select a card to show its detail panel.</p>
+<iframe class="embed-frame" title="Card-grid selector: select a card to show its details" src="../interactives/card-grid-selector/" style="height: 753px;" loading="lazy"></iframe>
+<p class="embed-note">Pattern: <a href="https://aidacarlon01.github.io/interactive-catalogue/card-grid-selector/">card-grid selector</a> (view its brief in the catalogue).</p>
+
+<h2>Step through: tabs and stage stepper</h2>
+<p>Use a stepper for a process with a fixed order. Learners can jump to any stage with the tabs, or work through in order with Next and Previous.</p>
+<iframe class="embed-frame" title="Tabs and stage stepper: step through four stages" src="../interactives/tabs-stepper/" style="height: 556px;" loading="lazy"></iframe>
+<p class="embed-note">Pattern: <a href="https://aidacarlon01.github.io/interactive-catalogue/tabs-stepper/">tabs and stage stepper</a> (view its brief in the catalogue).</p>
+
+<h2>Practise: drag-and-drop classifier</h2>
+<p>Use a classifier when learners need to sort examples into categories and get feedback. Every card can also be placed with a menu, so the activity never depends on dragging.</p>
+<iframe class="embed-frame" title="Drag-and-drop classifier: sort each card into a zone, then check your answers" src="../interactives/drag-drop-classifier/" style="height: 1225px;" loading="lazy"></iframe>
+<p class="embed-note">Pattern: <a href="https://aidacarlon01.github.io/interactive-catalogue/drag-drop-classifier/">drag-and-drop classifier</a> (view its brief in the catalogue).</p>
+
+<h4 class="box_heading wcag-well-heading"><span class="well-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.5 4.5l5 5L9 20H4v-5z"/><path d="M12.5 6.5l5 5"/></svg></span>Apply your learning</h4>
+<div class="box_content wcag-well-content">
+<p>Browse the full <a href="https://aidacarlon01.github.io/interactive-catalogue/">interactive pattern catalogue</a> and choose the pattern that would best fit a topic you know. Note which of its seven brief headings would need the most new content.</p>
+</div>
+
+<div class="wcag-single-cta">
+<div class="wcag-action-card">
+<p class="wcag-action-card__text">That's the end of the sample course. Go back to the home page, or read how this site was built.</p>
+<div class="wcag-action-card__bottom">
+<div class="wcag-button-row"><a class="wcag-button" href="index.html">Course home</a> <a class="wcag-button" href="about.html">About this build</a></div>
+</div>
+</div>
+</div>
+          </div>
+        </main>
+        <nav class="module-footer" aria-label="Module navigation"><a href="media.html" aria-label="Previous: 3. Media">&#8592; Previous</a><span class="spacer"></span></nav>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="assets/js/theme.js"></script>
+<script src="assets/js/shell.js"></script>
+</body>
+</html>

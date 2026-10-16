@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1. Reading content · SAMPLE_101: Course Style Guide</title>
+<meta name="description" content="A sample Canvas course built on a custom WCAG 2.2 AA theme, built as a portfolio piece.">
+<link rel="stylesheet" href="assets/css/theme.css">
+<link rel="stylesheet" href="assets/css/shell.css">
+</head>
+<body class="pages show">
+<a class="skip-link" href="#content">Skip to content</a>
+<div class="portfolio-strip">
+  <span>Portfolio piece: a sample Canvas course built on a custom theme I designed and coded (WCAG 2.2 AA). All copy is style guide copy.</span>
+  <a href="about.html">About this build</a>
+</div>
+<div id="application">
+  <nav class="global-nav" aria-label="Global navigation (illustration)">
+    <span class="global-nav__logo" aria-hidden="true">LMS</span>
+    <span class="global-nav__item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span>Account</span></span>
+    <span class="global-nav__item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 15a8 8 0 1 1 16 0"/><path d="M12 15l4-5"/><circle cx="12" cy="15" r="1.5" fill="currentColor"/></svg><span>Dashboard</span></span>
+    <span class="global-nav__item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h11a3 3 0 0 1 3 3v12H7a3 3 0 0 1-3-3z"/><path d="M4 17a3 3 0 0 1 3-3h11"/></svg><span>Courses</span></span>
+    <span class="global-nav__item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>Calendar</span></span>
+    <span class="global-nav__item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 13l3-8h12l3 8v6H3z"/><path d="M3 13h5l1 3h6l1-3h5"/></svg><span>Inbox</span></span>
+    <span class="global-nav__item" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7"/><circle cx="12" cy="17" r=".8" fill="currentColor"/></svg><span>Help</span></span>
+  </nav>
+  <div class="app-main">
+    <header class="app-header">
+      <button class="nav-toggle" type="button" aria-controls="course-nav" aria-expanded="true" aria-label="Course navigation menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="index.html">SAMPLE_101</a></li>
+          <li><a href="reading-content.html">Modules</a></li>
+          <li><span aria-current="page">1. Reading content</span></li>
+        </ol>
+      </nav>
+    </header>
+    <div class="app-body">
+      <nav class="course-nav" id="course-nav" aria-label="Course navigation">
+        <p class="course-nav__code">SAMPLE_101</p>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reading-content.html" aria-current="page">Modules</a></li>
+          <li><a href="callouts-navigation.html#glossary">Glossary</a></li>
+          <li aria-hidden="true"><hr class="course-nav__sep"></li>
+          <li><a href="about.html">About this build</a></li>
+        </ul>
+      </nav>
+      <div class="content-wrap">
+        <main id="content" class="ic-Layout-contentMain" tabindex="-1">
+          <h1 class="page-title">1. Reading content</h1>
+          <div class="show-content user_content">
+<div class="wcag-page-banner"><img src="assets/img/banner-module.jpg" alt=""></div>
+<h2>Reading content</h2>
+<p><strong>The components that carry most of a course: text, links, lists, tables, accordions, scenarios and code.</strong></p>
+<p>Most of a learner's time is spent reading, so most of the theme's work happens here. Body text is set in Roboto at 16px with generous line spacing, headings in Roboto Condensed, and every colour pair meets WCAG 2.2 AA contrast. These styles are scoped to the page body only, so Canvas's own menus and admin screens are never touched.</p>
+
+<h2>Headings and body text</h2>
+<p>Use a Heading 2 for each main section of a page. It's set in Monash Blue with a short accent rule beneath it, which gives learners a clear landmark as they scroll. Hierarchy comes from size and the rule, not from bold, which keeps the page calm.</p>
+<h3>A Heading 3 groups content inside a section</h3>
+<p>Use a Heading 3 when a section has two or more distinct parts. Don't skip levels: a Heading 3 always sits under a Heading 2, because screen reader users navigate a page by its heading outline.</p>
+
+<h2>Links</h2>
+<p>Inline links keep their underline, so colour is never the only thing that marks them as links. That's <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html">WCAG success criterion 1.4.1, Use of Color</a>, and it's a deliberate step up from earlier builds that removed underlines. Write link text that makes sense out of context: name the destination, never "click here".</p>
+
+<h2>Lists</h2>
+<p>Use a bulleted list when order doesn't matter:</p>
+<ul>
+<li>items that can be read in any order</li>
+<li>short, parallel phrases that start the same way</li>
+<li>three to seven items, so the list stays scannable.</li>
+</ul>
+<p>Use a numbered list when it does:</p>
+<ol>
+<li>Write the steps in the order a learner carries them out.</li>
+<li>Start each step with a verb.</li>
+<li>Keep one action per step.</li>
+</ol>
+
+<h2>Tables</h2>
+<p>Use a table for content with rows and columns that a learner will compare. Give it a header row, and keep cells short.</p>
+<table>
+<caption>When to use each reading component</caption>
+<thead>
+<tr><th scope="col">Component</th><th scope="col">Use it for</th><th scope="col">Avoid it for</th></tr>
+</thead>
+<tbody>
+<tr><td>Table</td><td>Comparing items across the same attributes</td><td>Laying out a page or placing images side by side</td></tr>
+<tr><td>Accordion</td><td>Optional detail a learner can open on demand</td><td>Content every learner must read</td></tr>
+<tr><td>Scenario panel</td><td>A case or situation the page refers back to</td><td>General notes or reminders (use a well)</td></tr>
+<tr><td>Code block</td><td>Code a learner will read, copy or type</td><td>Emphasis or general formatting</td></tr>
+</tbody>
+</table>
+
+<h2>Accordions</h2>
+<p>Accordions are native <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> elements, so they're keyboard and screen reader accessible without any JavaScript. Select a heading to open it.</p>
+<details>
+<summary class="accordions">When should I use an accordion?</summary>
+<div class="panel">
+<p>Use one for supporting detail that some learners will want and others won't, such as worked examples, technical requirements or extra reading. If every learner needs it, leave it on the page.</p>
+</div>
+</details>
+<details>
+<summary class="accordions">How many accordions can I use?</summary>
+<div class="panel">
+<p>Group three to six in a set. A long run of closed accordions hides the shape of the page and makes learners open each one to find what they need.</p>
+</div>
+</details>
+<details>
+<summary class="accordions accordions--no-marker">This accordion has no disclosure triangle</summary>
+<div class="panel">
+<p>Add the <code>accordions--no-marker</code> class to hide the triangle for a single accordion. The default keeps it, because the triangle tells learners the heading opens.</p>
+</div>
+</details>
+
+<h2>Scenario panel</h2>
+<p>The scenario panel, with its folded corner, sets a case apart from the teaching around it. Learners can spot it at a glance when a later page asks them to return to it.</p>
+<div class="paper">
+<p><strong>Scenario: the new course build</strong></p>
+<p>A learning designer hands over storyboards for a six-module course. The learning technologist builds every page from this set of components, so each page looks and behaves the same, and the course passes its accessibility review without page-by-page fixes.</p>
+<p>Use the panel for one scenario per page. Keep it to a few short paragraphs, and give it a bold first line so learners know which case it is.</p>
+</div>
+
+<h2>Code</h2>
+<p>Inline code, such as the <code>wcag-well-heading</code> class, sits in a light chip in the body text. Longer code goes in a code block, which keeps its spacing and scrolls sideways rather than wrapping:</p>
+<pre><code>&lt;h4 class="box_heading wcag-well-heading"&gt;Note&lt;/h4&gt;
+&lt;div class="box_content wcag-well-content"&gt;
+  &lt;p&gt;Use a note for the one thing a learner must not miss.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+<p>Author code blocks as plain <code>&lt;pre&gt;</code> text. There's no syntax highlighting add-on, so the text stays high-contrast on the grey panel and is easy to build automatically.</p>
+          </div>
+        </main>
+        <nav class="module-footer" aria-label="Module navigation"><a href="index.html" aria-label="Previous: Welcome to the sample course">&#8592; Previous</a><a href="callouts-navigation.html" aria-label="Next: 2. Callouts and navigation">Next &#8594;</a></nav>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="assets/js/theme.js"></script>
+<script src="assets/js/shell.js"></script>
+</body>
+</html>
