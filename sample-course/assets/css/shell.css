@@ -1,0 +1,193 @@
+/* =============================================================================
+   SAMPLE COURSE — Canvas-like shell for the portfolio build
+   The authored-content styles live in theme.css (the production Canvas theme,
+   unchanged). This file only recreates the Canvas frame around it: global nav,
+   course nav, breadcrumb bar, module footer, plus the few things Canvas itself
+   supplies (icon font for well headings, video placeholder, iframe embeds).
+============================================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+    background: #FFFFFF;
+    color: #000000;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+.skip-link {
+    position: absolute; left: 8px; top: -60px; z-index: 10000;
+    background: #FFFFFF; color: #006DAE; padding: 10px 14px;
+    border: 2px solid #005FCC; border-radius: 4px;
+}
+.skip-link:focus { top: 8px; }
+
+/* Portfolio strip ---------------------------------------------------------- */
+.portfolio-strip {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+    gap: 6px 14px; padding: 8px 16px;
+    background: #000000; color: #FFFFFF;
+    font-size: 0.85rem; line-height: 1.4; text-align: center;
+}
+.portfolio-strip a { color: #FFFFFF; text-decoration: underline; text-underline-offset: 2px; }
+.portfolio-strip a:focus-visible { outline: 3px solid #FFFFFF; outline-offset: 2px; }
+
+/* App frame ---------------------------------------------------------------- */
+#application { display: flex; min-height: calc(100vh - 36px); }
+
+.global-nav {
+    flex: 0 0 72px; background: #006DAE; color: #FFFFFF;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 14px 0; gap: 18px;
+}
+.global-nav__logo {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: #FFFFFF; color: #006DAE;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Roboto Condensed', Arial, sans-serif; font-weight: 700; font-size: 15px;
+    margin-bottom: 6px;
+}
+.global-nav__item {
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    font-size: 11px; color: #FFFFFF; opacity: 0.92;
+}
+.global-nav__item svg { width: 24px; height: 24px; }
+
+.app-main { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
+
+.app-header {
+    display: flex; align-items: center; gap: 14px;
+    min-height: 60px; padding: 8px 24px;
+    border-bottom: 1px solid #E2E2E2;
+}
+.nav-toggle {
+    appearance: none; background: none; border: 0; padding: 0;
+    width: 40px; height: 40px; border-radius: 4px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: #006DAE; cursor: pointer;
+}
+.nav-toggle:hover { background: #F5F5F5; }
+.nav-toggle:focus-visible { outline: 3px solid #005FCC; outline-offset: 2px; }
+.nav-toggle svg { width: 24px; height: 24px; }
+
+.breadcrumbs { font-size: 0.95rem; color: #3F4041; min-width: 0; }
+.breadcrumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 0; }
+.breadcrumbs li { display: inline-flex; align-items: center; }
+.breadcrumbs li + li::before { content: "\203A"; margin: 0 10px; color: #818181; }
+.breadcrumbs a { color: #006DAE; text-decoration: none; }
+.breadcrumbs a:hover { text-decoration: underline; }
+.breadcrumbs a:focus-visible { outline: 3px solid #005FCC; outline-offset: 2px; }
+.breadcrumbs [aria-current] { color: #000000; }
+
+.app-body { display: flex; flex: 1 1 auto; min-width: 0; }
+
+.course-nav {
+    flex: 0 0 190px; padding: 18px 0 24px 22px;
+    font-size: 0.95rem;
+}
+.course-nav__code { font-size: 0.72rem; color: #3F4041; margin: 0 0 14px 0; letter-spacing: 0.02em; }
+.course-nav ul { list-style: none; margin: 0; padding: 0; }
+.course-nav li { margin: 0; }
+.course-nav a {
+    display: block; padding: 7px 10px; margin-left: -10px;
+    color: #006DAE; text-decoration: none; border-left: 3px solid transparent;
+}
+.course-nav a:hover { text-decoration: underline; }
+.course-nav a[aria-current="page"] { color: #000000; border-left-color: #000000; font-weight: 600; }
+.course-nav a:focus-visible { outline: 3px solid #005FCC; outline-offset: 1px; }
+.course-nav__sep { border: 0; border-top: 1px solid #ECECEC; margin: 12px 0 12px -10px; }
+body.course-nav-collapsed .course-nav { display: none; }
+
+.content-wrap { flex: 1 1 auto; min-width: 0; }
+.ic-Layout-contentMain { max-width: 1100px; margin: 0 auto; }
+
+/* Canvas page title — the banner JS hides it and moves the text into the banner. */
+h1.page-title {
+    font-family: 'Roboto Condensed', Arial, sans-serif; font-weight: 400;
+    font-size: 2rem; margin: 0 0 20px 0;
+}
+
+/* Module footer (Canvas "Previous / Next") ------------------------------- */
+.module-footer {
+    display: flex; justify-content: space-between; gap: 12px;
+    max-width: 1100px; margin: 0 auto; padding: 20px 24px 48px 24px;
+    border-top: 1px solid #ECECEC;
+}
+.module-footer a {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 10px 16px; border: 1px solid #C7CDD1; border-radius: 4px;
+    background: #F5F5F5; color: #2D3B45; text-decoration: none; font-size: 0.95rem;
+}
+.module-footer a:hover { background: #ECECEC; }
+.module-footer a:focus-visible { outline: 3px solid #005FCC; outline-offset: 2px; }
+.module-footer .spacer { flex: 1; }
+
+/* Canvas icon font stand-in for well headings ----------------------------- */
+.wcag-well-heading .well-icon {
+    display: inline-flex; align-items: center; flex-shrink: 0;
+    margin-right: 10px; color: #006DAE;
+}
+.wcag-well-heading .well-icon svg { width: 22px; height: 22px; }
+h4.wcag-well-heading { font-family: 'Roboto Condensed', Arial, sans-serif; font-weight: 400; font-size: 1.15rem; }
+
+/* Four-up card grid for the home page ------------------------------------ */
+.wcag-grid.wcag-grid--four { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1100px) { .wcag-grid.wcag-grid--four { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px)  { .wcag-grid.wcag-grid--four { grid-template-columns: 1fr; } }
+.wcag-card { min-height: 0; }
+.wcag-card .wcag-card__title { min-height: 0; }
+
+/* Video placeholder (stands in for the Wistia iframe) -------------------- */
+.video-placeholder {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: #00557F center / cover no-repeat;
+}
+.video-placeholder::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(0deg, rgb(0 0 0 / 55%), rgb(0 0 0 / 10%) 60%);
+}
+.video-placeholder__play {
+    position: relative; width: 76px; height: 76px; border-radius: 50%;
+    background: rgb(255 255 255 / 92%); color: #006DAE;
+    display: flex; align-items: center; justify-content: center;
+}
+.video-placeholder__play svg { width: 32px; height: 32px; margin-left: 4px; }
+.video-placeholder__label {
+    position: absolute; left: 16px; right: 16px; bottom: 14px;
+    color: #FFFFFF; font-size: 0.9rem; line-height: 1.4;
+}
+
+/* Embedded interactives ---------------------------------------------------- */
+.embed-frame {
+    display: block; width: 100%; border: 0; margin: 8px 0 12px 0;
+    background: #FFFFFF;
+}
+.embed-note { font-size: 0.85rem; color: #3F4041; margin: 0 0 32px 0 !important; }
+
+figure.content-figure { margin: 24px 0 32px 0; }
+figure.content-figure figcaption { font-size: 0.9rem; color: #3F4041; margin-top: 10px; line-height: 1.5; }
+
+/* Responsive frame ---------------------------------------------------------- */
+@media (max-width: 900px) {
+    .global-nav { display: none; }
+    .app-header { padding: 8px 16px; }
+    .course-nav {
+        display: none; flex: none; padding: 12px 16px 16px 26px;
+        border-bottom: 1px solid #E2E2E2;
+    }
+    body.course-nav-open .course-nav { display: block; }
+    .app-body { flex-direction: column; }
+    .ic-Layout-contentMain { padding: 20px 16px !important; }
+    .module-footer { padding: 20px 16px 40px 16px; }
+    .user_content .video-template { padding: 16px; }
+}
+@media (min-width: 901px) {
+    body.course-nav-open .course-nav { display: block; }
+}
+@media (prefers-reduced-motion: reduce) {
+    * { scroll-behavior: auto !important; }
+}
+@media (max-width: 600px) {
+    .video-placeholder__label { display: none; }
+    .video-placeholder__play { width: 60px; height: 60px; }
+}

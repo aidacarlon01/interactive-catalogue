@@ -1,0 +1,965 @@
+/* =============================================================================
+   MONASH AI CAREER ACCELERATOR — Canvas LMS Theme
+   FourthRev | built on the Cambridge (CAM CY) structural pattern
+   Tokens sourced from Monash Digital Guidelines (web-accessible / WCAG AA set)
+   Target: WCAG 2.2 AA
+
+   WHY THIS FILE LOOKS THE WAY IT DOES
+   - Structure, scoping and accessibility scaffolding follow the CAM CY build,
+     the strongest of FourthRev's recent CAs (selectors scoped to .user_content,
+     visible focus rings, sr-only headings, ARIA-driven components).
+   - Colours/fonts are Monash's own published values, used verbatim — the same
+     fidelity pattern CAM applied to Cambridge's palette.
+   - Every colour pair in this file has been checked against the WCAG contrast
+     formula; ratios are recorded in the accompanying Style Sheet document.
+   - Tokens are centralised as CSS custom properties (the :root block below) so
+     a future retheme — or a change requested by the FR graphic designer — is a
+     single-location edit rather than a find-and-replace across the file.
+
+   OPEN ITEMS (see Style Sheet doc): a small number of implementation choices
+   remain marked [CONFIRM] where they depend on Canvas/FR review.
+============================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+
+/* -----------------------------------------------------------------------------
+   DESIGN TOKENS
+   Change a brand value here and it propagates everywhere it is used.
+----------------------------------------------------------------------------- */
+:root {
+  /* ---- OFFICIAL PALETTE (Monash + FourthRev Co-Branding Guidelines) ----------
+     The entire palette is: Monash Blue, Black, White, and three greys
+     (Grey, Mid grey, Light grey). Every brand colour below is one of these.
+     The ONLY additions are: (a) one sanctioned secondary dark blue, used by
+     Monash on the web, and (b) an accessibility focus-ring colour. Both are
+     flagged explicitly. Everything else neutral is a tint DERIVED from the
+     official Light grey, so it traces back to the palette. */
+
+  /* Brand blue */
+  --monash-blue:        #006DAE;  /* Monash Blue (official); 5.53:1 on white — AA */
+  --monash-blue-dark:   #00557F;  /* SECONDARY dark blue — sanctioned addition,   */
+                                  /* used by Monash on the web. Swap to Monash's  */
+                                  /* exact secondary value if/when confirmed.     */
+
+  /* Greyscale (official). --grey and --light-grey are the official Monash
+     palette anchors, kept for traceability/reference; the surfaces and lines
+     below are tints derived from them, which is what the components actually use. */
+  --black:              #000000;  /* Black (official); 21:1 on white              */
+  --grey:               #3F4041;  /* Grey (official); 10.4:1 on white — AA        */
+  --mid-grey:           #818181;  /* Mid grey (official); 3.9:1 — decorative only */
+  --light-grey:         #BFBFBF;  /* Light grey (official); decorative only       */
+
+  /* Text */
+  --body-text:          #000000;  /* = Black                                      */
+  --muted-text:         #3F4041;  /* = Grey (AA for captions/credits)             */
+
+  /* Accent (H2 underline, quote mark, card rules) = Monash Blue itself. The
+     official palette has no separate accent colour, so the brand blue is used. */
+  --accent:             #006DAE;
+
+  /* Surfaces & lines — NEUTRAL TINTS DERIVED FROM official Light grey #BFBFBF
+     faded over white, so each is on-palette by construction (Light grey is too
+     dark to use directly as a panel/border). Percentages noted for traceability. */
+  --surface:            #FFFFFF;  /* White (official)                             */
+  --surface-pale:       #F9F9F9;  /* Light grey @ ~10% over white — panel bg      */
+  --surface-tint:       #F5F5F5;  /* Light grey @ ~16% over white — cooler panel  */
+  --line:               #E2E2E2;  /* Light grey @ ~45% over white — border        */
+  --line-soft:          #ECECEC;  /* Light grey @ ~30% over white — divider       */
+
+  /* Interaction */
+  --link:               #006DAE;  /* = Monash Blue; 5.53:1 on white — AA          */
+  --link-hover:         #00557F;  /* = secondary dark blue                        */
+  --focus-ring:         #005FCC;  /* ACCESSIBILITY exception — high-visibility    */
+                                  /* keyboard focus indicator (WCAG 2.4.7), 5.98:1*/
+
+  /* Typography */
+  --font-heading: 'Roboto Condensed', Arial, sans-serif;  /* Monash online heading font */
+  --font-body:    'Roboto', Arial, Helvetica, sans-serif; /* Roboto online; Arial fallback */
+  --font-mono:    'Fira Code', 'Monaco', Menlo, Consolas, "Courier New", monospace;
+}
+
+@keyframes bannerFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/*##################################################################################################################################*/
+/*###############   Element: Page Width + Layout   ################################################################################*/
+/*##################################################################################################################################*/
+
+/* Content column width. CAM uses 1100px; Monash brand favours generous white
+   space, so 1100px is retained. */
+body.course-menu-expanded:not(.ic-no-flex-layout):not(.embedded) .ic-Layout-contentWrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.topic .entry-content {
+    max-width: 1100px;
+    padding-bottom: 50px;
+    margin: 0 auto;
+    border: none;
+}
+
+.ic-Layout-contentMain { padding: 24px; }
+
+/* Student/published assignment pages: reclaim full width by hiding the right
+   sidebar only outside teacher/home contexts. The Canvas sidebar can hold authoring
+   controls, rubrics, or teacher-home controls, so this remains gated. [CONFIRM]
+   against the live Canvas body classes before final deployment. */
+body.assignments:not(.home):has(#assignment_show):not(:has(#assignment_show .description.teacher-version)) #right-side-wrapper {
+    display: none !important;
+}
+body.assignments:not(.home):has(#assignment_show):not(:has(#assignment_show .description.teacher-version)) #not_right_side {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 1 auto !important;
+}
+#assignment_show .description.teacher-version {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/*###############   Element: Discussion title (new Discussions UI)   ##################################################################*/
+/* Discussions WITHOUT a banner in the body: the native title is left in place
+   and styled directly here — a branded in-flow title bar (Monash-blue left
+   accent + heading font), LSE's intent with CAM's robustness (no absolute
+   positioning, fully responsive).
+   Targets the STABLE data-testid hook, NOT the hashed css-* class (which
+   changes between Canvas releases). data-testid="message_title" exists only on
+   discussion titles, so this cannot affect Pages, assignments, or templates.
+   The inner screen-reader span keeps its own (visually-hidden) styling; we only
+   style the h1 container and let the visible span show through. */
+h1[data-testid="message_title"] {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: clamp(1.4rem, 2vw, 2rem);
+    line-height: 1.3;
+    color: var(--body-text);
+    background: var(--surface-pale);
+    border-left: 6px solid var(--monash-blue);
+    padding: 16px 20px;
+    margin: 0 0 20px 0;
+    border-radius: 0 4px 4px 0;
+    box-sizing: border-box;
+    word-break: break-word;
+}
+
+/* Discussions WITH a banner in the body: the banner overlay carries the title
+   (theme JS, module 5 — reading only the heading's visible text), so the
+   native title bar is hidden here with the sr-only pattern, keeping its
+   accessible name for screen readers. This MUST live in CSS, not JS: the React
+   Discussions UI re-renders its heading at will and strips any class the JS
+   adds to it, but it cannot strip a stylesheet rule. (:has() is already relied
+   on elsewhere in this file — see the assignment sidebar rules.) */
+body:has(.wcag-page-banner) h1[data-testid="message_title"] {
+    position: absolute !important;
+    width: 1px !important; height: 1px !important;
+    padding: 0 !important; margin: -1px !important;
+    overflow: hidden !important; clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important; border: 0 !important;
+}
+
+/* Return module footer to normal flow on discussion pages (Canvas forces fixed). */
+body.discussions #module_sequence_footer {
+    position: static !important;
+    bottom: auto !important; right: auto !important;
+    width: auto !important; z-index: auto !important;
+}
+
+/*##################################################################################################################################*/
+/*###############   Element: Page Banner (.wcag-page-banner — JS-enhanced)   #######################################################*/
+/*##################################################################################################################################*/
+
+/* Authored markup is <div class="wcag-page-banner"><img ...></div>. Canvas
+   reliably preserves only the <img>; the theme JS hides it and injects two
+   children at runtime: .wcag-page-banner__image (the photo, as a CSS background)
+   and .wcag-page-banner__title (a white overlay holding the page title, written
+   into .wcag-page-banner__title-text). The original Canvas <h1> stays in the DOM
+   but is visually hidden, preserving the accessible name for screen readers.
+   Selectors below must therefore match the classes the JS creates. */
+
+.wcag-page-banner {
+    display: block; position: relative; margin-bottom: 40px;
+    width: 100%; overflow: hidden; border-radius: 8px;
+}
+
+/* Photo layer. Background-image is set inline by the JS from the <img> src.
+   Until then a neutral fill + shimmer acts as a skeleton-loading state. */
+@keyframes monashBannerSkeleton {
+    from { background-position: 200% center; }
+    to   { background-position: -200% center; }
+}
+.wcag-page-banner__image {
+    position: relative;
+    width: 100%;
+    height: 260px;                   /* matches the CAM .wcag-page-banner height */
+    background-color: var(--line);  /* derived light-grey tint */
+    background-image: linear-gradient(90deg, var(--line) 25%, var(--surface-tint) 50%, var(--line) 75%);
+    background-size: cover;          /* overridden to cover the real photo once set */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+/* Shimmer only while no photo has been applied (no inline background-image yet). */
+.wcag-page-banner__image:not([style*="background-image"]) {
+    background-size: 300% 100%;
+    background-position: 200% center;
+    animation: monashBannerSkeleton 1.8s ease-in-out infinite;
+}
+
+/* Title overlay — flex-centred over the banner (matches the CAM .wcag-page-banner
+   pattern). The wrapper fills the banner and centres its child both ways; the
+   text box auto-sizes. Near-black text on a 82% white card = ~15:1 contrast.
+   pointer-events:none so the overlay never blocks clicks. */
+.wcag-page-banner__title {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+    pointer-events: none;
+    z-index: 2;
+    box-sizing: border-box;
+}
+.wcag-page-banner__title-text {
+    display: inline-block;
+    max-width: 85%;
+    padding: 16px 32px;
+    background: rgb(255 255 255 / 82%);
+    color: var(--body-text);
+    font-family: var(--font-heading);
+    font-size: clamp(1.4rem, 2vw, 2rem);
+    font-weight: 400;
+    line-height: 1.3;
+    box-sizing: border-box;
+    word-break: break-word;
+    box-shadow: 0 2px 12px rgb(0 0 0 / 12%);
+}
+@media only screen and (max-width: 900px) {
+    .wcag-page-banner__title { padding: 16px; }
+    .wcag-page-banner__title-text {
+        max-width: 92%;
+        padding: 12px 16px;
+        font-size: clamp(1.05rem, 4vw, 1.4rem);
+    }
+}
+
+/* Original Canvas heading kept in DOM for screen readers (standard sr-only). */
+.monash-visually-hidden-title {
+    position: absolute !important;
+    width: 1px !important; height: 1px !important;
+    padding: 0 !important; margin: -1px !important;
+    overflow: hidden !important; clip: rect(0,0,0,0) !important;
+    white-space: nowrap !important; border: 0 !important;
+}
+
+/*##################################################################################################################################*/
+/*###############   Element: Text & Typography (scoped to authored content)   #####################################################*/
+/*##################################################################################################################################*/
+
+/* Scoped to .user_content (page/assignment/discussion body) and .mce-content-body
+   (the RCE editor). Canvas chrome — nav, sidebar, admin UI — is never touched.
+   This scoping is the key lesson taken from CAM and NOT from the older LSE build,
+   which styled bare h2/p/body/table globally. */
+
+.user_content,
+.mce-content-body {
+    font-family: var(--font-body);
+    line-height: 1.8;
+    color: var(--body-text);
+    padding-bottom: 48px;
+}
+
+/* Headings — Monash uses Roboto Condensed online. Hierarchy via size + the brand
+   underline accent, not bold (mirrors Monash "minimal, clean" formatting). */
+.user_content h2,
+.mce-content-body h2 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    color: var(--monash-blue);
+    margin-top: 40px; margin-bottom: 16px;
+    font-size: 28px; line-height: 1.3;
+}
+/* Brand accent underline — a deeper Monash blue. */
+.user_content h2::after,
+.mce-content-body h2::after {
+    content: "";
+    display: block;
+    width: 64px; height: 3px;
+    background-color: var(--accent);   /* Monash Blue */
+    margin-top: 10px; margin-bottom: 2px;
+}
+
+.user_content h3,
+.mce-content-body h3 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    color: var(--monash-blue);
+    margin-top: 32px; margin-bottom: 12px;
+    font-size: 24px; line-height: 1.3;
+}
+
+.user_content p,
+.mce-content-body p {
+    font-size: 16px;           /* Monash + CAM minimum digital body size */
+    line-height: 1.65;
+    color: var(--body-text);
+    margin-top: 0 !important;
+    margin-bottom: 18px !important;
+    padding: 0;
+}
+.user_content table p,
+.mce-content-body table p { margin-bottom: 0 !important; }
+
+.user_content ul, .user_content ol,
+.mce-content-body ul, .mce-content-body ol {
+    padding-left: 20px; margin: 0 0 20px 15px;
+}
+.user_content ul:last-child, .user_content ol:last-child,
+.mce-content-body ul:last-child, .mce-content-body ol:last-child { margin-bottom: 24px; }
+
+.user_content li,
+.mce-content-body li {
+    font-size: 16px; line-height: 1.5; color: var(--body-text); margin: 6px 0;
+}
+.user_content li:last-child,
+.mce-content-body li:last-child { margin-bottom: 10px; }
+
+/* Links. Colour = Monash blue (5.53:1, AA). NOTE ON ACCESSIBILITY:
+   CAM removes underlines and signals links by colour alone — its softest point
+   against its own brand guide. Here, inline body links KEEP their underline so
+   colour is not the only cue (WCAG 1.4.1). Buttons/cards opt out via their own
+   classes below. */
+.user_content a,
+.mce-content-body a {
+    color: var(--link);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    transition: color 0.15s ease, text-decoration-thickness 0.15s ease;
+}
+.user_content a:hover, .user_content a:focus,
+.mce-content-body a:hover, .mce-content-body a:focus {
+    color: var(--link-hover);
+    text-decoration-thickness: 2px;
+}
+.user_content a:visited,
+.mce-content-body a:visited { color: var(--link); }
+
+/* Vertical rhythm helpers */
+.user_content > :first-child,
+.mce-content-body > :first-child { margin-top: 0; }
+.user_content h2 + p, .user_content h3 + p, .user_content h4 + p,
+.mce-content-body h2 + p, .mce-content-body h3 + p, .mce-content-body h4 + p { margin-top: 0; }
+.user_content p + h2, .user_content p + h3, .user_content p + h4,
+.mce-content-body p + h2, .mce-content-body p + h3, .mce-content-body p + h4 { margin-top: 30px; }
+.user_content table + p,
+.mce-content-body table + p { margin-top: 20px !important; }
+
+/* Code & preformatted */
+/* Inline code (a <code> NOT inside a <pre>) — our Monash-blue chip style.
+   Scoped with :not(pre) so it never touches code blocks. */
+.user_content :not(pre) > code,
+.mce-content-body :not(pre) > code {
+    font-family: var(--font-mono) !important;
+    font-size: 15px !important;
+    color: var(--monash-blue) !important;
+    background-color: var(--surface-tint);
+    padding: 2px 4px; border-radius: 4px;
+}
+/* Code blocks — the Monash box (border, padding, radius, mono font) on the same
+   pale grey as the inline-code chip. Code is authored as plain <pre> (no syntax-
+   highlighting LTI), so the text simply inherits --body-text on the grey panel,
+   which is high-contrast and fully automatable end to end. */
+.user_content pre,
+.mce-content-body pre {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    display: block; line-height: 1.65;
+    word-break: break-all; word-wrap: break-word;
+    background-color: var(--surface-tint) !important;
+    border: 1px solid var(--line) !important;
+    padding: 18px !important; border-radius: 8px;
+    margin: 15px 0; overflow-x: auto;
+}
+/* Code inside a pre: no background fill (so the pre's grey panel shows through)
+   and no colour override, keeping the block clean and consistent. */
+.user_content pre code,
+.mce-content-body pre code,
+.user_content pre code *,
+.mce-content-body pre code * {
+    background: transparent !important;
+}
+.user_content pre code,
+.mce-content-body pre code {
+    color: inherit; padding: 0; font-size: inherit;
+}
+
+/*##################################################################################################################################*/
+/*###############   Element: Image Lightbox (Pages only)   ########################################################################*/
+/*##################################################################################################################################*/
+
+/* CONTRACT (with JSS_MONASH_AI.js): scoped to .show-content (Canvas Pages) to match
+   the lightbox, which enhances only `.show-content img.wcag-zoomable`. The zoom-in
+   cursor is an "this is interactive" affordance, so it must appear ONLY where the JS
+   will actually wire up a lightbox — otherwise the two files disagree about which
+   images are interactive. A wcag-zoomable image on an assignment/discussion page or
+   in the RCE editor (.mce-content-body, where the theme JS does not run) therefore
+   gets no false zoom affordance. Keep this selector in sync with the JS querySelector. */
+.show-content img.wcag-zoomable {
+    display: block !important;
+    width: 100% !important; max-width: 100% !important; height: auto !important;
+    margin-left: 0 !important; margin-right: 0 !important;
+    border: 0 !important; padding: 0 !important;
+    box-sizing: border-box !important; cursor: zoom-in !important;
+}
+.image-lightbox-overlay {
+    display: none; position: fixed; inset: 0; z-index: 9999;
+    align-items: center; justify-content: center;
+    background: rgba(0, 0, 0, 0.78);
+}
+.image-lightbox-overlay img {
+    display: block !important;
+    width: 90vw !important; max-width: 90vw !important;
+    max-height: 90vh !important; height: auto !important;
+    object-fit: contain !important; margin: 0 !important; cursor: zoom-out !important;
+}
+/* Close button (JS-injected: button.image-lightbox-overlay__close in JSS_MONASH_AI.js).
+   position:absolute pulls it out of the overlay's flex flow so it sits top-right over
+   the scrim instead of beside the centred image; 44x44 gives a comfortable target
+   (WCAG 2.5.8, well over the 24px floor). The overlay is appended to <body>, OUTSIDE
+   .user_content, so this button is ALSO added explicitly to the three accessibility
+   groups below (focus-visible ring, focus reset, reduced-motion) — matching the
+   transcript/glossary close buttons so all three dialogs are styled identically. */
+.image-lightbox-overlay__close {
+    position: absolute; top: 16px; right: 16px;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px; min-width: 44px; min-height: 44px;
+    padding: 0; margin: 0; box-sizing: border-box;
+    appearance: none; -webkit-appearance: none;
+    background: rgba(0, 0, 0, 0.55); border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%; color: #FFFFFF; font-size: 1.25rem; line-height: 1;
+    cursor: pointer; z-index: 1;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.image-lightbox-overlay__close:hover { background: rgba(0, 0, 0, 0.8); border-color: #FFFFFF; }
+.image-lightbox-overlay__close:focus { outline: none; }
+.image-lightbox-overlay__close:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+
+/*##################################################################################################################################*/
+/*###############   Element: Videos & Transcripts   ###############################################################################*/
+/*##################################################################################################################################*/
+
+.user_content .video-template {
+    padding: 20px 40px; max-width: 1000px; margin: 28px auto;
+    border: 1px solid var(--line); border-radius: 8px; background-color: var(--surface);
+}
+.user_content .video-template__title { margin-top: 0; margin-bottom: 16px; }
+
+.user_content .video-container {
+    position: relative; width: 100%; aspect-ratio: 16 / 9;
+    overflow: hidden; background-color: var(--surface-pale);
+    border-radius: 8px; border: 1px solid var(--line);
+}
+.user_content .video-container .video-template__iframe,
+.user_content .video-container iframe {
+    position: absolute; top: 0; left: 0;
+    width: 100% !important; height: 100% !important;
+    border: none; border-radius: 8px;
+}
+
+/* Transcript trigger — a proper-sized button, not a tiny chip. Outlined Monash
+   blue, fills on hover (matches the .wcag-button language). */
+.user_content .video-transcript-link {
+    display: flex; justify-content: center; margin: 16px 0;
+    background: none; border: 0; padding: 0; box-shadow: none;
+}
+.user_content .video-transcript-link .transcript-button {
+    display: inline-block;
+    padding: 10px 22px !important; min-height: auto !important; line-height: 1.3 !important;
+    border-radius: 6px; border: 1px solid var(--monash-blue);
+    color: var(--monash-blue) !important; background: var(--surface) !important;
+    font-size: 16px !important; font-family: var(--font-body) !important; font-weight: 400;
+    text-decoration: none !important; box-shadow: none !important; background-image: none !important;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.user_content .video-transcript-link .transcript-button:hover,
+.user_content .video-transcript-link .transcript-button:focus {
+    background: var(--monash-blue) !important; color: #FFFFFF !important;
+    border-color: var(--monash-blue) !important;
+}
+
+/* The transcript source content is available as a no-JS fallback. When the
+   theme JS is active, it applies the body class below and clones the transcript
+   text into the styled modal. */
+body.monash-theme-js .user_content .video-transcript {
+    display: none !important;
+}
+
+/* Transcript modal — mirrors the glossary modal exactly, just wider, since
+   transcripts are long-form. Same overlay, card, header, close button. */
+#wcag-transcript-modal {
+    display: none; position: fixed; inset: 0; z-index: 9200;
+    align-items: center; justify-content: center;
+    background: rgba(0, 0, 0, 0.28); padding: 24px; box-sizing: border-box;
+}
+#wcag-transcript-modal.wcag-transcript-modal--open { display: flex; }
+.wcag-transcript-card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 12px; box-shadow: 0 12px 36px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+    width: 100%; max-width: 720px; max-height: 80vh; overflow: hidden;
+    display: flex; flex-direction: column; box-sizing: border-box;
+    font-family: var(--font-body);
+}
+.wcag-transcript-card__header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 12px; padding: 16px 18px 14px 20px; background: rgba(0, 109, 174, 0.06);
+    flex-shrink: 0;
+}
+.wcag-transcript-card__title { margin: 0; font-size: 1rem; font-weight: 700; color: var(--monash-blue); line-height: 1.3; }
+.wcag-transcript-card__close {
+    appearance: none; -webkit-appearance: none; background: none; border: none;
+    /* min 24x24 hit area (WCAG 2.5.8); inline-flex centres the glyph in the box. */
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 24px; min-height: 24px;
+    padding: 3px 6px; margin: 0; cursor: pointer; color: var(--muted-text);
+    font-size: 1.1rem; line-height: 1; border-radius: 4px; flex-shrink: 0;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+.wcag-transcript-card__close:hover { background: rgba(0, 109, 174, 0.12); color: var(--monash-blue); }
+.wcag-transcript-card__close:focus { outline: none; }
+.wcag-transcript-card__close:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.wcag-transcript-card__divider { border: none; border-top: 1px solid var(--line-soft); margin: 0; flex-shrink: 0; }
+.wcag-transcript-card__body {
+    margin: 0; padding: 16px 20px 20px 20px; font-size: 1rem; line-height: 1.7;
+    color: var(--body-text); overflow-y: auto;
+}
+.wcag-transcript-card__body p { margin-top: 0; margin-bottom: 12px; }
+.wcag-transcript-card__body p:last-child { margin-bottom: 0; }
+
+/*##################################################################################################################################*/
+/*###############   Element: Accordions (native <details>)   ######################################################################*/
+/*##################################################################################################################################*/
+
+.user_content details,
+.mce-content-body details {
+    margin: 16px 0 20px 0; border: 1px solid var(--line);
+    border-radius: 6px; background-color: var(--surface);
+}
+/* The standard accordion shows the browser's native <details> disclosure
+   triangle. Following the KCL and LSE builds, we do NOT set display on the
+   summary, do NOT suppress the native marker, and do NOT redraw it — leaving
+   the browser default is what makes the triangle reliably appear. (Overriding
+   display, or hiding/recolouring ::marker, is what made the triangle vanish in
+   earlier versions.)
+   Two accordion types:
+     standard (triangle): <summary class="accordions">
+     no marker:           <summary class="accordions accordions--no-marker"> */
+summary.accordions {
+    background-color: var(--surface-pale);
+    font-weight: 600; font-size: 16px; color: var(--monash-blue);
+    cursor: pointer; width: 100%; text-align: left;
+    padding: 14px 20px; outline: none; box-sizing: border-box;
+    transition: none;
+}
+/* Opt-out: hide the native triangle on a specific accordion. */
+summary.accordions.accordions--no-marker {
+    list-style: none;
+}
+summary.accordions.accordions--no-marker::-webkit-details-marker,
+summary.accordions.accordions--no-marker::marker { display: none; }
+details[open] > summary.accordions {
+    background-color: var(--surface-tint); border-bottom: 1px solid var(--line);
+}
+.user_content .panel,
+.mce-content-body .panel { background-color: var(--surface); padding: 16px 20px; }
+.user_content .panel p,
+.mce-content-body .panel p { margin-top: 0; margin-bottom: 8px; padding: 0; }
+
+/*##################################################################################################################################*/
+/*###############   Element: Tables   #############################################################################################*/
+/*##################################################################################################################################*/
+
+.user_content table,
+.mce-content-body table {
+    width: 100%; border-collapse: collapse; border: 1px solid var(--line);
+    margin: 24px 0 28px 0; background: var(--surface);
+}
+.user_content table th, .user_content table td,
+.mce-content-body table th, .mce-content-body table td {
+    border: 1px solid var(--line); padding: 10px 12px !important;
+    text-align: left; vertical-align: top;
+}
+/* Header row — a soft Light-grey tint (#E2E2E2, the --line token: official
+   Light grey faded over white) with black text (16.2:1). Lighter than full
+   Light grey #BFBFBF, matching the subtle header weight of the reference
+   builds while staying on-palette. */
+.user_content table th,
+.mce-content-body table th {
+    background-color: var(--line); color: var(--black); font-weight: 600;
+}
+.user_content caption,
+.mce-content-body caption { caption-side: bottom; margin-top: 8px; color: var(--muted-text); }
+
+/*##################################################################################################################################*/
+/*###############   Element: Callout / Well System   ##############################################################################*/
+/*##################################################################################################################################*/
+
+.user_content h4.wcag-well-heading,
+.mce-content-body h4.wcag-well-heading { margin-top: 0 !important; margin-bottom: 0 !important; }
+
+.wcag-well-heading {
+    margin: 0; padding: 12px 14px;
+    background: var(--surface-tint);
+    border: 1px solid var(--line-soft); border-radius: 8px 8px 0 0;
+    color: var(--monash-blue); line-height: 1.3;
+    display: flex; align-items: center;
+}
+.wcag-well-heading a[class^="icon-"],
+.wcag-well-heading a[class*=" icon-"] {
+    display: inline-flex; align-items: center; flex-shrink: 0;
+    margin-right: 8px; text-decoration: none !important;
+}
+.wcag-well-heading a[class^="icon-"]::before,
+.wcag-well-heading a[class*=" icon-"]::before {
+    color: var(--accent);             /* Monash Blue (readable) */
+    vertical-align: middle;
+}
+.wcag-well-content {
+    margin: 0 0 24px 0; padding: 16px 16px 14px 16px;
+    background: var(--surface); border: 1px solid var(--line-soft);
+    border-top: 0; border-radius: 0 0 8px 8px; box-shadow: none;
+}
+.wcag-well-content p:first-child { margin-top: 0; }
+.wcag-well-content p:last-child { margin-bottom: 0; }
+
+/* Paper — a content panel with a folded top-right corner, for scenarios and
+   set-apart passages (from the LSE build, recoloured to the Monash palette).
+   Markup: <div class="paper"> … </div> */
+.user_content .paper,
+.mce-content-body .paper {
+    margin: 16px 0 24px 0;
+    background-color: var(--surface-pale);
+    padding: 24px 24px 8px 24px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+.user_content .paper p:last-child,
+.mce-content-body .paper p:last-child { margin-bottom: 16px; }
+/* Folded top-right corner */
+.user_content .paper::after,
+.mce-content-body .paper::after {
+    content: ''; display: block;
+    border-width: 0 25px 25px 0; border-style: solid;
+    border-color: var(--line) var(--surface);
+    position: absolute; top: 0; right: 0;
+}
+
+/* Quote blocks — Feijoa→Roboto Condensed swap; accent mark is decorative. */
+.user_content .blockquote,
+.mce-content-body .blockquote {
+    max-width: 800px; margin: 24px auto 28px auto; padding: 12px 20px;
+    background: none; border: none; position: relative;
+}
+.user_content .blockquote::before,
+.mce-content-body .blockquote::before {
+    content: "\201C";
+    font-family: var(--font-heading);
+    float: left; font-size: 5em;
+    color: var(--accent);              /* Monash Blue */
+    line-height: 0.8; margin-right: 15px; margin-bottom: 10px;
+}
+/* NOTE: CAM italicises quote text. Monash brand permits italic for emphasis,
+   but italics reduce readability for some dyslexic readers; kept upright here
+   by default.  */
+.user_content .blockquote .blockquote_text,
+.mce-content-body .blockquote .blockquote_text {
+    font-size: 1.2em; color: var(--body-text); line-height: 1.7;
+    text-align: left; overflow: hidden;
+}
+.user_content .blockquote .blockquote_text--credit,
+.mce-content-body .blockquote .blockquote_text--credit {
+    display: block; text-align: right; font-style: normal;
+    font-size: 1em; color: var(--body-text); margin-top: 24px; clear: both;
+}
+.user_content .blockquote .blockquote_text--credit::before,
+.mce-content-body .blockquote .blockquote_text--credit::before { content: "\2014\00A0"; }
+
+/* Pad boxes */
+.user_content .pad-box, .user_content .pad-box-mega, .user_content .pad-box-mini, .user_content .pad-box-micro,
+.mce-content-body .pad-box, .mce-content-body .pad-box-mega, .mce-content-body .pad-box-mini, .mce-content-body .pad-box-micro {
+    margin: 20px auto; background-color: var(--surface-pale);
+    border: 1px solid var(--line); border-radius: 8px; box-shadow: none;
+}
+.user_content .pad-box,
+.mce-content-body .pad-box { padding: 15px 20px; }
+.user_content .pad-box-mega,
+.mce-content-body .pad-box-mega { padding: 30px; }
+.user_content .pad-box-mini, .user_content .pad-box-micro,
+.mce-content-body .pad-box-mini, .mce-content-body .pad-box-micro { padding: 10px 20px; }
+
+/*##################################################################################################################################*/
+/*###############   Element: Card System (scoped .wcag-*)   ########################################################################*/
+/*##################################################################################################################################*/
+
+.wcag-grid, .wcag-action-grid, .wcag-single-cta { margin-bottom: 32px; }
+
+.wcag-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; box-sizing: border-box;
+}
+@media (max-width: 860px) { .wcag-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .wcag-grid { grid-template-columns: 1fr; } }
+
+.wcag-action-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+    margin-top: 32px; box-sizing: border-box;
+}
+@media (max-width: 560px) { .wcag-action-grid { grid-template-columns: 1fr; } }
+
+.wcag-card {
+    background: var(--surface-tint); border: 1px solid var(--line-soft);
+    border-radius: 8px; padding: 18px 18px 16px 18px;
+    color: var(--body-text); display: flex; flex-direction: column;
+    min-height: 240px; box-shadow: none; box-sizing: border-box;
+    text-decoration: none !important;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    outline-offset: 3px;
+}
+.wcag-card[data-href] { cursor: pointer; }
+/* Hover = Monash blue with white text (5.53:1, AA). */
+.wcag-card:hover, .wcag-card:focus {
+    background: var(--monash-blue); border-color: var(--monash-blue);
+    text-decoration: none !important;
+}
+.wcag-card:hover *, .wcag-card:focus * { color: #FFFFFF !important; }
+.wcag-card hr { border: none; border-top: 1px solid var(--line-soft); margin: 12px 0; }
+.wcag-card:hover hr, .wcag-card:focus hr { border-top: 1px solid rgba(255,255,255,0.3); }
+/* Pills on hover: keep them as solid white chips with blue text so they stay
+   legible against the blue card (the blanket white-text rule above would
+   otherwise make white-on-white pills). */
+.wcag-card:hover .wcag-pill, .wcag-card:focus .wcag-pill {
+    background: #FFFFFF; border-color: #FFFFFF;
+    color: var(--monash-blue) !important;
+}
+.user_content a.wcag-card,
+.user_content a.wcag-card:visited { color: inherit !important; text-decoration: none !important; }
+
+.wcag-card__eyebrow { font-size: 0.78rem; color: var(--muted-text); margin: 0 0 8px 0; }
+.wcag-card__title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem; font-weight: 400; line-height: 1.4;
+    margin: 0 0 12px 0; min-height: 3.08em; color: var(--monash-blue);
+}
+.wcag-card__meta { font-size: 0.78rem; color: var(--muted-text); margin: 0 0 6px 0; }
+.wcag-card__spacer { flex-grow: 1; }
+.wcag-card__bottom { border-top: 1px solid var(--line-soft); padding-top: 12px; margin-top: 16px; }
+.wcag-card__bottom-label { font-size: 0.82rem; color: var(--muted-text); margin: 0 0 8px 0; }
+
+.wcag-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.wcag-pill {
+    display: inline-block; padding: 4px 10px; border-radius: 20px;
+    background: var(--surface); border: 1px solid var(--line);
+    font-size: 0.75rem; line-height: 1.3; color: var(--body-text);
+}
+
+.wcag-action-card {
+    background: var(--surface-tint); border: 1px solid var(--line-soft);
+    border-radius: 8px; padding: 28px; box-shadow: none;
+    display: flex; flex-direction: column; box-sizing: border-box;
+}
+.wcag-action-card__text { font-size: 1rem; line-height: 1.6; color: var(--body-text); margin: 0; flex: 1 1 auto; }
+.wcag-action-card__bottom { margin-top: 20px; }
+
+/* Large decorative icon in a white circle, for resource/support action cards.
+   The glyph is a Canvas icon-font character rendered via ::before; Canvas pins
+   its size, so the size override must live in CSS (an inline font-size cannot
+   reach a ::before and is overridden). Pair with a Canvas icon class, e.g.
+   <a class="icon-group wcag-action-card__icon" aria-hidden="true"></a>. */
+.wcag-action-card__icon {
+    display: flex; align-items: center; justify-content: center;
+    width: 76px; height: 76px; margin: 0 auto 16px auto;
+    border-radius: 50%; background: #FFFFFF; border: 1px solid var(--line-soft);
+    color: var(--monash-blue); text-decoration: none !important;
+}
+.wcag-action-card__icon::before {
+    font-size: 38px !important; line-height: 1; margin: 0 !important;
+}
+
+/* Secondary button — Monash blue outline, fills on hover (white text 5.53:1). */
+.wcag-button {
+    display: inline-block; padding: 12px 22px; border-radius: 6px;
+    border: 1px solid var(--monash-blue); color: var(--monash-blue) !important;
+    text-decoration: none !important; font-size: 16px !important; line-height: 1.3;
+    font-family: var(--font-body) !important; font-weight: 400;
+    background: var(--surface); box-shadow: none !important; background-image: none !important;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.wcag-button:visited { color: var(--monash-blue) !important; text-decoration: none !important; }
+.wcag-button:hover, .wcag-button:focus {
+    background: var(--monash-blue); color: #FFFFFF !important;
+    border-color: var(--monash-blue); text-decoration: none !important;
+    font-weight: 400;
+}
+.wcag-button:active {
+    background: var(--monash-blue-dark); color: #FFFFFF !important;
+    border-color: var(--monash-blue-dark); text-decoration: none !important;
+}
+/* Canvas specificity backstops */
+.user_content a.wcag-button { color: var(--monash-blue) !important; text-decoration: none !important; }
+.user_content a.wcag-button:hover,
+.user_content a.wcag-button:focus {
+    background: var(--monash-blue) !important; color: #FFFFFF !important;
+    border-color: var(--monash-blue) !important; text-decoration: none !important;
+}
+.wcag-button-row { text-align: center; }
+.wcag-single-cta { width: 70%; margin-left: auto; margin-right: auto; box-sizing: border-box; }
+
+/*##################################################################################################################################*/
+/*###############   Element: Inline Glossary (span trigger + modal)   #############################################################*/
+/*##################################################################################################################################*/
+
+/* display:inline is LOAD-BEARING for WCAG 2.5.8 (Target Size): inline targets are
+   exempt because their hit area is constrained by the surrounding line-height. Do NOT
+   change this to inline-block/block without also giving the term an explicit >=24x24
+   hit area, or it loses the inline exception and fails 2.5.8. */
+.wcag-glossary-term {
+    display: inline; line-height: inherit;
+    background: rgba(0, 109, 174, 0.08); color: var(--monash-blue);
+    padding: 1px 4px; border-radius: 4px; margin-right: 2px;
+    cursor: pointer; text-decoration: none; border-bottom: none;
+    transition: background-color 0.15s ease;
+}
+.wcag-glossary-term:hover { background: rgba(0, 109, 174, 0.16); color: var(--monash-blue); }
+.wcag-glossary-term:focus { outline: none; }
+.wcag-glossary-term:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; border-radius: 4px; }
+
+#wcag-glossary-modal {
+    display: none; position: fixed; inset: 0; z-index: 9200;
+    align-items: center; justify-content: center;
+    background: rgba(0, 0, 0, 0.28); padding: 24px; box-sizing: border-box;
+}
+#wcag-glossary-modal.wcag-glossary-modal--open { display: flex; }
+.wcag-glossary-card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: 12px; box-shadow: 0 12px 36px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+    width: 100%; max-width: 440px; overflow: hidden; box-sizing: border-box;
+    font-family: var(--font-body);
+}
+.wcag-glossary-card__header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 12px; padding: 16px 18px 14px 20px; background: rgba(0, 109, 174, 0.06);
+}
+.wcag-glossary-card__title { margin: 0; font-size: 1rem; font-weight: 700; color: var(--monash-blue); line-height: 1.3; }
+.wcag-glossary-card__close {
+    appearance: none; -webkit-appearance: none; background: none; border: none;
+    /* min 24x24 hit area (WCAG 2.5.8); inline-flex centres the glyph in the box. */
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 24px; min-height: 24px;
+    padding: 3px 6px; margin: 0; cursor: pointer; color: var(--muted-text);
+    font-size: 1.1rem; line-height: 1; border-radius: 4px; flex-shrink: 0;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+.wcag-glossary-card__close:hover { background: rgba(0, 109, 174, 0.12); color: var(--monash-blue); }
+.wcag-glossary-card__close:focus { outline: none; }
+.wcag-glossary-card__close:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.wcag-glossary-card__divider { border: none; border-top: 1px solid var(--line-soft); margin: 0; }
+.wcag-glossary-card__def { margin: 0; padding: 16px 20px 18px 20px; font-size: 1rem; line-height: 1.7; color: var(--body-text); }
+
+/*##################################################################################################################################*/
+/*###############   Element: Glossary Page   ######################################################################################*/
+/*##################################################################################################################################*/
+
+.wcag-gp__intro { margin: 0 0 28px 0; font-size: 0.97rem; line-height: 1.65; color: var(--body-text); }
+.wcag-gp__alpha-nav { display: grid; grid-template-columns: repeat(13, 1fr); gap: 5px; margin: 0 0 40px 0; }
+
+/* Active letter chip — Monash blue for text legibility. */
+.wcag-gp__alpha-chip {
+    display: flex; align-items: center; justify-content: center;
+    height: 36px; border-radius: 6px; font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 0.02em; text-decoration: none;
+    background: var(--surface-tint); border: 1px solid var(--line);
+    color: var(--monash-blue);
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.wcag-gp__alpha-chip:hover { background: var(--surface-tint); border-color: var(--monash-blue); color: var(--link-hover); text-decoration: none; }
+.wcag-gp__alpha-chip:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.wcag-gp__alpha-chip--inactive {
+    font-weight: 400; background: transparent; border: 1px solid var(--line-soft);
+    color: var(--grey); cursor: default; pointer-events: none;
+}
+.wcag-gp__section { margin-bottom: 48px; }
+.wcag-gp__section h2 { margin-top: 0; margin-bottom: 16px; }
+.wcag-gp__list { margin: 0; padding: 0; }
+.wcag-gp__item { margin: 0; padding: 10px 0; border-bottom: 1px solid var(--line-soft); }
+.wcag-gp__item:first-child { padding-top: 0; }
+.wcag-gp__item:last-child { border-bottom: none; padding-bottom: 0; }
+.wcag-gp__term { margin: 0 0 6px 0; color: var(--monash-blue); }
+.wcag-gp__def { margin: 0; font-size: 1rem; line-height: 1.7; color: var(--body-text); }
+
+/*##################################################################################################################################*/
+/*###############   ACCESSIBILITY LAYER (WCAG 2.2 AA) — brand-agnostic           ###################################################*/
+/*###############   Carried from the CAM build; applies regardless of palette.   ###################################################*/
+/*##################################################################################################################################*/
+
+/* Visible keyboard focus ring (SC 2.4.7 + 2.4.11/2.4.13 focus appearance).
+   Scoped to Monash-authored components so Canvas chrome keeps its native focus UI. */
+.user_content :is(a, button, input, select, textarea, summary, [tabindex]):focus-visible,
+.mce-content-body :is(a, button, input, select, textarea, summary, [tabindex]):focus-visible,
+.wcag-button:focus-visible,
+.wcag-card:focus-visible,
+.wcag-glossary-term:focus-visible,
+.wcag-gp__alpha-chip:focus-visible,
+.wcag-transcript-card__close:focus-visible,
+.wcag-glossary-card__close:focus-visible,
+.image-lightbox-overlay__close:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+/* Pointer focus (non-keyboard) does not show the Monash ring. Canvas chrome is untouched. */
+.user_content :is(a, button, input, select, textarea, summary, [tabindex]):focus:not(:focus-visible),
+.mce-content-body :is(a, button, input, select, textarea, summary, [tabindex]):focus:not(:focus-visible),
+.wcag-button:focus:not(:focus-visible),
+.wcag-card:focus:not(:focus-visible),
+.wcag-glossary-term:focus:not(:focus-visible),
+.wcag-gp__alpha-chip:focus:not(:focus-visible),
+.wcag-transcript-card__close:focus:not(:focus-visible),
+.wcag-glossary-card__close:focus:not(:focus-visible),
+.image-lightbox-overlay__close:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Accordion headers explicitly regain focus styling after their component outline reset. */
+summary.accordions:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+
+
+/* Reduced motion: keep the interface stable for users requesting less animation. */
+@media (prefers-reduced-motion: reduce) {
+    .wcag-page-banner__image:not([style*="background-image"]) {
+        animation: none;
+    }
+    .user_content a,
+    .mce-content-body a,
+    .user_content .video-transcript-link .transcript-button,
+    .wcag-card,
+    .wcag-button,
+    .wcag-glossary-term,
+    .wcag-gp__alpha-chip,
+    .wcag-transcript-card__close,
+    .wcag-glossary-card__close,
+    .image-lightbox-overlay__close {
+        transition: none;
+    }
+}
+
+/* Breathing room above the Previous/Next module nav bar. */
+#module_navigation_target { margin-top: 32px; }
+
+/* Suppress Canvas's auto-generated YouTube preview thumbnail + [Video] label,
+   leaving author-written text links intact. Scoped to .user_content. */
+.user_content a:has(> img.media_comment_thumbnail) { display: none !important; }
+.user_content img.media_comment_thumbnail { display: none !important; }
