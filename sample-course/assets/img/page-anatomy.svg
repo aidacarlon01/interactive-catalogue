@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" width="1200" height="720" font-family="Roboto, Arial, sans-serif">
+  <rect width="1200" height="720" fill="#F9F9F9"/>
+  <!-- page -->
+  <rect x="60" y="40" width="640" height="640" rx="10" fill="#FFFFFF" stroke="#E2E2E2" stroke-width="2"/>
+  <!-- banner -->
+  <rect x="90" y="70" width="580" height="120" rx="6" fill="#006DAE"/>
+  <rect x="250" y="112" width="260" height="36" fill="#FFFFFF" opacity="0.88"/>
+  <rect x="280" y="125" width="200" height="10" rx="5" fill="#3F4041"/>
+  <!-- h2 -->
+  <rect x="90" y="222" width="300" height="16" rx="4" fill="#006DAE"/>
+  <rect x="90" y="248" width="64" height="4" fill="#006DAE"/>
+  <!-- body text -->
+  <rect x="90" y="272" width="580" height="8" rx="4" fill="#BFBFBF"/>
+  <rect x="90" y="290" width="560" height="8" rx="4" fill="#BFBFBF"/>
+  <rect x="90" y="308" width="420" height="8" rx="4" fill="#BFBFBF"/>
+  <!-- well -->
+  <rect x="90" y="340" width="580" height="34" rx="6" fill="#F5F5F5" stroke="#ECECEC"/>
+  <rect x="104" y="351" width="12" height="12" rx="2" fill="#006DAE"/>
+  <rect x="126" y="352" width="80" height="10" rx="5" fill="#006DAE"/>
+  <rect x="90" y="374" width="580" height="60" fill="#FFFFFF" stroke="#ECECEC"/>
+  <rect x="106" y="392" width="520" height="8" rx="4" fill="#BFBFBF"/>
+  <rect x="106" y="410" width="380" height="8" rx="4" fill="#BFBFBF"/>
+  <!-- cards -->
+  <g fill="#F5F5F5" stroke="#ECECEC">
+    <rect x="90" y="462" width="182" height="120" rx="6"/>
+    <rect x="289" y="462" width="182" height="120" rx="6" fill="#006DAE" stroke="#006DAE"/>
+    <rect x="488" y="462" width="182" height="120" rx="6"/>
+  </g>
+  <g fill="#3F4041"><rect x="104" y="478" width="60" height="7" rx="3"/><rect x="502" y="478" width="60" height="7" rx="3"/></g>
+  <g fill="#006DAE"><rect x="104" y="496" width="130" height="11" rx="5"/><rect x="502" y="496" width="130" height="11" rx="5"/></g>
+  <g fill="#FFFFFF"><rect x="303" y="478" width="60" height="7" rx="3"/><rect x="303" y="496" width="130" height="11" rx="5"/></g>
+  <g fill="#FFFFFF" stroke="#E2E2E2"><rect x="104" y="552" width="70" height="18" rx="9"/><rect x="502" y="552" width="70" height="18" rx="9"/></g>
+  <rect x="303" y="552" width="70" height="18" rx="9" fill="#FFFFFF"/>
+  <!-- footer buttons -->
+  <rect x="90" y="620" width="110" height="34" rx="4" fill="#F5F5F5" stroke="#C7CDD1"/>
+  <rect x="560" y="620" width="110" height="34" rx="4" fill="#F5F5F5" stroke="#C7CDD1"/>
+
+  <!-- callouts -->
+  <g stroke="#006DAE" stroke-width="2" fill="none">
+    <path d="M670 130 H760"/>
+    <path d="M390 232 H760"/>
+    <path d="M670 290 H760"/>
+    <path d="M670 390 H760"/>
+    <path d="M670 522 H760"/>
+    <path d="M670 637 H760"/>
+  </g>
+  <g fill="#006DAE">
+    <circle cx="760" cy="130" r="5"/><circle cx="760" cy="232" r="5"/><circle cx="760" cy="290" r="5"/>
+    <circle cx="760" cy="390" r="5"/><circle cx="760" cy="522" r="5"/><circle cx="760" cy="637" r="5"/>
+  </g>
+  <g font-size="22" fill="#000000">
+    <text x="780" y="124" font-weight="700" fill="#006DAE">1  Page banner</text>
+    <text x="780" y="150" font-size="17" fill="#3F4041">Photo layer + page title overlay</text>
+    <text x="780" y="226" font-weight="700" fill="#006DAE">2  Heading 2</text>
+    <text x="780" y="252" font-size="17" fill="#3F4041">Roboto Condensed + blue accent rule</text>
+    <text x="780" y="296" font-weight="700" fill="#006DAE">3  Body text</text>
+    <text x="780" y="384" font-weight="700" fill="#006DAE">4  Well (callout)</text>
+    <text x="780" y="410" font-size="17" fill="#3F4041">Heading bar + content panel</text>
+    <text x="780" y="516" font-weight="700" fill="#006DAE">5  Clickable cards</text>
+    <text x="780" y="542" font-size="17" fill="#3F4041">Blue fill on hover and focus</text>
+    <text x="780" y="631" font-weight="700" fill="#006DAE">6  Module navigation</text>
+    <text x="780" y="657" font-size="17" fill="#3F4041">Previous / Next</text>
+  </g>
+</svg>
