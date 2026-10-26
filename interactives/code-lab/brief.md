@@ -1,13 +1,40 @@
+**Interaction name:** `code-lab`
+
 **Purpose.** Give the learner a way to build a short query step by step by choosing code fragments — seeing each choice land in a console and return a result — without any free typing.
 
-**Layout.** A heading and a one-paragraph intro. A row of four progress chips ("Round 1"–"Round 4") with a "Round 1 of 4" line beneath. Below that, a dark console-styled panel (the page itself stays light) showing a three-line placeholder query whose four fragment slots start as dotted placeholders. Below the console, one round panel at a time: a round heading, a one-line task, three clickable code-fragment chips, and a result area — a three-row table, a one-line explanation, and a "Next round" button (the fourth round's reads "Finish lab") — hidden until a fragment is chosen. After round four, a completion strip with a tick icon, a completion line, and a "Restart lab" button.
+**Content** — complete each slot with your material. The interaction's built-in labels and prompts stay as they are.
+
+Title: …
+Body copy (intro): …
+
+Console query template (the code lines, with one slot per round): …
+
+Round 1 task (one line): …
+Round 1 fragment options (one per line, 3 chips): …
+Round 1 correct fragment: …
+Round 1 result table (3 rows or fewer): …
+Round 1 explanation (one line): …
+
+Round 2 task (one line): …
+Round 2 fragment options (one per line, 3 chips): …
+Round 2 correct fragment: …
+Round 2 result table (3 rows or fewer): …
+Round 2 explanation (one line): …
+
+(repeat the block for each round)
+
+Completion line (shown when the lab is finished): …
+
+You can place 2–6 rounds using this interaction.
+
+When the content is complete: copy and paste the whole brief into the SB and assign a CU ticket.
+
+---
+
+**Technical details for the LT** — don't update unless you want the interaction to behave differently.
+
+**Layout.** The title with the body copy beneath. A row of progress chips ("Round 1"–"Round N") with a "Round x of N" line beneath. Below that, a dark console-styled panel (the page itself stays light) showing the query template, whose fragment slots start as dotted placeholders. Below the console, one round panel at a time: the round heading, its one-line task, the clickable code-fragment chips, and a result area — the result table, the one-line explanation, and a "Next round" button (the last round's reads "Finish lab") — hidden until a fragment is chosen. After the last round, a completion strip with a tick icon, the completion line, and a "Restart lab" button.
 
 **Interaction.** Clicking a fragment chip inserts that fragment into its console slot instantly (no typewriter effect) — the filled slot gets a solid plate and bold weight, the chosen chip gets a pressed state with a tick icon (never colour alone) — and reveals that round's result table, explanation, and next button. The learner can change their choice before advancing; the console updates. "Next round" hides the current round, shows the next, marks the finished chip done with a tick, and updates the progress line. "Finish lab" shows the completion strip and marks all chips done. "Restart lab" resets the console slots, chips, and rounds to the start. All controls are native buttons, fully keyboard operable; focus moves to the revealed next button and then to each new round's first chip.
 
-**States.** Four rounds shown one at a time, round 1 the default, plus a fifth completed state. Per round, the result area is hidden or revealed, and exactly zero or one of its three chips is pressed. Each console slot is unfilled (dotted placeholder) or filled. Progress chips are upcoming, current (thick border and bold), or done (filled with tick).
-
-**Content.** Placeholder throughout. Labels used: heading "Code lab"; chips "Round 1"–"Round 4"; console lines "FETCH placeholder_rows FROM …", "FILTER WHERE …", "GROUP BY … SORT BY …" with slot placeholders "fragment one/two/three/four"; tasks "Placeholder task one/two/three/four: …"; fragments "placeholder_source_one/two/three", "value_one = 'placeholder'", "value_two > 100", "label IS NOT NULL", "label", "category", "group_key", "total DESC", "row_count ASC", "group ASC"; tables with placeholder_a–d and placeholder_group_1–3 rows; explanations "Placeholder explanation one/two/three/four: …"; completion "Lab complete" with "Placeholder completion line: …"; buttons "Next round", "Finish lab", "Restart lab".
-
-**Slug.** `code-lab`
-
-**Target.** Practice — scratch page only.
+**States.** Rounds are shown one at a time, round 1 the default, plus a final completed state. Per round, the result area is hidden or revealed, and exactly zero or one of its chips is pressed. Each console slot is unfilled (dotted placeholder) or filled. Progress chips are upcoming, current (thick border and bold), or done (filled with tick).

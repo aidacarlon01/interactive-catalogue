@@ -42,6 +42,7 @@ a{color:#006DAE}
 .brief p{font-size:14.5px;margin:0 0 12px}
 .brief ul{margin:0 0 12px;padding-left:20px;font-size:14.5px}
 .brief b.lead{color:#006DAE}
+.brief hr{border:0;border-top:1px solid #E2E2E2;margin:16px 0}
 .copybtn{font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:13px;font-weight:700;color:#006DAE;background:#fff;border:1.5px solid #006DAE;border-radius:6px;padding:9px 16px;cursor:pointer}
 .copybtn:hover{background:#006DAE;color:#fff}
 .seen{border:1px solid #E2E2E2;border-radius:6px;background:#F9F9F9;padding:14px 18px;margin-top:18px;font-size:14px;color:#3F4041}
@@ -70,6 +71,10 @@ def brief_html(md):
     for l in lines:
         if not l.strip():
             if in_ul: out.append("</ul>"); in_ul = False
+            continue
+        if l.strip() == "---":
+            if in_ul: out.append("</ul>"); in_ul = False
+            out.append("<hr>")
             continue
         if l.lstrip().startswith(("* ", "- ")):
             if not in_ul: out.append("<ul>"); in_ul = True
@@ -121,16 +126,16 @@ for slug in ORDER:
     </div>
   </div>
   <div class="brief">
-    <h2>The brief</h2>
-    <p class="note">This is the example brief for the placeholder above, in the seven-part shape a build needs. Copy it, swap the placeholder content for yours, keep the structure.</p>
+    <h2>The brief template</h2>
+    <p class="note">This is the brief template for the interaction above. Copy it, fill in the Content slots with your material, and leave the technical details unless you want the interaction to behave differently.</p>
     {brief_html(brief_md)}
-    <button class="copybtn" id="copy">Copy brief as markdown</button>
+    <button class="copybtn" id="copy">Copy brief template</button>
     <script type="text/plain" id="raw">{html.escape(brief_md)}</script>
     <script>
     document.getElementById('copy').addEventListener('click', function () {{
       var raw = document.getElementById('raw').textContent;
       navigator.clipboard.writeText(raw).then(() => {{
-        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief as markdown', 1600);
+        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief template', 1600);
       }});
     }});
     </script>
@@ -145,7 +150,7 @@ idx = HEAD.format(title="Interactive pattern catalogue", css=CSS)
 idx += f"""<div class="wrap">
 <h1>Interactive pattern catalogue</h1>
 <p class="intro">Each placeholder is a single self-contained HTML file using a specific programme branding style. The brief beside it is the complete specification to request the creation of one.</p>
-<div class="howto"><b>How to use this:</b> <b>1.</b> Click a card and play with the placeholder. <b>2.</b> Copy its brief. <b>3.</b> Replace the placeholder content with yours &mdash; keep the seven headings, don&rsquo;t specify colours, fonts or layout mechanics. <b>4.</b> Hand the finished brief to the build process along with the name of your programme, so the relevant brand style guide is applied.</div>
+<div class="howto"><b>How to use this:</b> <b>1.</b> Click a card and play with the placeholder. <b>2.</b> Copy its brief template. <b>3.</b> Fill in the Content slots with your material &mdash; leave the technical details for the LT. <b>4.</b> Copy and paste the completed brief into the SB and assign a CU ticket, naming your programme so the relevant brand style guide is applied.</div>
 <div class="grid">
 {"".join(cards)}
 </div>

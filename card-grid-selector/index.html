@@ -39,6 +39,7 @@ a{color:#006DAE}
 .brief p{font-size:14.5px;margin:0 0 12px}
 .brief ul{margin:0 0 12px;padding-left:20px;font-size:14.5px}
 .brief b.lead{color:#006DAE}
+.brief hr{border:0;border-top:1px solid #E2E2E2;margin:16px 0}
 .copybtn{font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:13px;font-weight:700;color:#006DAE;background:#fff;border:1.5px solid #006DAE;border-radius:6px;padding:9px 16px;cursor:pointer}
 .copybtn:hover{background:#006DAE;color:#fff}
 .seen{border:1px solid #E2E2E2;border-radius:6px;background:#F9F9F9;padding:14px 18px;margin-top:18px;font-size:14px;color:#3F4041}
@@ -61,35 +62,74 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid #E2E2E2;font-size:1
     </div>
   </div>
   <div class="brief">
-    <h2>The brief</h2>
-    <p class="note">This is the example brief for the placeholder above, in the seven-part shape a build needs. Copy it, swap the placeholder content for yours, keep the structure.</p>
-    <p><b class="lead">Purpose.</b> Give the learner a way to compare six parallel dimensions of a concept and read detail on each one without leaving the page.</p>
-<p><b class="lead">Layout.</b> A heading &quot;Card-grid selector&quot; with a one-line intro. Below it, six cards in a two-column grid (one column on narrow screens), each carrying a short name and a one-line question. Below the grid, a detail panel.</p>
-<p><b class="lead">Interaction.</b> Clicking a card shows its detail panel below the grid: an eyebrow label &quot;DETAIL&quot;, the dimension name, a short explanation, and a worked example line. Keyboard: arrow keys move focus between cards (roving tabindex, wrapping), Enter or Space activates; Home and End jump to the first and last card. The grid is an ARIA tablist and the panels are tabpanels.</p>
-<p><b class="lead">States.</b> Six — one per card. Exactly one selected at a time; card one is the default. All six panels exist in the markup; only the selected one is shown. The selected card is filled and carries a tick badge as the non-colour cue.</p>
-<p><b class="lead">Content.</b> Placeholder throughout. Labels used: card names &quot;Placeholder dimension one&quot; … &quot;Placeholder dimension six&quot;; card questions &quot;A one-line placeholder question about dimension one?&quot; … six; panel eyebrow &quot;DETAIL&quot;; each panel has a short placeholder explanation and a &quot;Worked example:&quot; line.</p>
-<p><b class="lead">Slug.</b> <code>card-grid-selector</code></p>
-<p><b class="lead">Target.</b> Practice — scratch page only.</p>
-    <button class="copybtn" id="copy">Copy brief as markdown</button>
-    <script type="text/plain" id="raw">**Purpose.** Give the learner a way to compare six parallel dimensions of a concept and read detail on each one without leaving the page.
+    <h2>The brief template</h2>
+    <p class="note">This is the brief template for the interaction above. Copy it, fill in the Content slots with your material, and leave the technical details unless you want the interaction to behave differently.</p>
+    <p><b>Interaction name:</b> <code>card-grid-selector</code></p>
+<p><b class="lead">Purpose.</b> Give the learner a way to compare parallel dimensions of a concept and read detail on each one without leaving the page.</p>
+<p><b>Content</b> — complete each slot with your material. The interaction&#x27;s built-in labels and prompts stay as they are.</p>
+<p>Title: …</p>
+<p>Body copy (intro): …</p>
+<p>Card 1 heading: …</p>
+<p>Card 1 one-liner: …</p>
+<p>Detail 1 heading: …</p>
+<p>Detail 1 content: …</p>
+<p>Detail 1 worked example: …</p>
+<p>Card 2 heading: …</p>
+<p>Card 2 one-liner: …</p>
+<p>Detail 2 heading: …</p>
+<p>Detail 2 content: …</p>
+<p>Detail 2 worked example: …</p>
+<p>(repeat the block for each card)</p>
+<p>You can place 2–10 cards using this interaction.</p>
+<p>When the content is complete: copy and paste the whole brief into the SB and assign a CU ticket.</p>
+<hr>
+<p><b>Technical details for the LT</b> — don&#x27;t update unless you want the interaction to behave differently.</p>
+<p><b class="lead">Layout.</b> The title with the body copy beneath. Below, the cards in a two-column grid (one column on narrow screens), each carrying its heading and one-liner. Below the grid, a detail panel.</p>
+<p><b class="lead">Interaction.</b> Clicking a card shows its detail panel below the grid: an eyebrow label &quot;DETAIL&quot;, the detail heading, the detail content, and a worked example line. Keyboard: arrow keys move focus between cards (roving tabindex, wrapping), Enter or Space activates; Home and End jump to the first and last card. The grid is an ARIA tablist and the panels are tabpanels.</p>
+<p><b class="lead">States.</b> One per card. Exactly one selected at a time; card one is the default. All panels exist in the markup; only the selected one is shown. The selected card is filled and carries a tick badge as the non-colour cue.</p>
+    <button class="copybtn" id="copy">Copy brief template</button>
+    <script type="text/plain" id="raw">**Interaction name:** `card-grid-selector`
 
-**Layout.** A heading &quot;Card-grid selector&quot; with a one-line intro. Below it, six cards in a two-column grid (one column on narrow screens), each carrying a short name and a one-line question. Below the grid, a detail panel.
+**Purpose.** Give the learner a way to compare parallel dimensions of a concept and read detail on each one without leaving the page.
 
-**Interaction.** Clicking a card shows its detail panel below the grid: an eyebrow label &quot;DETAIL&quot;, the dimension name, a short explanation, and a worked example line. Keyboard: arrow keys move focus between cards (roving tabindex, wrapping), Enter or Space activates; Home and End jump to the first and last card. The grid is an ARIA tablist and the panels are tabpanels.
+**Content** — complete each slot with your material. The interaction&#x27;s built-in labels and prompts stay as they are.
 
-**States.** Six — one per card. Exactly one selected at a time; card one is the default. All six panels exist in the markup; only the selected one is shown. The selected card is filled and carries a tick badge as the non-colour cue.
+Title: …
+Body copy (intro): …
 
-**Content.** Placeholder throughout. Labels used: card names &quot;Placeholder dimension one&quot; … &quot;Placeholder dimension six&quot;; card questions &quot;A one-line placeholder question about dimension one?&quot; … six; panel eyebrow &quot;DETAIL&quot;; each panel has a short placeholder explanation and a &quot;Worked example:&quot; line.
+Card 1 heading: …
+Card 1 one-liner: …
+Detail 1 heading: …
+Detail 1 content: …
+Detail 1 worked example: …
 
-**Slug.** `card-grid-selector`
+Card 2 heading: …
+Card 2 one-liner: …
+Detail 2 heading: …
+Detail 2 content: …
+Detail 2 worked example: …
 
-**Target.** Practice — scratch page only.
+(repeat the block for each card)
+
+You can place 2–10 cards using this interaction.
+
+When the content is complete: copy and paste the whole brief into the SB and assign a CU ticket.
+
+---
+
+**Technical details for the LT** — don&#x27;t update unless you want the interaction to behave differently.
+
+**Layout.** The title with the body copy beneath. Below, the cards in a two-column grid (one column on narrow screens), each carrying its heading and one-liner. Below the grid, a detail panel.
+
+**Interaction.** Clicking a card shows its detail panel below the grid: an eyebrow label &quot;DETAIL&quot;, the detail heading, the detail content, and a worked example line. Keyboard: arrow keys move focus between cards (roving tabindex, wrapping), Enter or Space activates; Home and End jump to the first and last card. The grid is an ARIA tablist and the panels are tabpanels.
+
+**States.** One per card. Exactly one selected at a time; card one is the default. All panels exist in the markup; only the selected one is shown. The selected card is filled and carries a tick badge as the non-colour cue.
 </script>
     <script>
     document.getElementById('copy').addEventListener('click', function () {
       var raw = document.getElementById('raw').textContent;
       navigator.clipboard.writeText(raw).then(() => {
-        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief as markdown', 1600);
+        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief template', 1600);
       });
     });
     </script>

@@ -39,6 +39,7 @@ a{color:#006DAE}
 .brief p{font-size:14.5px;margin:0 0 12px}
 .brief ul{margin:0 0 12px;padding-left:20px;font-size:14.5px}
 .brief b.lead{color:#006DAE}
+.brief hr{border:0;border-top:1px solid #E2E2E2;margin:16px 0}
 .copybtn{font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:13px;font-weight:700;color:#006DAE;background:#fff;border:1.5px solid #006DAE;border-radius:6px;padding:9px 16px;cursor:pointer}
 .copybtn:hover{background:#006DAE;color:#fff}
 .seen{border:1px solid #E2E2E2;border-radius:6px;background:#F9F9F9;padding:14px 18px;margin-top:18px;font-size:14px;color:#3F4041}
@@ -61,35 +62,81 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid #E2E2E2;font-size:1
     </div>
   </div>
   <div class="brief">
-    <h2>The brief</h2>
-    <p class="note">This is the example brief for the placeholder above, in the seven-part shape a build needs. Copy it, swap the placeholder content for yours, keep the structure.</p>
-    <p><b class="lead">Purpose.</b> Encourage the learner to explore all six facets of a topic, rewarding full coverage with a completion panel, rather than letting them read only one.</p>
-<p><b class="lead">Layout.</b> A heading &quot;Tile explorer&quot; with a one-line intro. Below it, a filled feature strip carrying a headline, then a progress row (an &quot;x of 6 explored&quot; count, a progress bar, and a reset button). Below that, two columns on desktop: a two-by-three grid of tiles on the left (each tile has an icon, a label, and an Explore/Explored status line), and an insight panel on the right. On mobile the insight panel stacks below the tiles. At the bottom, a completion panel, hidden at rest.</p>
-<p><b class="lead">Interaction.</b> Clicking a tile marks it explored (status changes to &quot;Explored&quot; with a tick icon — the non-colour cue) and shows that tile&#x27;s insight in the panel: an eyebrow, a big stat that counts up from zero (instant when reduced motion is preferred), two labelled info blocks, and a reflection block. Exploring all six reveals the completion panel with a reflection list. Reset clears all exploration and returns the insight panel to its starting prompt. Tiles are ordinary buttons in tab order; the progress count is announced via a live region.</p>
-<p><b class="lead">States.</b> Eight in the insight panel — a starting prompt plus one per tile, exactly one visible at a time; the starting prompt is the default. Each tile is independently unexplored or explored (explored persists until reset). The completion panel has two states, hidden until all six are explored. All panels exist in the markup.</p>
-<p><b class="lead">Content.</b> Placeholder throughout. Labels used: strip &quot;Placeholder headline strip&quot; (eyebrow &quot;FEATURE&quot;); progress &quot;0 of 6 explored&quot; and &quot;Reset&quot;; tiles &quot;Placeholder tile one&quot; … &quot;Placeholder tile six&quot; with statuses &quot;Explore&quot;/&quot;Explored&quot;; insight eyebrows &quot;INSIGHT — TILE ONE&quot; … six; placeholder stats 64, 38, 81, 27, 92, 55 (all %); info blocks &quot;Placeholder label A&quot; and &quot;Placeholder label B&quot;; reflection block &quot;REFLECT&quot;; completion heading &quot;All six explored&quot; with three placeholder reflection points.</p>
-<p><b class="lead">Slug.</b> <code>tile-explorer</code></p>
-<p><b class="lead">Target.</b> Practice — scratch page only.</p>
-    <button class="copybtn" id="copy">Copy brief as markdown</button>
-    <script type="text/plain" id="raw">**Purpose.** Encourage the learner to explore all six facets of a topic, rewarding full coverage with a completion panel, rather than letting them read only one.
+    <h2>The brief template</h2>
+    <p class="note">This is the brief template for the interaction above. Copy it, fill in the Content slots with your material, and leave the technical details unless you want the interaction to behave differently.</p>
+    <p><b>Interaction name:</b> <code>tile-explorer</code></p>
+<p><b class="lead">Purpose.</b> Encourage the learner to explore all facets of a topic, rewarding full coverage with a completion panel, rather than letting them read only one.</p>
+<p><b>Content</b> — complete each slot with your material. The interaction&#x27;s built-in labels and prompts stay as they are.</p>
+<p>Title: …</p>
+<p>Body copy (intro): …</p>
+<p>Feature strip headline: …</p>
+<p>Tile 1 label: …</p>
+<p>Tile 1 stat (number + unit): …</p>
+<p>Tile 1 info block A (heading and sentence): …</p>
+<p>Tile 1 info block B (heading and sentence): …</p>
+<p>Tile 1 reflection prompt: …</p>
+<p>Tile 2 label: …</p>
+<p>Tile 2 stat (number + unit): …</p>
+<p>Tile 2 info block A (heading and sentence): …</p>
+<p>Tile 2 info block B (heading and sentence): …</p>
+<p>Tile 2 reflection prompt: …</p>
+<p>(repeat the block for each tile)</p>
+<p>Completion panel heading: …</p>
+<p>Completion reflection points (one per line, up to 3): …</p>
+<p>You can place 2–6 tiles using this interaction.</p>
+<p>When the content is complete: copy and paste the whole brief into the SB and assign a CU ticket.</p>
+<hr>
+<p><b>Technical details for the LT</b> — don&#x27;t update unless you want the interaction to behave differently.</p>
+<p><b class="lead">Layout.</b> The title with the body copy beneath. Below, a filled feature strip carrying the headline, then a progress row (an &quot;x of N explored&quot; count, a progress bar, and a reset button). Below that, two columns on desktop: the tile grid on the left (each tile has an icon, its label, and an Explore/Explored status line), and an insight panel on the right. On mobile the insight panel stacks below the tiles. At the bottom, the completion panel, hidden at rest.</p>
+<p><b class="lead">Interaction.</b> Clicking a tile marks it explored (status changes to &quot;Explored&quot; with a tick icon — the non-colour cue) and shows that tile&#x27;s insight in the panel: an eyebrow, the big stat counting up from zero (instant when reduced motion is preferred), the two labelled info blocks, and the reflection block. Exploring every tile reveals the completion panel with the reflection list. Reset clears all exploration and returns the insight panel to its starting prompt. Tiles are ordinary buttons in tab order; the progress count is announced via a live region.</p>
+<p><b class="lead">States.</b> The insight panel has one state per tile plus a starting prompt, exactly one visible at a time; the starting prompt is the default. Each tile is independently unexplored or explored (explored persists until reset). The completion panel is hidden until every tile is explored. All panels exist in the markup.</p>
+    <button class="copybtn" id="copy">Copy brief template</button>
+    <script type="text/plain" id="raw">**Interaction name:** `tile-explorer`
 
-**Layout.** A heading &quot;Tile explorer&quot; with a one-line intro. Below it, a filled feature strip carrying a headline, then a progress row (an &quot;x of 6 explored&quot; count, a progress bar, and a reset button). Below that, two columns on desktop: a two-by-three grid of tiles on the left (each tile has an icon, a label, and an Explore/Explored status line), and an insight panel on the right. On mobile the insight panel stacks below the tiles. At the bottom, a completion panel, hidden at rest.
+**Purpose.** Encourage the learner to explore all facets of a topic, rewarding full coverage with a completion panel, rather than letting them read only one.
 
-**Interaction.** Clicking a tile marks it explored (status changes to &quot;Explored&quot; with a tick icon — the non-colour cue) and shows that tile&#x27;s insight in the panel: an eyebrow, a big stat that counts up from zero (instant when reduced motion is preferred), two labelled info blocks, and a reflection block. Exploring all six reveals the completion panel with a reflection list. Reset clears all exploration and returns the insight panel to its starting prompt. Tiles are ordinary buttons in tab order; the progress count is announced via a live region.
+**Content** — complete each slot with your material. The interaction&#x27;s built-in labels and prompts stay as they are.
 
-**States.** Eight in the insight panel — a starting prompt plus one per tile, exactly one visible at a time; the starting prompt is the default. Each tile is independently unexplored or explored (explored persists until reset). The completion panel has two states, hidden until all six are explored. All panels exist in the markup.
+Title: …
+Body copy (intro): …
+Feature strip headline: …
 
-**Content.** Placeholder throughout. Labels used: strip &quot;Placeholder headline strip&quot; (eyebrow &quot;FEATURE&quot;); progress &quot;0 of 6 explored&quot; and &quot;Reset&quot;; tiles &quot;Placeholder tile one&quot; … &quot;Placeholder tile six&quot; with statuses &quot;Explore&quot;/&quot;Explored&quot;; insight eyebrows &quot;INSIGHT — TILE ONE&quot; … six; placeholder stats 64, 38, 81, 27, 92, 55 (all %); info blocks &quot;Placeholder label A&quot; and &quot;Placeholder label B&quot;; reflection block &quot;REFLECT&quot;; completion heading &quot;All six explored&quot; with three placeholder reflection points.
+Tile 1 label: …
+Tile 1 stat (number + unit): …
+Tile 1 info block A (heading and sentence): …
+Tile 1 info block B (heading and sentence): …
+Tile 1 reflection prompt: …
 
-**Slug.** `tile-explorer`
+Tile 2 label: …
+Tile 2 stat (number + unit): …
+Tile 2 info block A (heading and sentence): …
+Tile 2 info block B (heading and sentence): …
+Tile 2 reflection prompt: …
 
-**Target.** Practice — scratch page only.
+(repeat the block for each tile)
+
+Completion panel heading: …
+Completion reflection points (one per line, up to 3): …
+
+You can place 2–6 tiles using this interaction.
+
+When the content is complete: copy and paste the whole brief into the SB and assign a CU ticket.
+
+---
+
+**Technical details for the LT** — don&#x27;t update unless you want the interaction to behave differently.
+
+**Layout.** The title with the body copy beneath. Below, a filled feature strip carrying the headline, then a progress row (an &quot;x of N explored&quot; count, a progress bar, and a reset button). Below that, two columns on desktop: the tile grid on the left (each tile has an icon, its label, and an Explore/Explored status line), and an insight panel on the right. On mobile the insight panel stacks below the tiles. At the bottom, the completion panel, hidden at rest.
+
+**Interaction.** Clicking a tile marks it explored (status changes to &quot;Explored&quot; with a tick icon — the non-colour cue) and shows that tile&#x27;s insight in the panel: an eyebrow, the big stat counting up from zero (instant when reduced motion is preferred), the two labelled info blocks, and the reflection block. Exploring every tile reveals the completion panel with the reflection list. Reset clears all exploration and returns the insight panel to its starting prompt. Tiles are ordinary buttons in tab order; the progress count is announced via a live region.
+
+**States.** The insight panel has one state per tile plus a starting prompt, exactly one visible at a time; the starting prompt is the default. Each tile is independently unexplored or explored (explored persists until reset). The completion panel is hidden until every tile is explored. All panels exist in the markup.
 </script>
     <script>
     document.getElementById('copy').addEventListener('click', function () {
       var raw = document.getElementById('raw').textContent;
       navigator.clipboard.writeText(raw).then(() => {
-        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief as markdown', 1600);
+        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief template', 1600);
       });
     });
     </script>

@@ -39,6 +39,7 @@ a{color:#006DAE}
 .brief p{font-size:14.5px;margin:0 0 12px}
 .brief ul{margin:0 0 12px;padding-left:20px;font-size:14.5px}
 .brief b.lead{color:#006DAE}
+.brief hr{border:0;border-top:1px solid #E2E2E2;margin:16px 0}
 .copybtn{font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:13px;font-weight:700;color:#006DAE;background:#fff;border:1.5px solid #006DAE;border-radius:6px;padding:9px 16px;cursor:pointer}
 .copybtn:hover{background:#006DAE;color:#fff}
 .seen{border:1px solid #E2E2E2;border-radius:6px;background:#F9F9F9;padding:14px 18px;margin-top:18px;font-size:14px;color:#3F4041}
@@ -61,35 +62,66 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid #E2E2E2;font-size:1
     </div>
   </div>
   <div class="brief">
-    <h2>The brief</h2>
-    <p class="note">This is the example brief for the placeholder above, in the seven-part shape a build needs. Copy it, swap the placeholder content for yours, keep the structure.</p>
-    <p><b class="lead">Purpose.</b> Let the learner step through a short visual sequence one scene at a time — in their own order or via a guided tour — and see at a glance which scenes they have already viewed.</p>
-<p><b class="lead">Layout.</b> A heading &quot;Scene stepper&quot; and a one-sentence intro. Below, a control row: four numbered circular scene chips on the left, and &quot;Guided tour&quot; and &quot;Reset view&quot; buttons on the right. Under the controls, a progress line (&quot;1 of 4 scenes viewed&quot;). Below that, a bordered stage panel showing one scene at a time: a scene heading, a placeholder diagram of labelled boxes and arrows drawn as inline SVG, and a &quot;Takeaway&quot; callout strip.</p>
-<p><b class="lead">Interaction.</b> Clicking a chip shows that scene; the chips are an ARIA tablist, so left/right arrow keys (plus Home/End) move between scenes and Enter or Space activates. &quot;Guided tour&quot; steps through all four scenes automatically at a fixed interval, relabelling itself &quot;Stop tour&quot; while running; clicking it again, clicking a chip, or &quot;Reset view&quot; stops it. &quot;Reset view&quot; returns to scene one and clears all viewed marks. Each viewed scene&#x27;s chip gains a tick badge (a non-colour mark) and the progress line updates via a live region. A short opacity transition plays between scenes, disabled under prefers-reduced-motion. Every scene change re-reports the document height.</p>
-<p><b class="lead">States.</b> Four scenes, exactly one visible at a time; scene one is the default and counts as viewed on load. Each chip is unviewed or viewed (tick badge); the tour button is idle or running (<code>aria-pressed</code>). All four scene panels exist in the markup; hidden ones are <code>hidden</code>.</p>
-<p><b class="lead">Content.</b> Placeholder throughout. Labels used: &quot;Scene stepper&quot; (h1); scene headings &quot;Placeholder scene one/two/three/four&quot;; diagram box labels &quot;Input A&quot;, &quot;Input B&quot;, &quot;Placeholder process&quot;, &quot;Stage two&quot;, &quot;Outcome one&quot;, &quot;Outcome two&quot;, &quot;Review&quot;, &quot;Outcomes&quot;, &quot;feedback loop&quot;; callout label &quot;Takeaway&quot; with &quot;Placeholder takeaway for scene N…&quot;; buttons &quot;Guided tour&quot; / &quot;Stop tour&quot; and &quot;Reset view&quot;; progress &quot;N of 4 scenes viewed&quot;.</p>
-<p><b class="lead">Slug.</b> <code>scene-stepper</code></p>
-<p><b class="lead">Target.</b> Practice — scratch page only.</p>
-    <button class="copybtn" id="copy">Copy brief as markdown</button>
-    <script type="text/plain" id="raw">**Purpose.** Let the learner step through a short visual sequence one scene at a time — in their own order or via a guided tour — and see at a glance which scenes they have already viewed.
+    <h2>The brief template</h2>
+    <p class="note">This is the brief template for the interaction above. Copy it, fill in the Content slots with your material, and leave the technical details unless you want the interaction to behave differently.</p>
+    <p><b>Interaction name:</b> <code>scene-stepper</code></p>
+<p><b class="lead">Purpose.</b> Let the learner step through a short visual sequence one scene at a time — in their own order or via a guided tour — and see at a glance which scenes they have already viewed.</p>
+<p><b>Content</b> — complete each slot with your material. The interaction&#x27;s built-in labels and prompts stay as they are.</p>
+<p>Title: …</p>
+<p>Body copy (intro): …</p>
+<p>Scene 1 heading: …</p>
+<p>Scene 1 diagram (the boxes, arrows and labels to draw): …</p>
+<p>Scene 1 takeaway: …</p>
+<p>Scene 2 heading: …</p>
+<p>Scene 2 diagram (the boxes, arrows and labels to draw): …</p>
+<p>Scene 2 takeaway: …</p>
+<p>(repeat the block for each scene)</p>
+<p>You can place 2–6 scenes using this interaction.</p>
+<p>When the content is complete: copy and paste the whole brief into the SB and assign a CU ticket.</p>
+<hr>
+<p><b>Technical details for the LT</b> — don&#x27;t update unless you want the interaction to behave differently.</p>
+<p><b class="lead">Layout.</b> The title with the body copy beneath. Below, a control row: numbered circular scene chips on the left, and &quot;Guided tour&quot; and &quot;Reset view&quot; buttons on the right. Under the controls, a progress line (&quot;x of N scenes viewed&quot;). Below that, a bordered stage panel showing one scene at a time: the scene heading, its diagram of labelled boxes and arrows drawn as inline SVG, and a &quot;Takeaway&quot; callout strip.</p>
+<p><b class="lead">Interaction.</b> Clicking a chip shows that scene; the chips are an ARIA tablist, so left/right arrow keys (plus Home/End) move between scenes and Enter or Space activates. &quot;Guided tour&quot; steps through all scenes automatically at a fixed interval, relabelling itself &quot;Stop tour&quot; while running; clicking it again, clicking a chip, or &quot;Reset view&quot; stops it. &quot;Reset view&quot; returns to scene one and clears all viewed marks. Each viewed scene&#x27;s chip gains a tick badge (a non-colour mark) and the progress line updates via a live region. A short opacity transition plays between scenes, disabled under prefers-reduced-motion. Every scene change re-reports the document height.</p>
+<p><b class="lead">States.</b> Exactly one scene visible at a time; scene one is the default and counts as viewed on load. Each chip is unviewed or viewed (tick badge); the tour button is idle or running (<code>aria-pressed</code>). All scene panels exist in the markup; hidden ones are <code>hidden</code>.</p>
+    <button class="copybtn" id="copy">Copy brief template</button>
+    <script type="text/plain" id="raw">**Interaction name:** `scene-stepper`
 
-**Layout.** A heading &quot;Scene stepper&quot; and a one-sentence intro. Below, a control row: four numbered circular scene chips on the left, and &quot;Guided tour&quot; and &quot;Reset view&quot; buttons on the right. Under the controls, a progress line (&quot;1 of 4 scenes viewed&quot;). Below that, a bordered stage panel showing one scene at a time: a scene heading, a placeholder diagram of labelled boxes and arrows drawn as inline SVG, and a &quot;Takeaway&quot; callout strip.
+**Purpose.** Let the learner step through a short visual sequence one scene at a time — in their own order or via a guided tour — and see at a glance which scenes they have already viewed.
 
-**Interaction.** Clicking a chip shows that scene; the chips are an ARIA tablist, so left/right arrow keys (plus Home/End) move between scenes and Enter or Space activates. &quot;Guided tour&quot; steps through all four scenes automatically at a fixed interval, relabelling itself &quot;Stop tour&quot; while running; clicking it again, clicking a chip, or &quot;Reset view&quot; stops it. &quot;Reset view&quot; returns to scene one and clears all viewed marks. Each viewed scene&#x27;s chip gains a tick badge (a non-colour mark) and the progress line updates via a live region. A short opacity transition plays between scenes, disabled under prefers-reduced-motion. Every scene change re-reports the document height.
+**Content** — complete each slot with your material. The interaction&#x27;s built-in labels and prompts stay as they are.
 
-**States.** Four scenes, exactly one visible at a time; scene one is the default and counts as viewed on load. Each chip is unviewed or viewed (tick badge); the tour button is idle or running (`aria-pressed`). All four scene panels exist in the markup; hidden ones are `hidden`.
+Title: …
+Body copy (intro): …
 
-**Content.** Placeholder throughout. Labels used: &quot;Scene stepper&quot; (h1); scene headings &quot;Placeholder scene one/two/three/four&quot;; diagram box labels &quot;Input A&quot;, &quot;Input B&quot;, &quot;Placeholder process&quot;, &quot;Stage two&quot;, &quot;Outcome one&quot;, &quot;Outcome two&quot;, &quot;Review&quot;, &quot;Outcomes&quot;, &quot;feedback loop&quot;; callout label &quot;Takeaway&quot; with &quot;Placeholder takeaway for scene N…&quot;; buttons &quot;Guided tour&quot; / &quot;Stop tour&quot; and &quot;Reset view&quot;; progress &quot;N of 4 scenes viewed&quot;.
+Scene 1 heading: …
+Scene 1 diagram (the boxes, arrows and labels to draw): …
+Scene 1 takeaway: …
 
-**Slug.** `scene-stepper`
+Scene 2 heading: …
+Scene 2 diagram (the boxes, arrows and labels to draw): …
+Scene 2 takeaway: …
 
-**Target.** Practice — scratch page only.
+(repeat the block for each scene)
+
+You can place 2–6 scenes using this interaction.
+
+When the content is complete: copy and paste the whole brief into the SB and assign a CU ticket.
+
+---
+
+**Technical details for the LT** — don&#x27;t update unless you want the interaction to behave differently.
+
+**Layout.** The title with the body copy beneath. Below, a control row: numbered circular scene chips on the left, and &quot;Guided tour&quot; and &quot;Reset view&quot; buttons on the right. Under the controls, a progress line (&quot;x of N scenes viewed&quot;). Below that, a bordered stage panel showing one scene at a time: the scene heading, its diagram of labelled boxes and arrows drawn as inline SVG, and a &quot;Takeaway&quot; callout strip.
+
+**Interaction.** Clicking a chip shows that scene; the chips are an ARIA tablist, so left/right arrow keys (plus Home/End) move between scenes and Enter or Space activates. &quot;Guided tour&quot; steps through all scenes automatically at a fixed interval, relabelling itself &quot;Stop tour&quot; while running; clicking it again, clicking a chip, or &quot;Reset view&quot; stops it. &quot;Reset view&quot; returns to scene one and clears all viewed marks. Each viewed scene&#x27;s chip gains a tick badge (a non-colour mark) and the progress line updates via a live region. A short opacity transition plays between scenes, disabled under prefers-reduced-motion. Every scene change re-reports the document height.
+
+**States.** Exactly one scene visible at a time; scene one is the default and counts as viewed on load. Each chip is unviewed or viewed (tick badge); the tour button is idle or running (`aria-pressed`). All scene panels exist in the markup; hidden ones are `hidden`.
 </script>
     <script>
     document.getElementById('copy').addEventListener('click', function () {
       var raw = document.getElementById('raw').textContent;
       navigator.clipboard.writeText(raw).then(() => {
-        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief as markdown', 1600);
+        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief template', 1600);
       });
     });
     </script>

@@ -39,6 +39,7 @@ a{color:#006DAE}
 .brief p{font-size:14.5px;margin:0 0 12px}
 .brief ul{margin:0 0 12px;padding-left:20px;font-size:14.5px}
 .brief b.lead{color:#006DAE}
+.brief hr{border:0;border-top:1px solid #E2E2E2;margin:16px 0}
 .copybtn{font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:13px;font-weight:700;color:#006DAE;background:#fff;border:1.5px solid #006DAE;border-radius:6px;padding:9px 16px;cursor:pointer}
 .copybtn:hover{background:#006DAE;color:#fff}
 .seen{border:1px solid #E2E2E2;border-radius:6px;background:#F9F9F9;padding:14px 18px;margin-top:18px;font-size:14px;color:#3F4041}
@@ -61,35 +62,79 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid #E2E2E2;font-size:1
     </div>
   </div>
   <div class="brief">
-    <h2>The brief</h2>
-    <p class="note">This is the example brief for the placeholder above, in the seven-part shape a build needs. Copy it, swap the placeholder content for yours, keep the structure.</p>
-    <p><b class="lead">Purpose.</b> Give the learner a way to practise classifying items by sorting scenario cards into labelled category zones and getting per-card feedback on where each one belongs.</p>
-<p><b class="lead">Layout.</b> A heading and a one-paragraph intro. Below it, a dashed tray holding four scenario cards in a two-column grid, each card showing a title, one line of text, and a visible &quot;Assign to zone&quot; select menu. Below the tray, a 2×2 grid of labelled drop zones, each with a one-line definition and a dashed drop area. Under the grid, two buttons — &quot;Check my answers&quot; and &quot;Return to tray / Restart&quot; — and a status line. At narrow widths the tray and the zone grid each collapse to one column.</p>
-<p><b class="lead">Interaction.</b> The learner drags a card from the tray into any zone&#x27;s drop area (HTML5 drag events); the target shows a thicker solid border while a drag hovers it. Every card also carries a visible &quot;Assign to zone&quot; select that moves the card to the chosen zone or back to the tray — the mandatory keyboard and touch path, mirroring the real course pattern. &quot;Check my answers&quot; reveals a feedback line inside each card: a tick or cross icon plus text naming the zone the card belongs in (never colour alone), and the status line announces the score. Moving a card or changing its select clears that card&#x27;s feedback. &quot;Return to tray / Restart&quot; sends all cards back to the tray and clears all feedback. A polite live region announces each move.</p>
-<p><b class="lead">States.</b> Each of the four cards is in exactly one of five containers — the tray or one of the four zones — all cards in the tray by default. Each card&#x27;s feedback is hidden, correct (tick), or incorrect/not-placed (cross); all hidden by default. Checking can happen at any time, including with cards still in the tray.</p>
-<p><b class="lead">Content.</b> Placeholder throughout. Labels used: heading &quot;Drag-and-drop classifier&quot;; cards &quot;Placeholder scenario A/B/C/D&quot;, each with &quot;One line of placeholder text describing scenario A/B/C/D.&quot;; zones &quot;Placeholder zone one/two/three/four&quot;, each with &quot;A one-line placeholder definition of zone one/two/three/four.&quot;; select options &quot;Tray (not placed)&quot; plus the four zone names; buttons &quot;Check my answers&quot; and &quot;Return to tray / Restart&quot;. Correct mapping is A→one, B→two, C→three, D→four — swap the mapping with the real content.</p>
-<p><b class="lead">Slug.</b> <code>drag-drop-classifier</code></p>
-<p><b class="lead">Target.</b> Practice — scratch page only.</p>
-    <button class="copybtn" id="copy">Copy brief as markdown</button>
-    <script type="text/plain" id="raw">**Purpose.** Give the learner a way to practise classifying items by sorting scenario cards into labelled category zones and getting per-card feedback on where each one belongs.
+    <h2>The brief template</h2>
+    <p class="note">This is the brief template for the interaction above. Copy it, fill in the Content slots with your material, and leave the technical details unless you want the interaction to behave differently.</p>
+    <p><b>Interaction name:</b> <code>drag-drop-classifier</code></p>
+<p><b class="lead">Purpose.</b> Give the learner a way to practise classifying items by sorting scenario cards into labelled category zones and getting per-card feedback on where each one belongs.</p>
+<p><b>Content</b> — complete each slot with your material. The interaction&#x27;s built-in labels and prompts stay as they are.</p>
+<p>Title: …</p>
+<p>Body copy (intro): …</p>
+<p>Zone 1 name: …</p>
+<p>Zone 1 one-line definition: …</p>
+<p>Zone 2 name: …</p>
+<p>Zone 2 one-line definition: …</p>
+<p>(repeat for each zone)</p>
+<p>Card 1 title: …</p>
+<p>Card 1 text (one line): …</p>
+<p>Card 1 correct zone: …</p>
+<p>Card 2 title: …</p>
+<p>Card 2 text (one line): …</p>
+<p>Card 2 correct zone: …</p>
+<p>(repeat for each card)</p>
+<p>You can place 2–4 zones and up to 8 cards using this interaction.</p>
+<p>When the content is complete: copy and paste the whole brief into the SB and assign a CU ticket.</p>
+<hr>
+<p><b>Technical details for the LT</b> — don&#x27;t update unless you want the interaction to behave differently.</p>
+<p><b class="lead">Layout.</b> The title with the body copy beneath. Below, a dashed tray holding the scenario cards in a two-column grid, each card showing its title, one line of text, and a visible &quot;Assign to zone&quot; select menu. Below the tray, a grid of the labelled drop zones, each with its one-line definition and a dashed drop area. Under the grid, two buttons — &quot;Check my answers&quot; and &quot;Return to tray / Restart&quot; — and a status line. At narrow widths the tray and the zone grid each collapse to one column.</p>
+<p><b class="lead">Interaction.</b> The learner drags a card from the tray into any zone&#x27;s drop area (HTML5 drag events); the target shows a thicker solid border while a drag hovers it. Every card also carries a visible &quot;Assign to zone&quot; select that moves the card to the chosen zone or back to the tray — the mandatory keyboard and touch path. &quot;Check my answers&quot; reveals a feedback line inside each card: a tick or cross icon plus text naming the zone the card belongs in (never colour alone), and the status line announces the score. Moving a card or changing its select clears that card&#x27;s feedback. &quot;Return to tray / Restart&quot; sends all cards back to the tray and clears all feedback. A polite live region announces each move.</p>
+<p><b class="lead">States.</b> Each card is in exactly one container — the tray or one of the zones — all cards in the tray by default. Each card&#x27;s feedback is hidden, correct (tick), or incorrect/not-placed (cross); all hidden by default. Checking can happen at any time, including with cards still in the tray.</p>
+    <button class="copybtn" id="copy">Copy brief template</button>
+    <script type="text/plain" id="raw">**Interaction name:** `drag-drop-classifier`
 
-**Layout.** A heading and a one-paragraph intro. Below it, a dashed tray holding four scenario cards in a two-column grid, each card showing a title, one line of text, and a visible &quot;Assign to zone&quot; select menu. Below the tray, a 2×2 grid of labelled drop zones, each with a one-line definition and a dashed drop area. Under the grid, two buttons — &quot;Check my answers&quot; and &quot;Return to tray / Restart&quot; — and a status line. At narrow widths the tray and the zone grid each collapse to one column.
+**Purpose.** Give the learner a way to practise classifying items by sorting scenario cards into labelled category zones and getting per-card feedback on where each one belongs.
 
-**Interaction.** The learner drags a card from the tray into any zone&#x27;s drop area (HTML5 drag events); the target shows a thicker solid border while a drag hovers it. Every card also carries a visible &quot;Assign to zone&quot; select that moves the card to the chosen zone or back to the tray — the mandatory keyboard and touch path, mirroring the real course pattern. &quot;Check my answers&quot; reveals a feedback line inside each card: a tick or cross icon plus text naming the zone the card belongs in (never colour alone), and the status line announces the score. Moving a card or changing its select clears that card&#x27;s feedback. &quot;Return to tray / Restart&quot; sends all cards back to the tray and clears all feedback. A polite live region announces each move.
+**Content** — complete each slot with your material. The interaction&#x27;s built-in labels and prompts stay as they are.
 
-**States.** Each of the four cards is in exactly one of five containers — the tray or one of the four zones — all cards in the tray by default. Each card&#x27;s feedback is hidden, correct (tick), or incorrect/not-placed (cross); all hidden by default. Checking can happen at any time, including with cards still in the tray.
+Title: …
+Body copy (intro): …
 
-**Content.** Placeholder throughout. Labels used: heading &quot;Drag-and-drop classifier&quot;; cards &quot;Placeholder scenario A/B/C/D&quot;, each with &quot;One line of placeholder text describing scenario A/B/C/D.&quot;; zones &quot;Placeholder zone one/two/three/four&quot;, each with &quot;A one-line placeholder definition of zone one/two/three/four.&quot;; select options &quot;Tray (not placed)&quot; plus the four zone names; buttons &quot;Check my answers&quot; and &quot;Return to tray / Restart&quot;. Correct mapping is A→one, B→two, C→three, D→four — swap the mapping with the real content.
+Zone 1 name: …
+Zone 1 one-line definition: …
 
-**Slug.** `drag-drop-classifier`
+Zone 2 name: …
+Zone 2 one-line definition: …
 
-**Target.** Practice — scratch page only.
+(repeat for each zone)
+
+Card 1 title: …
+Card 1 text (one line): …
+Card 1 correct zone: …
+
+Card 2 title: …
+Card 2 text (one line): …
+Card 2 correct zone: …
+
+(repeat for each card)
+
+You can place 2–4 zones and up to 8 cards using this interaction.
+
+When the content is complete: copy and paste the whole brief into the SB and assign a CU ticket.
+
+---
+
+**Technical details for the LT** — don&#x27;t update unless you want the interaction to behave differently.
+
+**Layout.** The title with the body copy beneath. Below, a dashed tray holding the scenario cards in a two-column grid, each card showing its title, one line of text, and a visible &quot;Assign to zone&quot; select menu. Below the tray, a grid of the labelled drop zones, each with its one-line definition and a dashed drop area. Under the grid, two buttons — &quot;Check my answers&quot; and &quot;Return to tray / Restart&quot; — and a status line. At narrow widths the tray and the zone grid each collapse to one column.
+
+**Interaction.** The learner drags a card from the tray into any zone&#x27;s drop area (HTML5 drag events); the target shows a thicker solid border while a drag hovers it. Every card also carries a visible &quot;Assign to zone&quot; select that moves the card to the chosen zone or back to the tray — the mandatory keyboard and touch path. &quot;Check my answers&quot; reveals a feedback line inside each card: a tick or cross icon plus text naming the zone the card belongs in (never colour alone), and the status line announces the score. Moving a card or changing its select clears that card&#x27;s feedback. &quot;Return to tray / Restart&quot; sends all cards back to the tray and clears all feedback. A polite live region announces each move.
+
+**States.** Each card is in exactly one container — the tray or one of the zones — all cards in the tray by default. Each card&#x27;s feedback is hidden, correct (tick), or incorrect/not-placed (cross); all hidden by default. Checking can happen at any time, including with cards still in the tray.
 </script>
     <script>
     document.getElementById('copy').addEventListener('click', function () {
       var raw = document.getElementById('raw').textContent;
       navigator.clipboard.writeText(raw).then(() => {
-        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief as markdown', 1600);
+        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief template', 1600);
       });
     });
     </script>

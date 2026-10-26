@@ -39,6 +39,7 @@ a{color:#006DAE}
 .brief p{font-size:14.5px;margin:0 0 12px}
 .brief ul{margin:0 0 12px;padding-left:20px;font-size:14.5px}
 .brief b.lead{color:#006DAE}
+.brief hr{border:0;border-top:1px solid #E2E2E2;margin:16px 0}
 .copybtn{font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:13px;font-weight:700;color:#006DAE;background:#fff;border:1.5px solid #006DAE;border-radius:6px;padding:9px 16px;cursor:pointer}
 .copybtn:hover{background:#006DAE;color:#fff}
 .seen{border:1px solid #E2E2E2;border-radius:6px;background:#F9F9F9;padding:14px 18px;margin-top:18px;font-size:14px;color:#3F4041}
@@ -61,35 +62,64 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid #E2E2E2;font-size:1
     </div>
   </div>
   <div class="brief">
-    <h2>The brief</h2>
-    <p class="note">This is the example brief for the placeholder above, in the seven-part shape a build needs. Copy it, swap the placeholder content for yours, keep the structure.</p>
-    <p><b class="lead">Purpose.</b> Let the learner feel how a single parameter changes an outcome by moving a control and watching a chart respond immediately, rather than reading about the relationship.</p>
-<p><b class="lead">Layout.</b> A heading &quot;Parameter explorer&quot; and a one-sentence intro. Below, a controls panel holding one labelled range slider (&quot;Placeholder parameter (smoothing window, 1–10)&quot;) and two number-chip presets (&quot;2&quot; and &quot;8&quot;) behind a &quot;Presets:&quot; label. Below the controls, a hand-drawn inline SVG chart: 12 fixed placeholder data points drawn as light grey bars, with a blue moving-average line and dots drawn over them, plus axes, three gridlines and axis labels. Below the chart, a live readout line: &quot;Value: N — placeholder consequence text…&quot; followed by a text alternative sentence stating the smoothed line&#x27;s current range.</p>
-<p><b class="lead">Interaction.</b> Dragging the slider (or using arrow keys on it — it is a native range input with a visible focus ring) recomputes the moving-average line for the chosen window and redraws it; the bars never change. Clicking a preset chip sets the slider to that value; the chip shows a pressed state with a tick icon while the slider matches its value. Every change updates the readout (aria-live polite) and re-reports the document height.</p>
-<p><b class="lead">States.</b> Ten — one per slider value, 1 to 10. Default is 3. The chart is <code>aria-hidden</code>; the readout line is the accessible equivalent and changes with every state. No state is terminal; the learner can move freely.</p>
-<p><b class="lead">Content.</b> Placeholder throughout. Placeholder labels used: &quot;Placeholder parameter (smoothing window, 1–10)&quot;, &quot;Presets:&quot;, preset chips &quot;2&quot; and &quot;8&quot;, fixed data series 3 5 4 7 6 8 5 9 7 10 8 6, axis caption &quot;Placeholder data point&quot;, readout &quot;Value: N — placeholder consequence text…&quot; with three canned consequence sentences (small / moderate / large window), and the range sentence &quot;The smoothed line over the 12 fixed placeholder points now ranges from X to Y.&quot;</p>
-<p><b class="lead">Slug.</b> <code>parameter-explorer</code></p>
-<p><b class="lead">Target.</b> Practice — scratch page only.</p>
-    <button class="copybtn" id="copy">Copy brief as markdown</button>
-    <script type="text/plain" id="raw">**Purpose.** Let the learner feel how a single parameter changes an outcome by moving a control and watching a chart respond immediately, rather than reading about the relationship.
+    <h2>The brief template</h2>
+    <p class="note">This is the brief template for the interaction above. Copy it, fill in the Content slots with your material, and leave the technical details unless you want the interaction to behave differently.</p>
+    <p><b>Interaction name:</b> <code>parameter-explorer</code></p>
+<p><b class="lead">Purpose.</b> Let the learner feel how a single parameter changes an outcome by moving a control and watching a chart respond immediately, rather than reading about the relationship.</p>
+<p><b>Content</b> — complete each slot with your material. The interaction&#x27;s built-in labels and prompts stay as they are.</p>
+<p>Title: …</p>
+<p>Body copy (intro): …</p>
+<p>Parameter label (name and range, e.g. &quot;Smoothing window, 1–10&quot;): …</p>
+<p>Preset values (two): …</p>
+<p>Fixed data series (the values the chart draws): …</p>
+<p>Axis caption: …</p>
+<p>Consequence text — low values: …</p>
+<p>Consequence text — mid values: …</p>
+<p>Consequence text — high values: …</p>
+<p>This interaction takes one parameter; the data series can hold up to 20 points.</p>
+<p>When the content is complete: copy and paste the whole brief into the SB and assign a CU ticket.</p>
+<hr>
+<p><b>Technical details for the LT</b> — don&#x27;t update unless you want the interaction to behave differently.</p>
+<p><b class="lead">Layout.</b> The title with the body copy beneath. Below, a controls panel holding one labelled range slider and two number-chip presets behind a &quot;Presets:&quot; label. Below the controls, an inline SVG chart: the fixed data points drawn as light grey bars, with a blue computed line and dots drawn over them, plus axes, gridlines and axis labels. Below the chart, a live readout line: &quot;Value: N — consequence text…&quot; followed by a text alternative sentence stating the computed line&#x27;s current range.</p>
+<p><b class="lead">Interaction.</b> Dragging the slider (or using arrow keys on it — it is a native range input with a visible focus ring) recomputes the line for the chosen value and redraws it; the bars never change. Clicking a preset chip sets the slider to that value; the chip shows a pressed state with a tick icon while the slider matches its value. Every change updates the readout (aria-live polite) and re-reports the document height.</p>
+<p><b class="lead">States.</b> One per slider value across the parameter&#x27;s range. The chart is <code>aria-hidden</code>; the readout line is the accessible equivalent and changes with every state. No state is terminal; the learner can move freely.</p>
+    <button class="copybtn" id="copy">Copy brief template</button>
+    <script type="text/plain" id="raw">**Interaction name:** `parameter-explorer`
 
-**Layout.** A heading &quot;Parameter explorer&quot; and a one-sentence intro. Below, a controls panel holding one labelled range slider (&quot;Placeholder parameter (smoothing window, 1–10)&quot;) and two number-chip presets (&quot;2&quot; and &quot;8&quot;) behind a &quot;Presets:&quot; label. Below the controls, a hand-drawn inline SVG chart: 12 fixed placeholder data points drawn as light grey bars, with a blue moving-average line and dots drawn over them, plus axes, three gridlines and axis labels. Below the chart, a live readout line: &quot;Value: N — placeholder consequence text…&quot; followed by a text alternative sentence stating the smoothed line&#x27;s current range.
+**Purpose.** Let the learner feel how a single parameter changes an outcome by moving a control and watching a chart respond immediately, rather than reading about the relationship.
 
-**Interaction.** Dragging the slider (or using arrow keys on it — it is a native range input with a visible focus ring) recomputes the moving-average line for the chosen window and redraws it; the bars never change. Clicking a preset chip sets the slider to that value; the chip shows a pressed state with a tick icon while the slider matches its value. Every change updates the readout (aria-live polite) and re-reports the document height.
+**Content** — complete each slot with your material. The interaction&#x27;s built-in labels and prompts stay as they are.
 
-**States.** Ten — one per slider value, 1 to 10. Default is 3. The chart is `aria-hidden`; the readout line is the accessible equivalent and changes with every state. No state is terminal; the learner can move freely.
+Title: …
+Body copy (intro): …
 
-**Content.** Placeholder throughout. Placeholder labels used: &quot;Placeholder parameter (smoothing window, 1–10)&quot;, &quot;Presets:&quot;, preset chips &quot;2&quot; and &quot;8&quot;, fixed data series 3 5 4 7 6 8 5 9 7 10 8 6, axis caption &quot;Placeholder data point&quot;, readout &quot;Value: N — placeholder consequence text…&quot; with three canned consequence sentences (small / moderate / large window), and the range sentence &quot;The smoothed line over the 12 fixed placeholder points now ranges from X to Y.&quot;
+Parameter label (name and range, e.g. &quot;Smoothing window, 1–10&quot;): …
+Preset values (two): …
+Fixed data series (the values the chart draws): …
+Axis caption: …
+Consequence text — low values: …
+Consequence text — mid values: …
+Consequence text — high values: …
 
-**Slug.** `parameter-explorer`
+This interaction takes one parameter; the data series can hold up to 20 points.
 
-**Target.** Practice — scratch page only.
+When the content is complete: copy and paste the whole brief into the SB and assign a CU ticket.
+
+---
+
+**Technical details for the LT** — don&#x27;t update unless you want the interaction to behave differently.
+
+**Layout.** The title with the body copy beneath. Below, a controls panel holding one labelled range slider and two number-chip presets behind a &quot;Presets:&quot; label. Below the controls, an inline SVG chart: the fixed data points drawn as light grey bars, with a blue computed line and dots drawn over them, plus axes, gridlines and axis labels. Below the chart, a live readout line: &quot;Value: N — consequence text…&quot; followed by a text alternative sentence stating the computed line&#x27;s current range.
+
+**Interaction.** Dragging the slider (or using arrow keys on it — it is a native range input with a visible focus ring) recomputes the line for the chosen value and redraws it; the bars never change. Clicking a preset chip sets the slider to that value; the chip shows a pressed state with a tick icon while the slider matches its value. Every change updates the readout (aria-live polite) and re-reports the document height.
+
+**States.** One per slider value across the parameter&#x27;s range. The chart is `aria-hidden`; the readout line is the accessible equivalent and changes with every state. No state is terminal; the learner can move freely.
 </script>
     <script>
     document.getElementById('copy').addEventListener('click', function () {
       var raw = document.getElementById('raw').textContent;
       navigator.clipboard.writeText(raw).then(() => {
-        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief as markdown', 1600);
+        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief template', 1600);
       });
     });
     </script>

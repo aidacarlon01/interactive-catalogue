@@ -39,6 +39,7 @@ a{color:#006DAE}
 .brief p{font-size:14.5px;margin:0 0 12px}
 .brief ul{margin:0 0 12px;padding-left:20px;font-size:14.5px}
 .brief b.lead{color:#006DAE}
+.brief hr{border:0;border-top:1px solid #E2E2E2;margin:16px 0}
 .copybtn{font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:13px;font-weight:700;color:#006DAE;background:#fff;border:1.5px solid #006DAE;border-radius:6px;padding:9px 16px;cursor:pointer}
 .copybtn:hover{background:#006DAE;color:#fff}
 .seen{border:1px solid #E2E2E2;border-radius:6px;background:#F9F9F9;padding:14px 18px;margin-top:18px;font-size:14px;color:#3F4041}
@@ -61,35 +62,59 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid #E2E2E2;font-size:1
     </div>
   </div>
   <div class="brief">
-    <h2>The brief</h2>
-    <p class="note">This is the example brief for the placeholder above, in the seven-part shape a build needs. Copy it, swap the placeholder content for yours, keep the structure.</p>
-    <p><b class="lead">Purpose.</b> Let the learner compare a poor version and an improved version of the same thing in place, so the specific issues and the fixes that address them are seen side by side rather than described in the abstract.</p>
-<p><b class="lead">Layout.</b> A heading &quot;Before and after comparison&quot; and a one-sentence intro. Below, a segmented toggle with two options: &quot;1 Before — poor example&quot; and &quot;2 After — improved example&quot;. Below the toggle, one panel. The before panel holds a text tag &quot;POOR EXAMPLE&quot;, a fake mini-dashboard mock built from grey placeholder boxes (a row of five labelled widget boxes, then three further rows of unlabelled boxes of mixed sizes — deliberately cluttered), and a list of three issue notes, each with a cross icon. The after panel holds a text tag &quot;IMPROVED&quot;, a cleaned mock (one blue-outlined headline box plus four supporting boxes), and a list of three fix notes, each with a tick icon.</p>
+    <h2>The brief template</h2>
+    <p class="note">This is the brief template for the interaction above. Copy it, fill in the Content slots with your material, and leave the technical details unless you want the interaction to behave differently.</p>
+    <p><b>Interaction name:</b> <code>before-after</code></p>
+<p><b class="lead">Purpose.</b> Let the learner compare a poor version and an improved version of the same thing in place, so the specific issues and the fixes that address them are seen side by side rather than described in the abstract.</p>
+<p><b>Content</b> — complete each slot with your material. The interaction&#x27;s built-in labels and prompts stay as they are.</p>
+<p>Title: …</p>
+<p>Body copy (intro): …</p>
+<p>Before view — what the poor-example mock shows: …</p>
+<p>Before view — issue notes (one per line, up to 5): …</p>
+<p>After view — what the improved mock shows: …</p>
+<p>After view — fix notes (one per line, up to 5): …</p>
+<p>This interaction is fixed at two views — before and after.</p>
+<p>When the content is complete: copy and paste the whole brief into the SB and assign a CU ticket.</p>
+<hr>
+<p><b>Technical details for the LT</b> — don&#x27;t update unless you want the interaction to behave differently.</p>
+<p><b class="lead">Layout.</b> The title with the body copy beneath. Below, a segmented toggle with two options: &quot;1 Before — poor example&quot; and &quot;2 After — improved example&quot;. Below the toggle, one panel. The before panel holds a text tag &quot;POOR EXAMPLE&quot;, the poor-example mock built from placeholder boxes, and the list of issue notes, each with a cross icon. The after panel holds a text tag &quot;IMPROVED&quot;, the improved mock, and the list of fix notes, each with a tick icon.</p>
 <p><b class="lead">Interaction.</b> Clicking a toggle option shows its panel and hides the other. Keyboard: the toggle is an ARIA tablist with roving tabindex — Left/Right (and Up/Down, Home, End) arrow keys move and select, Tab leaves the group. A tick icon appears on the selected option. Each switch re-reports the document height.</p>
 <p><b class="lead">States.</b> Two — before and after. Exactly one visible at a time; before is the default. Both panels exist in the markup; the hidden one uses the <code>hidden</code> attribute. State is carried by the text tags (&quot;POOR EXAMPLE&quot; / &quot;IMPROVED&quot;) and the toggle tick, not by colour alone.</p>
-<p><b class="lead">Content.</b> Placeholder throughout. Placeholder labels used: &quot;Placeholder widget A&quot;, &quot;Widget B&quot;–&quot;Widget E&quot;, &quot;Placeholder headline metric&quot;, &quot;Supporting A&quot;–&quot;Supporting D&quot;, &quot;Issue 1&quot;–&quot;Issue 3&quot; (&quot;placeholder note about…&quot;), &quot;Fix 1&quot;–&quot;Fix 3&quot; (&quot;placeholder note about…&quot;), tags &quot;POOR EXAMPLE&quot; and &quot;IMPROVED&quot;.</p>
-<p><b class="lead">Slug.</b> <code>before-after</code></p>
-<p><b class="lead">Target.</b> Practice — scratch page only.</p>
-    <button class="copybtn" id="copy">Copy brief as markdown</button>
-    <script type="text/plain" id="raw">**Purpose.** Let the learner compare a poor version and an improved version of the same thing in place, so the specific issues and the fixes that address them are seen side by side rather than described in the abstract.
+    <button class="copybtn" id="copy">Copy brief template</button>
+    <script type="text/plain" id="raw">**Interaction name:** `before-after`
 
-**Layout.** A heading &quot;Before and after comparison&quot; and a one-sentence intro. Below, a segmented toggle with two options: &quot;1 Before — poor example&quot; and &quot;2 After — improved example&quot;. Below the toggle, one panel. The before panel holds a text tag &quot;POOR EXAMPLE&quot;, a fake mini-dashboard mock built from grey placeholder boxes (a row of five labelled widget boxes, then three further rows of unlabelled boxes of mixed sizes — deliberately cluttered), and a list of three issue notes, each with a cross icon. The after panel holds a text tag &quot;IMPROVED&quot;, a cleaned mock (one blue-outlined headline box plus four supporting boxes), and a list of three fix notes, each with a tick icon.
+**Purpose.** Let the learner compare a poor version and an improved version of the same thing in place, so the specific issues and the fixes that address them are seen side by side rather than described in the abstract.
+
+**Content** — complete each slot with your material. The interaction&#x27;s built-in labels and prompts stay as they are.
+
+Title: …
+Body copy (intro): …
+
+Before view — what the poor-example mock shows: …
+Before view — issue notes (one per line, up to 5): …
+
+After view — what the improved mock shows: …
+After view — fix notes (one per line, up to 5): …
+
+This interaction is fixed at two views — before and after.
+
+When the content is complete: copy and paste the whole brief into the SB and assign a CU ticket.
+
+---
+
+**Technical details for the LT** — don&#x27;t update unless you want the interaction to behave differently.
+
+**Layout.** The title with the body copy beneath. Below, a segmented toggle with two options: &quot;1 Before — poor example&quot; and &quot;2 After — improved example&quot;. Below the toggle, one panel. The before panel holds a text tag &quot;POOR EXAMPLE&quot;, the poor-example mock built from placeholder boxes, and the list of issue notes, each with a cross icon. The after panel holds a text tag &quot;IMPROVED&quot;, the improved mock, and the list of fix notes, each with a tick icon.
 
 **Interaction.** Clicking a toggle option shows its panel and hides the other. Keyboard: the toggle is an ARIA tablist with roving tabindex — Left/Right (and Up/Down, Home, End) arrow keys move and select, Tab leaves the group. A tick icon appears on the selected option. Each switch re-reports the document height.
 
 **States.** Two — before and after. Exactly one visible at a time; before is the default. Both panels exist in the markup; the hidden one uses the `hidden` attribute. State is carried by the text tags (&quot;POOR EXAMPLE&quot; / &quot;IMPROVED&quot;) and the toggle tick, not by colour alone.
-
-**Content.** Placeholder throughout. Placeholder labels used: &quot;Placeholder widget A&quot;, &quot;Widget B&quot;–&quot;Widget E&quot;, &quot;Placeholder headline metric&quot;, &quot;Supporting A&quot;–&quot;Supporting D&quot;, &quot;Issue 1&quot;–&quot;Issue 3&quot; (&quot;placeholder note about…&quot;), &quot;Fix 1&quot;–&quot;Fix 3&quot; (&quot;placeholder note about…&quot;), tags &quot;POOR EXAMPLE&quot; and &quot;IMPROVED&quot;.
-
-**Slug.** `before-after`
-
-**Target.** Practice — scratch page only.
 </script>
     <script>
     document.getElementById('copy').addEventListener('click', function () {
       var raw = document.getElementById('raw').textContent;
       navigator.clipboard.writeText(raw).then(() => {
-        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief as markdown', 1600);
+        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief template', 1600);
       });
     });
     </script>

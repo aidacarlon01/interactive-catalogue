@@ -39,6 +39,7 @@ a{color:#006DAE}
 .brief p{font-size:14.5px;margin:0 0 12px}
 .brief ul{margin:0 0 12px;padding-left:20px;font-size:14.5px}
 .brief b.lead{color:#006DAE}
+.brief hr{border:0;border-top:1px solid #E2E2E2;margin:16px 0}
 .copybtn{font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:13px;font-weight:700;color:#006DAE;background:#fff;border:1.5px solid #006DAE;border-radius:6px;padding:9px 16px;cursor:pointer}
 .copybtn:hover{background:#006DAE;color:#fff}
 .seen{border:1px solid #E2E2E2;border-radius:6px;background:#F9F9F9;padding:14px 18px;margin-top:18px;font-size:14px;color:#3F4041}
@@ -61,35 +62,70 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid #E2E2E2;font-size:1
     </div>
   </div>
   <div class="brief">
-    <h2>The brief</h2>
-    <p class="note">This is the example brief for the placeholder above, in the seven-part shape a build needs. Copy it, swap the placeholder content for yours, keep the structure.</p>
-    <p><b class="lead">Purpose.</b> Walk the learner through a four-stage cyclical process in order, while letting them jump to any stage directly.</p>
-<p><b class="lead">Layout.</b> A heading &quot;Tabs and stage stepper&quot; with a one-line intro. Below it, four numbered stage tabs in a row (two-by-two on narrow screens), each with a numbered circle and a label. Below the tabs, one stage panel carrying an eyebrow, a step heading, a body paragraph, and a bulleted detail list. Under the panel, Previous and Next buttons with a loop-back note alongside.</p>
-<p><b class="lead">Interaction.</b> Clicking a tab shows its stage panel. Next advances one stage and, from stage four, loops back to stage one (the note explains the cycle repeats); Previous steps back one stage and is disabled on stage one. Keyboard: the tabs follow the ARIA tab pattern with roving tabindex — arrow keys move and select (wrapping), Home and End jump to the ends, Enter or Space activates.</p>
-<p><b class="lead">States.</b> Four — one per stage. Exactly one panel visible at a time; stage one is the default. All four panels exist in the markup. The selected tab is filled and carries a tick marker as the non-colour cue; Previous has an enabled and a disabled state.</p>
-<p><b class="lead">Content.</b> Placeholder throughout. Labels used: tabs &quot;1 Placeholder stage one&quot; … &quot;4 Placeholder stage four&quot;; panel eyebrows &quot;STAGE ONE&quot; … &quot;STAGE FOUR&quot;; headings &quot;Placeholder step heading one&quot; … four; each panel has one placeholder body paragraph and three placeholder detail points; buttons &quot;Previous&quot; and &quot;Next&quot;; loop-back note &quot;After stage four, next loops back to stage one — the cycle repeats.&quot;</p>
-<p><b class="lead">Slug.</b> <code>tabs-stepper</code></p>
-<p><b class="lead">Target.</b> Practice — scratch page only.</p>
-    <button class="copybtn" id="copy">Copy brief as markdown</button>
-    <script type="text/plain" id="raw">**Purpose.** Walk the learner through a four-stage cyclical process in order, while letting them jump to any stage directly.
+    <h2>The brief template</h2>
+    <p class="note">This is the brief template for the interaction above. Copy it, fill in the Content slots with your material, and leave the technical details unless you want the interaction to behave differently.</p>
+    <p><b>Interaction name:</b> <code>tabs-stepper</code></p>
+<p><b class="lead">Purpose.</b> Walk the learner through the stages of a cyclical process in order, while letting them jump to any stage directly.</p>
+<p><b>Content</b> — complete each slot with your material. The interaction&#x27;s built-in labels and prompts stay as they are.</p>
+<p>Title: …</p>
+<p>Body copy (intro): …</p>
+<p>Stage 1 tab label: …</p>
+<p>Stage 1 heading: …</p>
+<p>Stage 1 body paragraph: …</p>
+<p>Stage 1 detail points (one per line, up to 3): …</p>
+<p>Stage 2 tab label: …</p>
+<p>Stage 2 heading: …</p>
+<p>Stage 2 body paragraph: …</p>
+<p>Stage 2 detail points (one per line, up to 3): …</p>
+<p>(repeat the block for each stage)</p>
+<p>You can place 2–5 stages using this interaction.</p>
+<p>When the content is complete: copy and paste the whole brief into the SB and assign a CU ticket.</p>
+<hr>
+<p><b>Technical details for the LT</b> — don&#x27;t update unless you want the interaction to behave differently.</p>
+<p><b class="lead">Layout.</b> The title with the body copy beneath. Below, the numbered stage tabs in a row (two-by-two on narrow screens), each with a numbered circle and its label. Below the tabs, one stage panel carrying an eyebrow, the stage heading, the body paragraph, and the bulleted detail list. Under the panel, Previous and Next buttons with a loop-back note alongside.</p>
+<p><b class="lead">Interaction.</b> Clicking a tab shows its stage panel. Next advances one stage and, from the last stage, loops back to stage one (the note explains the cycle repeats); Previous steps back one stage and is disabled on stage one. Keyboard: the tabs follow the ARIA tab pattern with roving tabindex — arrow keys move and select (wrapping), Home and End jump to the ends, Enter or Space activates.</p>
+<p><b class="lead">States.</b> One per stage. Exactly one panel visible at a time; stage one is the default. All panels exist in the markup. The selected tab is filled and carries a tick marker as the non-colour cue; Previous has an enabled and a disabled state.</p>
+    <button class="copybtn" id="copy">Copy brief template</button>
+    <script type="text/plain" id="raw">**Interaction name:** `tabs-stepper`
 
-**Layout.** A heading &quot;Tabs and stage stepper&quot; with a one-line intro. Below it, four numbered stage tabs in a row (two-by-two on narrow screens), each with a numbered circle and a label. Below the tabs, one stage panel carrying an eyebrow, a step heading, a body paragraph, and a bulleted detail list. Under the panel, Previous and Next buttons with a loop-back note alongside.
+**Purpose.** Walk the learner through the stages of a cyclical process in order, while letting them jump to any stage directly.
 
-**Interaction.** Clicking a tab shows its stage panel. Next advances one stage and, from stage four, loops back to stage one (the note explains the cycle repeats); Previous steps back one stage and is disabled on stage one. Keyboard: the tabs follow the ARIA tab pattern with roving tabindex — arrow keys move and select (wrapping), Home and End jump to the ends, Enter or Space activates.
+**Content** — complete each slot with your material. The interaction&#x27;s built-in labels and prompts stay as they are.
 
-**States.** Four — one per stage. Exactly one panel visible at a time; stage one is the default. All four panels exist in the markup. The selected tab is filled and carries a tick marker as the non-colour cue; Previous has an enabled and a disabled state.
+Title: …
+Body copy (intro): …
 
-**Content.** Placeholder throughout. Labels used: tabs &quot;1 Placeholder stage one&quot; … &quot;4 Placeholder stage four&quot;; panel eyebrows &quot;STAGE ONE&quot; … &quot;STAGE FOUR&quot;; headings &quot;Placeholder step heading one&quot; … four; each panel has one placeholder body paragraph and three placeholder detail points; buttons &quot;Previous&quot; and &quot;Next&quot;; loop-back note &quot;After stage four, next loops back to stage one — the cycle repeats.&quot;
+Stage 1 tab label: …
+Stage 1 heading: …
+Stage 1 body paragraph: …
+Stage 1 detail points (one per line, up to 3): …
 
-**Slug.** `tabs-stepper`
+Stage 2 tab label: …
+Stage 2 heading: …
+Stage 2 body paragraph: …
+Stage 2 detail points (one per line, up to 3): …
 
-**Target.** Practice — scratch page only.
+(repeat the block for each stage)
+
+You can place 2–5 stages using this interaction.
+
+When the content is complete: copy and paste the whole brief into the SB and assign a CU ticket.
+
+---
+
+**Technical details for the LT** — don&#x27;t update unless you want the interaction to behave differently.
+
+**Layout.** The title with the body copy beneath. Below, the numbered stage tabs in a row (two-by-two on narrow screens), each with a numbered circle and its label. Below the tabs, one stage panel carrying an eyebrow, the stage heading, the body paragraph, and the bulleted detail list. Under the panel, Previous and Next buttons with a loop-back note alongside.
+
+**Interaction.** Clicking a tab shows its stage panel. Next advances one stage and, from the last stage, loops back to stage one (the note explains the cycle repeats); Previous steps back one stage and is disabled on stage one. Keyboard: the tabs follow the ARIA tab pattern with roving tabindex — arrow keys move and select (wrapping), Home and End jump to the ends, Enter or Space activates.
+
+**States.** One per stage. Exactly one panel visible at a time; stage one is the default. All panels exist in the markup. The selected tab is filled and carries a tick marker as the non-colour cue; Previous has an enabled and a disabled state.
 </script>
     <script>
     document.getElementById('copy').addEventListener('click', function () {
       var raw = document.getElementById('raw').textContent;
       navigator.clipboard.writeText(raw).then(() => {
-        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief as markdown', 1600);
+        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief template', 1600);
       });
     });
     </script>

@@ -39,6 +39,7 @@ a{color:#006DAE}
 .brief p{font-size:14.5px;margin:0 0 12px}
 .brief ul{margin:0 0 12px;padding-left:20px;font-size:14.5px}
 .brief b.lead{color:#006DAE}
+.brief hr{border:0;border-top:1px solid #E2E2E2;margin:16px 0}
 .copybtn{font-family:'Roboto Condensed',Arial,sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:13px;font-weight:700;color:#006DAE;background:#fff;border:1.5px solid #006DAE;border-radius:6px;padding:9px 16px;cursor:pointer}
 .copybtn:hover{background:#006DAE;color:#fff}
 .seen{border:1px solid #E2E2E2;border-radius:6px;background:#F9F9F9;padding:14px 18px;margin-top:18px;font-size:14px;color:#3F4041}
@@ -61,35 +62,70 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid #E2E2E2;font-size:1
     </div>
   </div>
   <div class="brief">
-    <h2>The brief</h2>
-    <p class="note">This is the example brief for the placeholder above, in the seven-part shape a build needs. Copy it, swap the placeholder content for yours, keep the structure.</p>
-    <p><b class="lead">Purpose.</b> Give the learner a sequence of steps they can work through one at a time, reading the detail and a short activity for each without the others competing for attention.</p>
-<p><b class="lead">Layout.</b> A heading &quot;Accordion walkthrough&quot; and a one-sentence intro. Below, a single bordered accordion of four numbered rows. Each row header carries a numbered circle badge, a bold title with a short dash-separated description (&quot;1 Placeholder step one — short description of step one&quot;), and a chevron at the right. The open row&#x27;s body holds one short paragraph and a &quot;Try it&quot; callout strip (icon, &quot;Try it&quot; label, one-line activity prompt).</p>
-<p><b class="lead">Interaction.</b> Clicking a closed row header opens it and closes whichever row was open; clicking the open row&#x27;s header closes it. The chevron flips when a row opens, and the open header inverts to the dominant brand colour. Keyboard: headers are native buttons, Enter or Space toggles, arrow up/down (plus Home/End) move focus between the four headers. Each toggle re-reports the document height.</p>
-<p><b class="lead">States.</b> Four rows; at most one open at a time, zero open is allowed. Row one is open by default. All four bodies exist in the markup; closed bodies are <code>hidden</code>. Open state is carried by <code>aria-expanded</code>, the flipped chevron, and the inverted header.</p>
-<p><b class="lead">Content.</b> Placeholder throughout. Labels used: &quot;Accordion walkthrough&quot; (h1); row titles &quot;Placeholder step one/two/three/four — short description of step one/two/three/four&quot;; each body a &quot;Placeholder paragraph for step N…&quot; sentence pair; callout label &quot;Try it&quot; with &quot;Placeholder activity prompt for step N…&quot;.</p>
-<p><b class="lead">Slug.</b> <code>accordion-walkthrough</code></p>
-<p><b class="lead">Target.</b> Practice — scratch page only.</p>
-    <button class="copybtn" id="copy">Copy brief as markdown</button>
-    <script type="text/plain" id="raw">**Purpose.** Give the learner a sequence of steps they can work through one at a time, reading the detail and a short activity for each without the others competing for attention.
+    <h2>The brief template</h2>
+    <p class="note">This is the brief template for the interaction above. Copy it, fill in the Content slots with your material, and leave the technical details unless you want the interaction to behave differently.</p>
+    <p><b>Interaction name:</b> <code>accordion-walkthrough</code></p>
+<p><b class="lead">Purpose.</b> Give the learner a sequence of steps they can work through one at a time, reading the detail and a short activity for each without the others competing for attention.</p>
+<p><b>Content</b> — complete each slot with your material. The interaction&#x27;s built-in labels and prompts stay as they are.</p>
+<p>Title: …</p>
+<p>Body copy (intro): …</p>
+<p>Step 1 title: …</p>
+<p>Step 1 short description (shown next to the title): …</p>
+<p>Step 1 body paragraph: …</p>
+<p>Step 1 &quot;Try it&quot; activity prompt: …</p>
+<p>Step 2 title: …</p>
+<p>Step 2 short description (shown next to the title): …</p>
+<p>Step 2 body paragraph: …</p>
+<p>Step 2 &quot;Try it&quot; activity prompt: …</p>
+<p>(repeat the block for each step)</p>
+<p>You can place 2–8 steps using this interaction.</p>
+<p>When the content is complete: copy and paste the whole brief into the SB and assign a CU ticket.</p>
+<hr>
+<p><b>Technical details for the LT</b> — don&#x27;t update unless you want the interaction to behave differently.</p>
+<p><b class="lead">Layout.</b> The title with the body copy beneath. Below, a single bordered accordion of numbered rows. Each row header carries a numbered circle badge, the bold step title with its short dash-separated description, and a chevron at the right. The open row&#x27;s body holds the body paragraph and a &quot;Try it&quot; callout strip (icon, &quot;Try it&quot; label, the activity prompt).</p>
+<p><b class="lead">Interaction.</b> Clicking a closed row header opens it and closes whichever row was open; clicking the open row&#x27;s header closes it. The chevron flips when a row opens, and the open header inverts to the dominant brand colour. Keyboard: headers are native buttons, Enter or Space toggles, arrow up/down (plus Home/End) move focus between the headers. Each toggle re-reports the document height.</p>
+<p><b class="lead">States.</b> At most one row open at a time, zero open is allowed. Row one is open by default. All bodies exist in the markup; closed bodies are <code>hidden</code>. Open state is carried by <code>aria-expanded</code>, the flipped chevron, and the inverted header.</p>
+    <button class="copybtn" id="copy">Copy brief template</button>
+    <script type="text/plain" id="raw">**Interaction name:** `accordion-walkthrough`
 
-**Layout.** A heading &quot;Accordion walkthrough&quot; and a one-sentence intro. Below, a single bordered accordion of four numbered rows. Each row header carries a numbered circle badge, a bold title with a short dash-separated description (&quot;1 Placeholder step one — short description of step one&quot;), and a chevron at the right. The open row&#x27;s body holds one short paragraph and a &quot;Try it&quot; callout strip (icon, &quot;Try it&quot; label, one-line activity prompt).
+**Purpose.** Give the learner a sequence of steps they can work through one at a time, reading the detail and a short activity for each without the others competing for attention.
 
-**Interaction.** Clicking a closed row header opens it and closes whichever row was open; clicking the open row&#x27;s header closes it. The chevron flips when a row opens, and the open header inverts to the dominant brand colour. Keyboard: headers are native buttons, Enter or Space toggles, arrow up/down (plus Home/End) move focus between the four headers. Each toggle re-reports the document height.
+**Content** — complete each slot with your material. The interaction&#x27;s built-in labels and prompts stay as they are.
 
-**States.** Four rows; at most one open at a time, zero open is allowed. Row one is open by default. All four bodies exist in the markup; closed bodies are `hidden`. Open state is carried by `aria-expanded`, the flipped chevron, and the inverted header.
+Title: …
+Body copy (intro): …
 
-**Content.** Placeholder throughout. Labels used: &quot;Accordion walkthrough&quot; (h1); row titles &quot;Placeholder step one/two/three/four — short description of step one/two/three/four&quot;; each body a &quot;Placeholder paragraph for step N…&quot; sentence pair; callout label &quot;Try it&quot; with &quot;Placeholder activity prompt for step N…&quot;.
+Step 1 title: …
+Step 1 short description (shown next to the title): …
+Step 1 body paragraph: …
+Step 1 &quot;Try it&quot; activity prompt: …
 
-**Slug.** `accordion-walkthrough`
+Step 2 title: …
+Step 2 short description (shown next to the title): …
+Step 2 body paragraph: …
+Step 2 &quot;Try it&quot; activity prompt: …
 
-**Target.** Practice — scratch page only.
+(repeat the block for each step)
+
+You can place 2–8 steps using this interaction.
+
+When the content is complete: copy and paste the whole brief into the SB and assign a CU ticket.
+
+---
+
+**Technical details for the LT** — don&#x27;t update unless you want the interaction to behave differently.
+
+**Layout.** The title with the body copy beneath. Below, a single bordered accordion of numbered rows. Each row header carries a numbered circle badge, the bold step title with its short dash-separated description, and a chevron at the right. The open row&#x27;s body holds the body paragraph and a &quot;Try it&quot; callout strip (icon, &quot;Try it&quot; label, the activity prompt).
+
+**Interaction.** Clicking a closed row header opens it and closes whichever row was open; clicking the open row&#x27;s header closes it. The chevron flips when a row opens, and the open header inverts to the dominant brand colour. Keyboard: headers are native buttons, Enter or Space toggles, arrow up/down (plus Home/End) move focus between the headers. Each toggle re-reports the document height.
+
+**States.** At most one row open at a time, zero open is allowed. Row one is open by default. All bodies exist in the markup; closed bodies are `hidden`. Open state is carried by `aria-expanded`, the flipped chevron, and the inverted header.
 </script>
     <script>
     document.getElementById('copy').addEventListener('click', function () {
       var raw = document.getElementById('raw').textContent;
       navigator.clipboard.writeText(raw).then(() => {
-        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief as markdown', 1600);
+        this.textContent = 'Copied'; setTimeout(() => this.textContent = 'Copy brief template', 1600);
       });
     });
     </script>
